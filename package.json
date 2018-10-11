@@ -1,0 +1,32 @@
+{
+  "name": "atypik",
+  "version": "1.0.0",
+  "description": "atypikhouse.fr front-end design",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config build/webpack.config.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cipop-project/atypik-front.git"
+  },
+  "author": "proScientia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cipop-project/atypik-front/issues"
+  },
+  "homepage": "https://github.com/Cipop-project/atypik-front#readme",
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.0",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
