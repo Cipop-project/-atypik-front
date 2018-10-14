@@ -5,10 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
-
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
-}
+const resolve = (dir) => path.resolve('.', dir)
 
 module.exports = {
   mode: 'development',
@@ -50,9 +47,19 @@ module.exports = {
         test: /\.(js|vue)$/,
         use: 'eslint-loader',
         enforce: 'pre'
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: '/static/fonts',
+            publicPath: 'dist/static/fonts/'
+          }
+        }]
       }
-    ]
-  },
+    ] },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
