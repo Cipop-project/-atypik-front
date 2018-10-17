@@ -1,18 +1,10 @@
 <template>
   <div>
-    <h1>{{ name }}</h1>
+    <h1>HOMEPAGE</h1>
   </div>
 
 </template>
 <script>
-export default {
-  props: {
-    name: {
-      type: String,
-      required: true
-    }
-  }
-}
 </script>
 <style lang="sass" scoped>
 h1 {

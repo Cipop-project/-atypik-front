@@ -1,7 +1,6 @@
 <template>
   <div class="full-width center-content">
-    <hello-component name="AtypikHouse" />
-    <login-component/>
+    <router-view/>
   </div>
 </template>
 <script>
