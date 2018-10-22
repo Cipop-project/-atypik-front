@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config build/webpack.config.dev.js",
     "test": "jest",
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.config.dev.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.config.dev.js --port 3030",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix"
   },
