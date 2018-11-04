@@ -1,15 +1,18 @@
 <template>
-  <div class="full-width center-content">
+  <v-app class="full-width center-content">
+    <Header/>
     <router-view/>
-  </div>
+  </v-app>
 </template>
 <script>
+import Header from '../components/Header.vue'
 import HomepageView from './HomepageView.vue'
 import LoginView from './index/LoginView.vue'
 export default {
   components: {
     HomepageView,
-    LoginView
+    LoginView,
+    Header
   }
 }
 </script>
