@@ -1,4 +1,3 @@
-
 <template>
   <v-container
     fluid
@@ -14,7 +13,7 @@
           class="elevation-6">
           <v-card-title>
             <h3
-              class="text-xs-center">Creation du compte</h3>
+              class="text-xs-center">Account creation</h3>
           </v-card-title>
           <v-card-text>
             <v-form
@@ -31,6 +30,10 @@
                 :type="'password'"
                 label="Mot de passe"
                 required/>
+              <v-btn
+                round
+                color="success"
+                @click="submit">Create account</v-btn>
             </v-form>
           </v-card-text>
         </v-card>
@@ -51,7 +54,7 @@ export default {
         v => (v && v.length <= 10) || 'Name must be less than 10 characters'
       ],
       passwordRules: [
-        value => value.length >= 8 || 'Min 8 chars'
+        value => value.length >= 8 || 'Minimum 8 chars'
       ]
     }
   }

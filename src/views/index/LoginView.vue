@@ -32,6 +32,11 @@
                 round
                 color="success"
                 @click="submit">Login</v-btn>
+              or
+              <v-btn
+                round
+                color="info"
+                to="/signin">Create account</v-btn>
             </v-form>
           </v-card-text>
         </v-card>
