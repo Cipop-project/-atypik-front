@@ -8,6 +8,7 @@ import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
 import Vuetify from 'vuetify'
 import router from './router'
+import 'flag-icon-css/css/flag-icon.css'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)

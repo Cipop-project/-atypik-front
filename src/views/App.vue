@@ -1,9 +1,7 @@
 <template>
   <v-app class="full-width center-content">
     <Header/>
-    <v-container fluid>
-      <router-view/>
-    </v-container>
+    <router-view/>
   </v-app>
 </template>
 <script>

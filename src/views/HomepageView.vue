@@ -1,22 +1,26 @@
 <template>
   <div>
-    <v-toolbar elevation-15>
-      <v-toolbar-items>
-        <v-btn flat>Option One</v-btn>
-        <v-btn flat>Option Two</v-btn>
-        <v-btn flat>Option Three</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-    <v-carousel
-      delimiter-icon="mdi-stop"
-      prev-icon="mdi-chevron-left"
-      next-icon="mdi-chevron-right">
-      <v-carousel-item
-        v-for="(image,i) in images"
-        :key="i"
-        :src="image.src"/>
-    </v-carousel>
+    <v-img
+      alt="logement inedit sur la cote d'un lac"
+      src="/static/img/home.jpg"
+      max-height="800"
+      gradient="to top, rgba(100,115,201,.0), rgba(0,0,0,.4)">
+      <v-layout>
+        <!--SEARCH-->
+      </v-layout>
+    </v-img>
     <BasicSearch/>
+    <v-layout>
+      <v-flex
+        v-for="(city, i) in cityDestinations"
+        :key="i"
+        md3
+        justify-space-between>
+        <v-card>
+          <v-img :src="city.src" />
+        </v-card>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
@@ -35,6 +39,18 @@ export default {
         },
         {
           src: '/static/img/home_img_2.jpg'
+        }
+      ],
+      cityDestinations: [
+        {
+          name: 'Grenoble',
+          text: 'A partir de 49€ la nuit',
+          src: 'https://picsum.photos/200/300/?image=170'
+        },
+        {
+          name: 'Lyon',
+          text: 'A partir de 42€ la nuit',
+          src: 'https://picsum.photos/200/300/?image=350'
         }
       ]
     }

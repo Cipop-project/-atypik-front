@@ -1,14 +1,14 @@
 <template>
   <div class="header">
-    <v-toolbar class="white">
-      <v-toolbar-side-icon>
-        <router-link
-          tag="img"
-          to="/"
-          src="/static/img/icon.png"
-          height="40"
-          alt="logo"/>
-      </v-toolbar-side-icon>
+    <v-toolbar
+      absolute
+      flat
+      class="transparent">
+      <router-link
+        tag="v-toolbar-title"
+        to="/">
+        <h1 class="font-weight-medium white--text">AtypikHouse</h1>
+      </router-link>
       <v-spacer/>
       <v-btn
         v-if="LoginVisible"
@@ -18,7 +18,7 @@
         v-if="LogoutVisible"
         color="error">Logout</v-btn>
       <v-btn icon>
-        <v-icon>mdi-flag</v-icon>
+        <span class="flag-icon flag-icon-fr"/>
       </v-btn>
     </v-toolbar>
   </div>
@@ -36,5 +36,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
