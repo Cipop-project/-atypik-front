@@ -44,11 +44,11 @@ module.exports = {
         test: /\.js$/,
         use: 'babel-loader'
       },
-      {
-        test: /\.(js|vue)$/,
-        use: 'eslint-loader',
-        enforce: 'pre'
-      },
+      // {
+      //   test: /\.(js|vue)$/,
+      //   use: 'eslint-loader',
+      //   enforce: 'pre'
+      // },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [{

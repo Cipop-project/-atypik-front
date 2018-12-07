@@ -5,11 +5,10 @@
       src="/static/img/home.jpg"
       max-height="800"
       gradient="to top, rgba(100,115,201,.0), rgba(0,0,0,.4)">
-      <v-layout>
-        <!--SEARCH-->
+      <v-layout justify-center align-center fill-height>
+        <BasicSearch/>
       </v-layout>
     </v-img>
-    <BasicSearch/>
     <v-layout>
       <v-flex
         v-for="(city, i) in cityDestinations"
