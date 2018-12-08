@@ -5,21 +5,24 @@
       src="/static/img/home.jpg"
       max-height="800"
       gradient="to top, rgba(100,115,201,.0), rgba(0,0,0,.4)">
-      <v-layout justify-center align-center fill-height>
+      <v-layout
+        justify-center
+        align-center
+        fill-height>
         <BasicSearch/>
       </v-layout>
     </v-img>
-    <v-layout>
-      <v-flex
-        v-for="(city, i) in cityDestinations"
-        :key="i"
-        md3
-        justify-space-between>
-        <v-card>
-          <v-img :src="city.src" />
-        </v-card>
-      </v-flex>
-    </v-layout>
+    <!--<v-layout>-->
+    <!--<v-flex-->
+    <!--v-for="(city, i) in cityDestinations"-->
+    <!--:key="i"-->
+    <!--md3-->
+    <!--justify-space-between>-->
+    <!--<v-card>-->
+    <!--<v-img :src="city.src" />-->
+    <!--</v-card>-->
+    <!--</v-flex>-->
+    <!--</v-layout>-->
   </div>
 </template>
 
@@ -57,6 +60,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+  .header {
+    margin-bottom: 0px;
+  }
 </style>
