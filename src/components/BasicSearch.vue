@@ -9,7 +9,7 @@
           <v-autocomplete
             v-model="model"
             :items="cities"
-            item-text="customDisplay(city, country)"
+            item-text="city"
             item-value="city_id"
             placeholder="Destination"
             class="mr-2"
@@ -39,6 +39,7 @@
           solo/></v-flex>
         <v-flex xs1><v-text-field
           id="people"
+          append-icon="mdi-account"
           type="text"
           placeholder="Voyageurs"
           solo/></v-flex>
