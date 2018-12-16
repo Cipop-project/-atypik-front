@@ -18,32 +18,65 @@
             append-icon="mdi-place"
             solo/>
         </v-flex>
-        <!--<v-flex><v-text-field-->
-        <!--id="from"-->
-        <!--append-icon="mdi-place"-->
-        <!--type="text"-->
-        <!--class="mr-2"-->
-        <!--label="Destination"-->
-        <!--solo/></v-flex>-->
         <v-flex xs2>
-          <v-text-field
-          hide-details
-          id="arrival_date"
-          append-icon="mdi-calendar"
-          type="date"
-          class="mr-2"
-          label="Date d'arrivé"
-          solo/>
+          <v-menu
+            lazy
+            :close-on-content-click="false"
+            v-model="menu_from"
+            transition="scale-transition"
+            offset-y
+            full-width
+            :nudge-right="40">
+            <v-text-field
+              hide-details
+              id="depart_date"
+              append-icon="mdi-calendar"
+              slot="activator"
+              v-model="date_from"
+              class="mr-2"
+              label="Date de départ"
+              solo/>
+            <v-date-picker
+              @change="menu_from = false"
+              v-model="date_from"
+              :min="minFromDate"
+              color="green"
+              no-title
+              next-icon="mdi-chevron-right"
+              prev-icon="mdi-chevron-left"
+              show-current>
+            </v-date-picker>
+          </v-menu>
         </v-flex>
         <v-flex xs2>
-          <v-text-field
-          hide-details
-          id="depart_date"
-          append-icon="mdi-calendar"
-          type="date"
-          class="mr-2"
-          placeholder="Date de depart"
-          solo/>
+          <v-menu
+            lazy
+            :close-on-content-click="false"
+            v-model="menu_to"
+            transition="scale-transition"
+            offset-y
+            full-width
+            :nudge-right="40">
+            <v-text-field
+              hide-details
+              id="arrival_date"
+              label="Date d'arrivé"
+              append-icon="mdi-calendar"
+              slot="activator"
+              v-model="date_to"
+              class="mr-2"
+              solo/>
+            <v-date-picker
+              @change="menu_to = false"
+              v-model="date_to"
+              :min="minToDate"
+              color="green"
+              no-title
+              next-icon="mdi-chevron-right"
+              prev-icon="mdi-chevron-left"
+              show-current>
+            </v-date-picker>
+          </v-menu>
         </v-flex>
         <v-flex xs1>
           <v-menu offset-y :close-on-content-click="false">
@@ -126,6 +159,10 @@ export default {
   data () {
     return {
       model: null,
+      menu_from: false,
+      menu_to: false,
+      date_from: null,
+      date_to: null,
       adult_count: 0,
       children_count: 0,
       cities: [
@@ -139,6 +176,16 @@ export default {
     customDisplay (city, country) {
       return city + ' ' + country
     },
+    formatDate(date) {
+      let month = `${date.getMonth() + 1}`
+      let day = `${date.getDate()}`
+      const year = date.getFullYear()
+
+      if (month.length < 2) month = `0${month}`
+      if (day.length < 2) day = `0${day}`
+
+      return [year, month, day].join('-')
+    },
     decrementAdult () {
       this.adult_count = (this.adult_count-1 < 0 ? 0 : this.adult_count-1)
     },
@@ -150,6 +197,26 @@ export default {
     },
     incrementChildren () {
       this.children_count++
+    }
+  },
+  computed: {
+    minFromDate () {
+      const tomorrow = new Date()
+      tomorrow.setDate(tomorrow.getDate())
+      return this.formatDate(tomorrow)
+    },
+    minToDate () {
+       if (this.date_from == null) {
+         const tomorrow = new Date()
+         tomorrow.setDate(tomorrow.getDate()+1)
+         return this.formatDate(tomorrow)
+       } else {
+         const nextDay = new Date(this.date_from)
+         console.log(nextDay)
+         nextDay.setDate(nextDay.getDate()+1)
+         return this.formatDate(nextDay)
+         return this.date_from
+       }
     }
   }
 }
