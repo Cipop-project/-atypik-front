@@ -176,7 +176,7 @@ export default {
           email: this.email,
           phoneNumber: (this.phone ? this.phone : ''),
           password: this.password,
-          language: (this.language ? this.language : 'FR'),
+          language: (this.language ? this.language : 'FR')
 
         })
       }
