@@ -177,7 +177,6 @@ export default {
           phoneNumber: (this.phone ? this.phone : ''),
           password: this.password,
           language: (this.language ? this.language : 'FR'),
-
         })
       }
     }
