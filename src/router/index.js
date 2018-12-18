@@ -26,6 +26,11 @@ export default new Router({
       component: SearchView
     },
     {
+      path: '/product/details',
+      name: 'product-details',
+      component: SearchView
+    },
+    {
       path: '/',
       name: 'homepage',
       component: HomepageView
