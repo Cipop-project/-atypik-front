@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HomepageView from '../views/HomepageView.vue'
 import LoginView from '../views/index/LoginView.vue'
-import SigninView from '../views/index/SigninView.vue'
+import SigninView from '../views/index/RegisterView.vue'
 import SearchView from '../views/index/SearchView.vue'
 
 Vue.use(Router)
