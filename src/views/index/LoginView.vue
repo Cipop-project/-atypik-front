@@ -11,9 +11,9 @@
         md4>
         <v-card
           class="elevation-6">
-          <v-card-title>
-            <h3
-              class="text-xs-center">Connection</h3>
+          <v-card-title
+            class="justify-center">
+            <h1>Connection</h1>
           </v-card-title>
           <v-card-text>
             <v-form
@@ -21,22 +21,25 @@
               v-model="valid">
               <v-text-field
                 v-model="name"
-                label="Username or Email"
+                label="Email"
                 required/>
               <v-text-field
                 v-model="password"
                 :type="'password'"
                 label="Mot de passe"
                 required/>
-              <v-btn
-                round
-                color="success"
-                @click="submit">Login</v-btn>
-              or
-              <v-btn
-                round
-                color="info"
-                to="/signin">Create account</v-btn>
+              <v-layout
+                justify-center>
+                <v-btn
+                  round
+                  color="success"
+                  @click="submit">Login</v-btn>
+                <h3 class="mt-2">or</h3>
+                <v-btn
+                  round
+                  color="info"
+                  to="/signin">Create account</v-btn>
+              </v-layout>
             </v-form>
           </v-card-text>
         </v-card>
@@ -65,6 +68,9 @@ export default {
 </script>
 
 <style scoped>
+  .text-center {
+    text-align: center;
+  }
   .btn {
     display: block;
     width: 50%;
