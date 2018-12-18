@@ -6,7 +6,6 @@
 </template>
 <script>
 import Header from '../components/Header.vue'
-
 import HomepageView from './HomepageView.vue'
 import LoginView from './index/LoginView.vue'
 

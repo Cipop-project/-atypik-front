@@ -9,6 +9,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import Vuetify from 'vuetify'
 import router from './router'
 import 'flag-icon-css/css/flag-icon.css'
+import axios from 'axios'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
