@@ -5,6 +5,7 @@
       flat
       class="transparent">
       <router-link
+        :style="{ cursor: 'pointer' }"
         tag="v-toolbar-title"
         to="/">
         <h1 class="font-weight-medium white--text">AtypikHouse</h1>

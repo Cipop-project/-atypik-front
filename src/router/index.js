@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HomepageView from '../views/HomepageView.vue'
+import NotFoundView from '../views/NotFoundView.vue'
 import LoginView from '../views/index/LoginView.vue'
 import SigninView from '../views/index/RegisterView.vue'
 import SearchView from '../views/index/SearchView.vue'
@@ -34,6 +35,21 @@ export default new Router({
       path: '/',
       name: 'homepage',
       component: HomepageView
+    },
+    {
+      path: '/host/',
+      name: 'host',
+      component: NotFoundView
+    },
+    {
+      path: '/about/',
+      name: 'about',
+      component: NotFoundView
+    },
+    {
+      path: '/about/conditions',
+      name: 'cgu-cgv',
+      component: NotFoundView
     }
   ]
 })
