@@ -194,14 +194,6 @@ export default {
             language: (this.language ? this.language : 'FR')
           }
         })
-        // this.$http.post('http://admin:123456@localhost:8001/api/clients', {
-        //   username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
-        //   email: this.email,
-        //   phoneNumber: (this.phone ? this.phone : ''),
-        //   password: this.password,
-        //   language: (this.language ? this.language : 'FR')
-        //
-        // })
       }
     }
   }

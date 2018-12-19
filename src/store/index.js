@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import UserRegisterApi from '../services/api/UserRegister'
+import UserLoginApi from '../services/api/UserLogin'
 
 Vue.use(Vuex)
 
@@ -57,8 +58,20 @@ export const store = new Vuex.Store({
       state.pending = false
       console.log(error)
     },
-    registerSuccess () {
+    registerSuccess (state) {
+      state.pending = false
       console.log('Register OK')
+    },
+    loginRequest (state) {
+      state.pending = true
+    },
+    loginFailure (state, error) {
+      state.pending = false
+      console.log(error)
+    },
+    loginSuccess (state) {
+      state.pending = false
+      console.log('Login OK')
     }
   },
   actions: {
@@ -68,6 +81,12 @@ export const store = new Vuex.Store({
       UserRegisterApi.registerUser(user)
       // commit('registerFailure', 'Error: L\'addresse mail est deja associé à une compte')
       commit('registerSuccess')
+    },
+    login ({ dispatch, commit }, user) {
+      commit('loginRequest', user)
+      console.log('login request')
+      UserLoginApi.authUser(user)
+      commit('loginSuccess')
     }
   }
 })

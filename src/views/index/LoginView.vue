@@ -21,6 +21,7 @@
               v-model="valid">
               <v-text-field
                 v-model="name"
+                type="email"
                 label="Email"
                 required/>
               <v-text-field
@@ -49,6 +50,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -58,9 +60,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['login']),
     submit () {
       if (this.$refs.login_form.validate()) {
-        // ok
+        this.login({ username: this.name, password: this.password })
       }
     }
   }
