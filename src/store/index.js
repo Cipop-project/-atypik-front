@@ -49,15 +49,24 @@ export const store = new Vuex.Store({
     // ]
   },
   mutations: {
-    submitRegister (state) {
+    registerRequest (state) {
       state.pending = true
+    },
+    registerFailure (state, error) {
+      state.pending = false
+      console.log(error)
+    },
+    registerSuccess () {
+      console.log('Register OK')
     }
   },
   actions: {
     register ({ dispatch, commit }, user) {
-      commit('submitRegister', user)
+      commit('registerRequest', user)
       // service.REGISTER_REQUEST
       console.log('register request')
+      // commit('registerFailure', 'Error: L\'addresse mail est deja associé à une compte')
+      commit('registerSuccess')
     }
   }
 })
