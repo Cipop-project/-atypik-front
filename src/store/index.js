@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import UserRegisterApi from '../services/api/UserRegister'
 
 Vue.use(Vuex)
 
@@ -63,8 +64,8 @@ export const store = new Vuex.Store({
   actions: {
     register ({ dispatch, commit }, user) {
       commit('registerRequest', user)
-      // service.REGISTER_REQUEST
       console.log('register request')
+      UserRegisterApi.registerUser(user)
       // commit('registerFailure', 'Error: L\'addresse mail est deja associé à une compte')
       commit('registerSuccess')
     }
