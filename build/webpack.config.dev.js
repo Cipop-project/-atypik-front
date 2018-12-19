@@ -15,7 +15,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     hot: true,
-    proxy: process.env.mode === 'standalone' ? 'http://www.atypikhouse.com' : 'http://localhost:8080',
+    // proxy: process.env.mode === 'standalone' ? 'http://www.atypikhouse.com' : 'http://localhost:8080',
     watchOptions: {
       poll: true
     }

@@ -47,28 +47,9 @@ import BasicSearch from '../../components/BasicSearch.vue'
 export default {
   name: 'SearchView',
   components: { BasicSearch },
-  data () {
-    return {
-      products: [
-        {
-          'id': 1,
-          'title': 'first product',
-          'images': [
-            { 'title': 'first img', 'src': '/static/img/home_img_1.jpg' },
-            { 'title': 'second img', 'src': '/static/img/home_img_2.jpg' }
-          ],
-          'description': 'Here goes the description of first product'
-        },
-        {
-          'id': 2,
-          'title': 'second product',
-          'images': [
-            { 'title': 'first img', 'src': '/static/img/home_img_1.jpg' },
-            { 'title': 'second img', 'src': '/static/img/home_img_2.jpg' }
-          ],
-          'description': 'Here goes the description of second product'
-        }
-      ]
+  computed: {
+    products () {
+      return this.$store.state.products
     }
   }
 }

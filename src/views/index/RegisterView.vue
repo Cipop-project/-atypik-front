@@ -22,6 +22,7 @@
               <v-text-field
                 v-model="email"
                 :rules="emailRules"
+                type="email"
                 label="Email"
                 prepend-icon="mdi-email"
                 suffix="*"
@@ -124,6 +125,8 @@
 </template>
 
 <script>
+// import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -168,17 +171,37 @@ export default {
       ]
     }
   },
+  // computed: mapState({
+  //   emailRules: 'emailRules',
+  //   nameRules: 'nameRules',
+  //   lastNameRules: 'lastNameRules',
+  //   birthdayRules: 'birthdayRules',
+  //   passwordRules: 'passwordRules',
+  //   passwordConfirmationRules: 'passwordConfirmationRules',
+  //   phoneRules: 'phoneRules'
+  // }),
   methods: {
+    ...mapActions(['register']),
     submit () {
       if (this.$refs.signin_form.validate()) {
-        this.$http.post('http://admin:123456@localhost:8001/api/clients', {
-          username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
-          email: this.email,
-          phoneNumber: (this.phone ? this.phone : ''),
-          password: this.password,
-          language: (this.language ? this.language : 'FR')
-
+        console.log('validated, registering...')
+        this.register({
+          user: {
+            username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
+            email: this.email,
+            phoneNumber: (this.phone ? this.phone : ''),
+            password: this.password,
+            language: (this.language ? this.language : 'FR')
+          }
         })
+        // this.$http.post('http://admin:123456@localhost:8001/api/clients', {
+        //   username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
+        //   email: this.email,
+        //   phoneNumber: (this.phone ? this.phone : ''),
+        //   password: this.password,
+        //   language: (this.language ? this.language : 'FR')
+        //
+        // })
       }
     }
   }
