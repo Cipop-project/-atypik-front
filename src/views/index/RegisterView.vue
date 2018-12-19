@@ -171,7 +171,7 @@ export default {
   methods: {
     submit () {
       if (this.$refs.signin_form.validate()) {
-        axios.post('http://admin:123456@localhost:8001/api/clients', {
+        this.$http.post('http://admin:123456@localhost:8001/api/clients', {
           username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
           email: this.email,
           phoneNumber: (this.phone ? this.phone : ''),

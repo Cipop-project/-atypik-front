@@ -9,15 +9,15 @@ import '@mdi/font/css/materialdesignicons.css'
 import Vuetify from 'vuetify'
 import router from './router'
 import 'flag-icon-css/css/flag-icon.css'
-import axios from 'axios'
+import VueResource from 'vue-resource'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
+Vue.use(VueResource)
 
 /* eslint-disable-next-line no-new */
 new Vue({
   el: '#app',
   router,
-  axios,
   render: h => h(App)
 })
