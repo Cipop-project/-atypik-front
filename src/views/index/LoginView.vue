@@ -1,52 +1,57 @@
 <template>
-  <v-container
-    fluid
-    fill-height>
-    <v-layout
-      align-center
-      justify-center>
-      <v-flex
-        xs12
-        sm8
-        md4>
-        <v-card
-          class="elevation-6">
-          <v-card-title
-            class="justify-center">
-            <h1>Connection</h1>
-          </v-card-title>
-          <v-card-text>
-            <v-form
-              ref="login_form"
-              v-model="valid">
-              <v-text-field
-                v-model="name"
-                type="email"
-                label="Email"
-                required/>
-              <v-text-field
-                v-model="password"
-                :type="'password'"
-                label="Mot de passe"
-                required/>
-              <v-layout
-                justify-center>
-                <v-btn
-                  round
-                  color="success"
-                  @click="submit">Login</v-btn>
-                <h3 class="mt-2">or</h3>
-                <v-btn
-                  round
-                  color="info"
-                  to="/signin">Create account</v-btn>
-              </v-layout>
-            </v-form>
-          </v-card-text>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div>
+    <v-header/>
+    <v-container/>
+    <v-container
+      fluid
+      fill-height>
+      <v-layout
+        align-center
+        justify-center>
+        <v-flex
+          xs12
+          sm8
+          md4>
+          <v-card
+            class="elevation-6">
+            <v-card-title
+              class="justify-center">
+              <h1>Connection</h1>
+            </v-card-title>
+            <v-card-text>
+              <v-form
+                ref="login_form"
+                v-model="valid">
+                <v-text-field
+                  v-model="name"
+                  type="email"
+                  label="Email"
+                  required/>
+                <v-text-field
+                  v-model="password"
+                  :type="'password'"
+                  label="Mot de passe"
+                  required/>
+                <v-layout
+                  justify-center>
+                  <v-btn
+                    round
+                    color="success"
+                    @click="submit">Login</v-btn>
+                  <h3 class="mt-2">or</h3>
+                  <v-btn
+                    round
+                    color="info"
+                    to="/signin">Create account</v-btn>
+                </v-layout>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-footer/>
+  </div>
 </template>
 
 <script>

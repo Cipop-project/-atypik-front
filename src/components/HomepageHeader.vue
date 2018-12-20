@@ -1,13 +1,14 @@
 <template>
   <div class="header">
     <v-toolbar
+      absolute
       flat
       class="transparent">
       <router-link
         :style="{ cursor: 'pointer' }"
         tag="v-toolbar-title"
         to="/">
-        <h1 class="font-weight-medium brown--text">AtypikHouse</h1>
+        <h1 class="font-weight-medium white--text">AtypikHouse</h1>
       </router-link>
       <v-spacer/>
       <v-btn

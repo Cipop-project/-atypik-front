@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-homepage-header/>
     <v-img
       alt="logement inedit sur la cote d'un lac"
       src="/static/img/home.jpg"
@@ -23,6 +24,7 @@
     <!--</v-card>-->
     <!--</v-flex>-->
     <!--</v-layout>-->
+    <v-footer/>
   </div>
 </template>
 
