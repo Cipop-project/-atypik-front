@@ -11,13 +11,13 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    {path: '/login',              name: 'login',            component: LoginView},
-    {path: '/signin',             name: 'signin',           component: SigninView},
-    {path: '/search',             name: 'search',           component: SearchView},
-    {path: '/product/details',    name: 'product-details',  component: SearchView},
-    {path: '/',                   name: 'homepage',         component: HomepageView},
-    {path: '/host/',              name: 'host',             component: NotFoundView},
-    {path: '/about/',             name: 'about',            component: NotFoundView},
-    {path: '/about/conditions',   name: 'cgu-cgv',          component: NotFoundView}
+    { path: '/login', name: 'login', component: LoginView },
+    { path: '/signin', name: 'signin', component: SigninView },
+    { path: '/search', name: 'search', component: SearchView },
+    { path: '/product/details', name: 'product-details', component: SearchView },
+    { path: '/', name: 'homepage', component: HomepageView },
+    { path: '/host/', name: 'host', component: NotFoundView },
+    { path: '/about/', name: 'about', component: NotFoundView },
+    { path: '/about/conditions', name: 'cgu-cgv', component: NotFoundView }
   ]
 })
