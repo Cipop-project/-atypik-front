@@ -5,7 +5,7 @@
       fluid
       class="custom-container">
       <div class="spacer"/>
-      <BasicSearch/>
+      <v-basic-search/>
       <br>
       <v-layout
         align-start
@@ -47,10 +47,8 @@
 </template>
 
 <script>
-import BasicSearch from '../../components/BasicSearch.vue'
 export default {
   name: 'SearchView',
-  components: { BasicSearch },
   computed: {
     products () {
       return this.$store.state.products
