@@ -7,24 +7,175 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
+    loggedIn: true,
     products: [
       {
-        'id': 1,
-        'title': 'first product',
-        'images': [
-          { 'title': 'first img', 'src': '/static/img/home_img_1.jpg' },
-          { 'title': 'second img', 'src': '/static/img/home_img_2.jpg' }
-        ],
-        'description': 'Here goes the description of first product'
+        name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
       },
       {
-        'id': 2,
-        'title': 'second product',
-        'images': [
-          { 'title': 'first img', 'src': '/static/img/home_img_1.jpg' },
-          { 'title': 'second img', 'src': '/static/img/home_img_2.jpg' }
-        ],
-        'description': 'Here goes the description of second product'
+        name: 'Cabanes das',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      }
+    ],
+    popularZones: [
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      },
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      },
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      },
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      },
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      },
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      },
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      },
+      { title: 'Hauts de France',
+        country: 'France',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'region/adkTYrs5Fz41'
+      }
+    ],
+    homeTypes: [
+      { title: 'Cabanes dans les arbres',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'homeType/deY24Xs6eds'
+      },
+      { title: 'Cabanes dans les arbres',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'homeType/deY24Xs6eds'
+      },
+      { title: 'Cabanes dans les arbres',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'homeType/deY24Xs6eds'
+      },
+      { title: 'Cabanes dans les arbres',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'homeType/deY24Xs6eds'
+      },
+      { title: 'Cabanes dans les arbres',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'homeType/deY24Xs6eds'
+      },
+      { title: 'Cabanes dans les arbres',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'homeType/deY24Xs6eds'
+      },
+      { title: 'Cabanes dans les arbres',
+        count: '27',
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'homeType/deY24Xs6eds'
+      }
+    ],
+    bestHomes: [
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
+      },
+      { name: 'Cabanes dans les arbres',
+        location: 'Strasbourg, France',
+        price: '87€',
+        note: 4.7,
+        img: '/static/img/falaises-etretat.jpg',
+        src: 'details/deY24Xs6eds'
       }
     ]
     // emailRules: [

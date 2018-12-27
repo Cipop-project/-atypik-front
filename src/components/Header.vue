@@ -11,11 +11,11 @@
       </router-link>
       <v-spacer/>
       <v-btn
-        v-if="LoginVisible"
+        v-if="!isLoggedIn"
         to="/login"
         color="success">Login</v-btn>
       <v-btn
-        v-if="LogoutVisible"
+        v-else
         color="error">Logout</v-btn>
       <v-btn icon>
         <span class="flag-icon flag-icon-fr"/>
@@ -28,8 +28,7 @@ export default {
   name: 'Header',
   data () {
     return {
-      LoginVisible: true,
-      LogoutVisible: false
+      isLoggedIn: this.$store.state.loggedIn
     }
   }
 }

@@ -8,7 +8,7 @@
       fill-height>
       <v-card
         class="card-layout transparent mb-2 pa-2">
-        <h3 class="white--text text-xs-center">{{ slide.title }}</h3>
+        <h4 class="white--text text-xs-center">{{ slide.title }}</h4>
         <h5 class="white--text text-xs-center ">{{ slide.count }} Logements</h5>
       </v-card>
     </v-layout>
@@ -33,5 +33,6 @@ export default {
     border: 2px solid lightgray!important;
     /*border-right: 3px solid ghostwhite!important;*/
     border-style: ridge!important;
+    /*height: 400px;*/
   }
 </style>
