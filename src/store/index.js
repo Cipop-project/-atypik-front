@@ -8,6 +8,14 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     loggedIn: true,
+    user:
+    {
+      name: 'Carlos',
+      last_name: 'Sanchez',
+      location: 'Paris, France',
+      photo: 'https://picsum.photos/300',
+      inscription_date: 'septembre 2018'
+    },
     products: [
       {
         name: 'Cabanes dans les arbres',
