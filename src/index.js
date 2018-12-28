@@ -17,6 +17,7 @@ import HomepageHeader from './components/HomepageHeader.vue'
 import BasicSearch from './components/BasicSearch.vue'
 import BigCard from './components/BigCard.vue'
 import SmallCard from './components/SmallCard.vue'
+import ProfileNavigationDrawer from './components/ProfileNavigationDrawer.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import StarRating from 'vue-star-rating'
@@ -34,6 +35,7 @@ Vue.component('v-footer', Footer)
 Vue.component('v-basic-search', BasicSearch)
 Vue.component('v-big-card', BigCard)
 Vue.component('v-small-card', SmallCard)
+Vue.component('v-profile-navigation', ProfileNavigationDrawer)
 Vue.component('v-star-rating', StarRating)
 
 /* eslint-disable-next-line no-new */
