@@ -18,13 +18,8 @@
 </template>
 
 <script>
-import NotationStars from './NotationStars.vue'
-
 export default {
   name: 'SmallCard',
-  components: {
-    'v-notation-stars': NotationStars
-  },
   props: {
     item: {
       type: Object,

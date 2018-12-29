@@ -1,5 +1,7 @@
 <template>
-  <v-container id="footer">
+  <v-container
+    id="footer"
+    fluid>
     <v-layout
       justify-center
       class="mt-5">

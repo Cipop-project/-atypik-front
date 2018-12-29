@@ -12,9 +12,41 @@ export const store = new Vuex.Store({
     {
       name: 'Carlos',
       last_name: 'Sanchez',
+      type: 'host',
       location: 'Paris, France',
-      photo: 'https://picsum.photos/300',
-      inscription_date: 'septembre 2018'
+      photo: 'https://picsum.photos/300?random',
+      inscription_date: 'septembre 2018',
+      note: 4.3,
+      description: 'Nous serons de vous accueuillir à bord ,afin de partager notre passion maritime ,et que vous decouvriez ce petit coin de paradis meme en restant au port, merci beaucoup pour tout vos adorables messages.',
+      homes: [
+        {
+          name: 'Cabanes dans les arbres',
+          location: 'Strasbourg, France',
+          price: '87€',
+          note: 4.7,
+          img: '/static/img/falaises-etretat.jpg',
+          src: 'details/deY24Xs6eds'
+        },
+        {
+          name: 'Cabanes das',
+          location: 'Strasbourg, France',
+          price: '87€',
+          note: 4.7,
+          img: '/static/img/falaises-etretat.jpg',
+          src: 'details/deY24Xs6eds'
+        }
+      ],
+      comments: [
+        {
+          user: {
+            name: 'Charline',
+            location: 'Paris, France',
+            photo: 'https://picsum.photos/300?random'
+          },
+          content: 'Très beau séjour',
+          date: 'novembre 2018'
+        }
+      ]
     },
     products: [
       {

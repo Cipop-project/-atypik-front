@@ -9,8 +9,12 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 export default {
   name: 'NotationStars',
+  components: {
+    'v-star-rating': StarRating
+  },
   props: {
     note: {
       type: Number,
