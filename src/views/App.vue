@@ -7,13 +7,11 @@
 
 import HomepageView from './HomepageView.vue'
 import NotFoundView from './NotFoundView.vue'
-import LoginView from './index/LoginView.vue'
 
 export default {
   components: {
     HomepageView,
-    NotFoundView,
-    LoginView
+    NotFoundView
   }
 }
 </script>

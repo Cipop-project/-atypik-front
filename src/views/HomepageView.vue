@@ -103,7 +103,7 @@
 
 <script>
 export default {
-  name: 'HomepageVue',
+  name: 'HomepageView',
   data () {
     return {
       swiperOption: {

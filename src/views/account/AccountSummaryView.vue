@@ -29,7 +29,9 @@
                 <v-flex md9>
                   <h3>{{ user.name }} {{ user.last_name }}</h3>
                   <h4>
-                    <b>Membre depuis: {{ user.inscription_date }}<br>{{ user.location }}</b><v-notation-stars v-if="user.type == 'host'" :note="user.note"/>
+                    <b>Membre depuis: {{ user.inscription_date }}<br>{{ user.location }}</b><v-notation-stars
+                      v-if="user.type == 'host'"
+                      :note="user.note"/>
                   </h4>
                   <p>{{ user.description }}</p>
                 </v-flex>
@@ -88,7 +90,7 @@
 
 <script>
 export default {
-  name: 'AccountSummaryVue',
+  name: 'AccountSummaryView',
   data () {
     return {
       swiperOption: {

@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import storage from '../storage';
+import Vue from 'vue'
+import storage from '../storage'
 import dateUtils from '../common/date'
 
 function getUrl() {
