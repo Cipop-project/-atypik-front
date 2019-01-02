@@ -9,7 +9,7 @@
           <v-list-tile-title>Profil</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link to="/account/edit">
+      <router-link to="/accountedit">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-account-edit</v-icon>

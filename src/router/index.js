@@ -8,6 +8,7 @@ import SearchView from '../views/index/SearchView.vue'
 import AccountSummaryView from '../views/account/AccountSummaryView.vue'
 // import AccountView from '../views/account/AccountView.vue'
 import AccountEditView from '../views/account/AccountEditView.vue'
+import AccountParametersView from '../views/account/AccountParametersView.vue'
 
 Vue.use(Router)
 
@@ -22,7 +23,8 @@ export default new Router({
     { path: '/host/', name: 'host', component: NotFoundView },
     { path: '/about/', name: 'about', component: NotFoundView },
     { path: '/account/', name: 'account', component: AccountSummaryView },
-    { path: '/account/edit', name: 'editAccount', component: AccountEditView },
+    { path: '/accountedit', name: 'editAccount', component: AccountEditView },
+    { path: '/accountsettings', name: 'editAccount', component: AccountParametersView },
     { path: '/about/conditions', name: 'cgv-cgu', component: NotFoundView }
   ]
 })
