@@ -23,12 +23,12 @@
         <v-list-tile slot="activator">
           <v-list-tile-title>Logements</v-list-tile-title>
         </v-list-tile>
-        <router-link to="account/homes/add">
+        <router-link to="accounthomesadd">
           <v-list-tile @click="">
             <v-list-tile-title class="pl-3">Ajouter un logement</v-list-tile-title>
           </v-list-tile>
         </router-link>
-        <router-link to="account/homes/edit">
+        <router-link to="accounthomesedit">
           <v-list-tile @click="">
             <v-list-tile-title class="pl-3">Gerer mes logements</v-list-tile-title>
           </v-list-tile>

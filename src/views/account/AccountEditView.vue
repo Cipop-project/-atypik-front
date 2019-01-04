@@ -165,7 +165,9 @@
                     </select>
                   </v-flex>
                 </div>
-                <v-btn @click="submit()" color="success">Enregistrer</v-btn>
+                <v-btn
+                  color="success"
+                  @click="submit()">Enregistrer</v-btn>
               </form>
             </v-flex>
           </v-layout>

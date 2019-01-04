@@ -17,12 +17,13 @@
               md10
               class="pa-4 pl-5">
               <h4>Confidentialité</h4>
-              <div class="form-group mt-5">
+              <div class="form-group mt-2">
                 <label>Vous decidez si vous voulez recevoir des nouvelles de notre part</label>
                 <br>
                 <input type="checkbox"> J'accepte de reçevoir la newsletter
               </div>
               <hr class="mt-4 mb-4">
+              <h4>Preferences</h4>
               <div class="form-group">
                 <label>Dites nous le moyen par lequel vous preferez qu'on vous contacte en cas de reservation</label>
                 <select
@@ -33,11 +34,20 @@
                   <option value="sms">SMS</option>
                 </select>
               </div>
-              <hr class="mt-4 mb-4">
+              <div v-if="user.type == 'host'">
+                <hr class="mt-4 mb-4">
+                <h4>Versement</h4>
+                Quand vous recevez des paiements pour vos reservations, l'argent sera immediatement versé. Ajouter un mode de versement
+                est donc necesaire pour commencer votre aventure en tant que host.
+                <div class="text-xs-center mt-1">
+                  <v-btn color="green" class="white--text text-xs-center">Ajouter un mode de versement</v-btn>
+                </div>
+              </div>
+              <hr>
               Vous pouvez à tout moment desactiver votre compte, la desactivation de votre compte entraine la supression de vos annonces,
               conformement aux reglements concernant les données personelles, elles seront garder en securité pendant 2 ans.
               <br>
-              <div class="text-xs-center">
+              <div class="text-xs-center mt-1">
                 <v-btn
                   color="red"
                   class="white--text text-xs-center">Desactiver compte</v-btn>
