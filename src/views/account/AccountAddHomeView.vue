@@ -41,6 +41,16 @@
                       class="form-control w-100"/>
                   </v-flex>
                 </div>
+                <div class="form-group form-inline">
+                  <v-flex md2>
+                    <label
+                      for=""
+                      class="pr-4">Photos</label>
+                  </v-flex>
+                  <v-flex md7>
+                    <v-image-uploader/>
+                  </v-flex>
+                </div>
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label

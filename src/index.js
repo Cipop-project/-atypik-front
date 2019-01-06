@@ -21,6 +21,7 @@ import SmallCard from './components/SmallCard.vue'
 import HostProfileNavigationDrawer from './components/HostProfileNavigationDrawer.vue'
 import UserProfileNavigationDrawer from './components/UserProfileNavigationDrawer.vue'
 import NormalComment from './components/NormalComment.vue'
+import ImageUploader from './components/ImageUploader.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -41,6 +42,7 @@ Vue.component('v-host-profile-navigation', HostProfileNavigationDrawer)
 Vue.component('v-user-profile-navigation', UserProfileNavigationDrawer)
 Vue.component('v-notation-stars', NotationStars)
 Vue.component('v-comment', NormalComment)
+Vue.component('v-image-uploader', ImageUploader)
 
 /* eslint-disable-next-line no-new */
 new Vue({

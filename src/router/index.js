@@ -10,6 +10,7 @@ import AccountSummaryView from '../views/account/AccountSummaryView.vue'
 import AccountEditView from '../views/account/AccountEditView.vue'
 import AccountParametersView from '../views/account/AccountParametersView.vue'
 import AccountAddHomeView from '../views/account/AccountAddHomeView.vue'
+import AccountEditHomesView from '../views/account/AccountEditHomesView.vue'
 
 Vue.use(Router)
 
@@ -27,7 +28,7 @@ export default new Router({
     { path: '/accountedit', name: 'editAccount', component: AccountEditView },
     { path: '/accountsettings', name: 'editAccount', component: AccountParametersView },
     { path: '/accounthomesadd', name: 'addHomes', component: AccountAddHomeView },
-    { path: '/accounthomesadd', name: 'addHomes', component: AccountParametersView },
+    { path: '/accounthomesedit', name: 'editHomes', component: AccountEditHomesView },
     { path: '/about/conditions', name: 'cgv-cgu', component: NotFoundView }
   ]
 })
