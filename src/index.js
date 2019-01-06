@@ -22,6 +22,7 @@ import HostProfileNavigationDrawer from './components/HostProfileNavigationDrawe
 import UserProfileNavigationDrawer from './components/UserProfileNavigationDrawer.vue'
 import NormalComment from './components/NormalComment.vue'
 import ImageUploader from './components/ImageUploader.vue'
+// import AtypikSelect from './components/AtypikSelect.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -43,6 +44,7 @@ Vue.component('v-user-profile-navigation', UserProfileNavigationDrawer)
 Vue.component('v-notation-stars', NotationStars)
 Vue.component('v-comment', NormalComment)
 Vue.component('v-image-uploader', ImageUploader)
+// Vue.component('v-atypik-select', AtypikSelect)
 
 /* eslint-disable-next-line no-new */
 new Vue({

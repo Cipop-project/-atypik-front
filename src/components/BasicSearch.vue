@@ -7,6 +7,7 @@
         align-center
         justify-center>
         <v-flex xs4>
+          <!--<v-atypik-select type="cities" filterable v-model="product.city"/>-->
           <v-autocomplete
             hide-details
             v-model="model"
