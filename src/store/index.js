@@ -7,6 +7,9 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
+    homepage: {
+      mainImage: 'https://s3-eu-west-1.amazonaws.com/cipop/dev/index/home.jpg'
+    },
     numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
     loggedIn: true,
     user:

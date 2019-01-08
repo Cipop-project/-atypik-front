@@ -5,8 +5,8 @@
 </template>
 <script>
 
-import HomepageView from './HomepageView.vue'
-import NotFoundView from './NotFoundView.vue'
+import HomepageView from './index/HomepageView.vue'
+import NotFoundView from './index/NotFoundView.vue'
 
 export default {
   components: {

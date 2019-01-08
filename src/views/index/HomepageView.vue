@@ -2,8 +2,8 @@
   <div>
     <v-homepage-header/>
     <v-img
+      :src="homepage.mainImage"
       alt="logement inedit sur la cote d'un lac"
-      src="/static/img/home.jpg"
       max-height="800"
       gradient="to top, rgba(100,115,201,.0), rgba(0,0,0,.4)">
       <v-layout
@@ -132,6 +132,9 @@ export default {
     }
   },
   computed: {
+    homepage () {
+      return this.$store.state.homepage
+    },
     popularZones () {
       return this.$store.state.popularZones
     },

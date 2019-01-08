@@ -10,7 +10,7 @@
           <!--<v-atypik-select type="cities" filterable v-model="product.city"/>-->
           <v-autocomplete
             hide-details
-            v-model="model"
+            v-model="product.city"
             :items="cities"
             item-text="city"
             item-value="city_id"
@@ -33,13 +33,13 @@
               id="depart_date"
               append-icon="mdi-calendar"
               slot="activator"
-              v-model="date_from"
+              v-model="product.startTime"
               class="mr-2"
               label="Date de départ"
               solo/>
             <v-date-picker
               @change="menu_from = false"
-              v-model="date_from"
+              v-model="product.startTime"
               :min="minFromDate"
               color="green"
               no-title
@@ -64,12 +64,12 @@
               label="Date d'arrivé"
               append-icon="mdi-calendar"
               slot="activator"
-              v-model="date_to"
+              v-model="product.endTime"
               class="mr-2"
               solo/>
             <v-date-picker
               @change="menu_to = false"
-              v-model="date_to"
+              v-model="product.endTime"
               :min="minToDate"
               color="green"
               no-title
@@ -89,6 +89,7 @@
               type="text"
               placeholder="Voyageurs"
               :value="adult_count+children_count == 0 ? '' : adult_count+children_count"
+              v-model="product.peopleNumber"
               readonly
               solo/>
             <v-container fluid text-xs-center class="white">
@@ -148,13 +149,14 @@
         <v-btn
           class="search-button"
           color="success"
-          to="/search">Search</v-btn>
+          :to="{ name: 'search', params: { productDTO: product } }">Search</v-btn>
       </v-layout>
     </form>
   </v-container>
 </template>
 
 <script>
+import Resource from '../resources'
 export default {
   name: 'BasicSearch',
   data () {
@@ -162,9 +164,13 @@ export default {
       model: null,
       menu_from: false,
       menu_to: false,
-      date_from: null,
-      date_to: null,
-      adult_count: 0,
+      product: {
+        startTime: '',
+        endTime: '',
+        city: '',
+        peopleNumber: 1
+      },
+      adult_count: 1,
       children_count: 0,
       cities: [
         { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
@@ -174,6 +180,9 @@ export default {
     }
   },
   methods: {
+    async find () {
+      Resource.search(this.product)
+    },
     customDisplay (city, country) {
       return city + ' ' + country
     },
@@ -189,15 +198,19 @@ export default {
     },
     decrementAdult () {
       this.adult_count = (this.adult_count-1 < 0 ? 0 : this.adult_count-1)
+      this.product.peopleNumber = this.adult_count + this.children_count
     },
     incrementAdult () {
       this.adult_count++
+      this.product.peopleNumber = this.adult_count + this.children_count
     },
     decrementChildren () {
       this.children_count = (this.children_count-1 < 0 ? 0 : this.children_count-1)
+      this.product.peopleNumber = this.adult_count + this.children_count
     },
     incrementChildren () {
       this.children_count++
+      this.product.peopleNumber = this.adult_count + this.children_count
     }
   },
   computed: {

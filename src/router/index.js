@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomepageView from '../views/HomepageView.vue'
-import NotFoundView from '../views/NotFoundView.vue'
+import HomepageView from '../views/index/HomepageView.vue'
+import NotFoundView from '../views/index/NotFoundView.vue'
 import LoginView from '../views/index/LoginView.vue'
 import RegisterView from '../views/index/RegisterView.vue'
 import SearchView from '../views/index/SearchView.vue'
@@ -19,7 +19,7 @@ export default new Router({
   routes: [
     { path: '/login', name: 'login', component: LoginView },
     { path: '/signin', name: 'signin', component: RegisterView },
-    { path: '/search', name: 'search', component: SearchView },
+    { path: '/search', name: 'search', component: SearchView, props: true },
     { path: '/home/:home_slug', name: 'home-details', component: SearchView },
     { path: '/', name: 'homepage', component: HomepageView },
     { path: '/host/', name: 'host', component: NotFoundView },
