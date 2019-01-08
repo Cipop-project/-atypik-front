@@ -11,6 +11,11 @@ export const store = new Vuex.Store({
       mainImage: 'https://s3-eu-west-1.amazonaws.com/cipop/dev/index/home.jpg'
     },
     numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+    cities: [
+      { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
+      { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
+      { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
+    ],
     loggedIn: true,
     user:
     {

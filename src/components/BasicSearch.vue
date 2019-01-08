@@ -7,7 +7,7 @@
         align-center
         justify-center>
         <v-flex xs4>
-          <!--<v-atypik-select type="cities" filterable v-model="product.city"/>-->
+          <!--<el-atypik-select type="cities" filterable v-model="product.city"/>-->
           <v-autocomplete
             hide-details
             v-model="product.city"
@@ -172,11 +172,18 @@ export default {
       },
       adult_count: 1,
       children_count: 0,
-      cities: [
-        { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
-        { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
-        { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
-      ]
+      // cities: [
+      //   { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
+      //   { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
+      //   { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
+      // ]
+      cities: this.$store.state.cities
+    }
+  },
+  mounted () {
+    const product = this.$route.params.productDTO
+    if (product) {
+      this.product = product
     }
   },
   methods: {

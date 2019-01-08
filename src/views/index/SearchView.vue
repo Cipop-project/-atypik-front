@@ -27,11 +27,33 @@
 </template>
 
 <script>
+// import Resource from '../../resources'
 export default {
   name: 'SearchView',
+  // data () {
+  //   return {
+  //     products: []
+  //   }
+  // },
   computed: {
     products () {
       return this.$store.state.products
+    }
+  },
+  mounted () {
+    this.refresh()
+  },
+  methods: {
+    refresh () {
+      const product = this.$route.params.productDTO
+      console.log(product)
+      // if (product) {
+      //   const { data } = await Resource.search(product)
+      //   this.productsList = data.data
+      // } else {
+      //   const { data } = await Resource.findArray()
+      //   this.productsList = data.data
+      // }
     }
   }
 }
