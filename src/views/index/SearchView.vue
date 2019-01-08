@@ -49,10 +49,10 @@ export default {
       console.log(product)
       // if (product) {
       //   const { data } = await Resource.search(product)
-      //   this.productsList = data.data
+      //   this.products = data.data
       // } else {
       //   const { data } = await Resource.findArray()
-      //   this.productsList = data.data
+      //   this.products = data.data
       // }
     }
   }
