@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer>
     <v-list>
-      <router-link to="/account">
+      <router-link :to="{ name: 'account' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-account</v-icon>
@@ -9,7 +9,7 @@
           <v-list-tile-title>Profil</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link to="/accountedit">
+      <router-link :to="{ name: 'editAccount' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-account-edit</v-icon>
@@ -23,18 +23,18 @@
         <v-list-tile slot="activator">
           <v-list-tile-title>Logements</v-list-tile-title>
         </v-list-tile>
-        <router-link to="accounthomesadd">
+        <router-link :to="{ name: 'addHomes' }">
           <v-list-tile @click="">
             <v-list-tile-title class="pl-3">Ajouter un logement</v-list-tile-title>
           </v-list-tile>
         </router-link>
-        <router-link to="accounthomesedit">
+        <router-link :to="{ name: 'editHomes' }">
           <v-list-tile @click="">
             <v-list-tile-title class="pl-3">Gerer mes logements</v-list-tile-title>
           </v-list-tile>
         </router-link>
       </v-list-group>
-      <router-link to="/accountsettings">
+      <router-link :to="{ name: 'configAccount' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-settings</v-icon>

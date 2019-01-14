@@ -76,7 +76,7 @@ module.exports = {
       toType: 'dir'
     }]),
     new MiniCssExtractPlugin({
-      filename: 'main.css'
+      filename: './main.css'
     })
   ]
 }

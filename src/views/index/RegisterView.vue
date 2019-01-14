@@ -111,6 +111,26 @@
                   append-icon="mdi-chevron-down"
                   label="Devise par default"
                   prepend-icon="mdi-currency-usd"/>
+                <input
+                  id="checkbox1"
+                  type="checkbox"
+                  class="mr-3"
+                  checked>
+                <label
+                  class="form-check-label"
+                  for="checkbox1">
+                  J'accepte les <router-link to="/about/conditions">conditions generales d'utilisation</router-link>
+                </label>
+                <br>
+                <br>
+                <input
+                  id="checkbox2"
+                  type="checkbox"
+                  class="mr-3">
+                <label
+                  class="form-check-label"
+                  for="checkbox1">J'accepte des messages promotionelles de la part d'AtypikHouse
+                </label>
                 <v-layout
                   class="justify-center">
                   <v-btn

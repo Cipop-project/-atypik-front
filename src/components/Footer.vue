@@ -30,7 +30,7 @@
             <h4>AtypikHouse</h4>
             <router-link :to="{ name: 'about' }">Contactez nous</router-link>
             <br>
-            <router-link :to="{ name: 'cgv-cgu' }">Mentions legales</router-link>
+            <router-link :to="{ name: 'conditions' }">Mentions legales</router-link>
             <br>
             <br>
             <v-layout>

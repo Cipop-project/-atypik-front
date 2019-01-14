@@ -21,25 +21,11 @@
         justify-center>
         <v-flex md10>
           <h3>Les plus populaires</h3>
-          <swiper :options="swiperOption">
-            <swiper-slide
-              v-for="(slide, index) in popularZones"
-              :key="index">
-              <v-big-card :slide="slide"/>
-            </swiper-slide>
-            <div
-              slot="pagination"
-              class="swiper-pagination"/>
-            <div
-              slot="button-prev"
-              class="swiper-button-prev"/>
-            <div
-              slot="button-next"
-              class="swiper-button-next"/>
-            <div
-              slot="pagination"
-              class="swiper-pagination"/>
-          </swiper>
+          <el-swiper
+            :options="swiperOption"
+            :slides="popularZones"
+            :index="'index'"
+            type="big-card"/>
         </v-flex>
       </v-layout>
       <v-layout
@@ -48,25 +34,11 @@
         mt-5>
         <v-flex md10>
           <h3>Les types de logements</h3>
-          <swiper :options="swiperOption">
-            <swiper-slide
-              v-for="(slide, index) in homeTypes"
-              :key="index">
-              <v-big-card :slide="slide"/>
-            </swiper-slide>
-            <div
-              slot="pagination"
-              class="swiper-pagination"/>
-            <div
-              slot="button-prev"
-              class="swiper-button-prev"/>
-            <div
-              slot="button-next"
-              class="swiper-button-next"/>
-            <div
-              slot="pagination"
-              class="swiper-pagination"/>
-          </swiper>
+          <el-swiper
+            :options="swiperOption"
+            :slides="homeTypes"
+            :index="'index'"
+            type="big-card"/>
         </v-flex>
       </v-layout>
       <v-layout
@@ -75,25 +47,11 @@
         mt-5>
         <v-flex md10>
           <h3>Les meilleures logements</h3>
-          <swiper :options="swiperOption">
-            <swiper-slide
-              v-for="(slide, index) in bestHomes"
-              :key="index">
-              <v-small-card :item="slide"/>
-            </swiper-slide>
-            <div
-              slot="pagination"
-              class="swiper-pagination"/>
-            <div
-              slot="button-prev"
-              class="swiper-button-prev"/>
-            <div
-              slot="button-next"
-              class="swiper-button-next"/>
-            <div
-              slot="pagination"
-              class="swiper-pagination"/>
-          </swiper>
+          <el-swiper
+            :options="swiperOption"
+            :slides="bestHomes"
+            :index="'index'"
+            type="small-card"/>
         </v-flex>
       </v-layout>
     </v-container>

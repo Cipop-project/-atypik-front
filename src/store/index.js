@@ -34,7 +34,7 @@ export const store = new Vuex.Store({
           price: '87€',
           note: 4.7,
           img: '/static/img/falaises-etretat.jpg',
-          src: 'details/deY24Xs6eds'
+          src: 'homes/deY24Xs6eds'
         },
         {
           name: 'Cabanes das',
@@ -42,7 +42,7 @@ export const store = new Vuex.Store({
           price: '87€',
           note: 4.7,
           img: '/static/img/falaises-etretat.jpg',
-          src: 'details/deY24Xs6eds'
+          src: 'homes/deY24Xazed42'
         }
       ],
       comments: [

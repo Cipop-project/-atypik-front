@@ -5,8 +5,8 @@
       class="transparent">
       <router-link
         :style="{ cursor: 'pointer' }"
-        tag="v-toolbar-title"
-        to="/">
+        :to="{ name: 'homepage' }"
+        tag="v-toolbar-title">
         <h1 class="font-weight-medium brown--text">AtypikHouse</h1>
       </router-link>
       <v-spacer/>
@@ -62,7 +62,7 @@
           <v-icon>mdi-account</v-icon>
         </v-btn>
         <v-list>
-          <router-link to="/account">
+          <router-link :to="{ name: 'account' }">
             <v-list-tile @click="">
               <v-list-tile-title>Mon profil</v-list-tile-title>
             </v-list-tile>

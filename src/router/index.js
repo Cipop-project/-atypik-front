@@ -6,6 +6,7 @@ import LoginView from '../views/index/LoginView.vue'
 import RegisterView from '../views/index/RegisterView.vue'
 import SearchView from '../views/index/SearchView.vue'
 import AccountSummaryView from '../views/account/AccountSummaryView.vue'
+import HomesView from '../views/HomesView.vue'
 // import AccountView from '../views/account/AccountView.vue'
 import AccountEditView from '../views/account/AccountEditView.vue'
 import AccountParametersView from '../views/account/AccountParametersView.vue'
@@ -20,15 +21,15 @@ export default new Router({
     { path: '/login', name: 'login', component: LoginView },
     { path: '/signin', name: 'signin', component: RegisterView },
     { path: '/search', name: 'search', component: SearchView, props: true },
-    { path: '/home/:home_slug', name: 'home-details', component: SearchView },
+    { path: '/homes/:home_slug', name: 'home-details', component: HomesView },
     { path: '/', name: 'homepage', component: HomepageView },
     { path: '/host/', name: 'host', component: NotFoundView },
     { path: '/about/', name: 'about', component: NotFoundView },
     { path: '/account/', name: 'account', component: AccountSummaryView },
-    { path: '/accountedit', name: 'editAccount', component: AccountEditView },
-    { path: '/accountsettings', name: 'editAccount', component: AccountParametersView },
-    { path: '/accounthomesadd', name: 'addHomes', component: AccountAddHomeView },
-    { path: '/accounthomesedit', name: 'editHomes', component: AccountEditHomesView },
-    { path: '/about/conditions', name: 'cgv-cgu', component: NotFoundView }
+    { path: '/account/edit', name: 'editAccount', component: AccountEditView },
+    { path: '/account/settings', name: 'configAccount', component: AccountParametersView },
+    { path: '/account/homes/add', name: 'addHomes', component: AccountAddHomeView },
+    { path: '/account/homes/edit', name: 'editHomes', component: AccountEditHomesView },
+    { path: '/about/conditions', name: 'conditions', component: NotFoundView }
   ]
 })

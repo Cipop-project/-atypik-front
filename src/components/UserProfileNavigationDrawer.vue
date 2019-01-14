@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer>
     <v-list>
-      <router-link to="/account">
+      <router-link :to="{ name: 'account' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-account</v-icon>
@@ -9,7 +9,7 @@
           <v-list-tile-title>Profil</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link to="/accountedit">
+      <router-link :to="{ name: 'editAccount' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-account-edit</v-icon>
@@ -17,7 +17,7 @@
           <v-list-tile-title>Modifier le profil</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link to="/account/trips">
+      <router-link :to="{ name: 'tripsAccount' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-airplane</v-icon>
@@ -25,7 +25,7 @@
           <v-list-tile-title>Mes voyages</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link to="/account/starred">
+      <router-link :to="{ name: 'starredAccount' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-star</v-icon>
@@ -33,7 +33,7 @@
           <v-list-tile-title>Mes favorits</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link to="/account/host">
+      <router-link :to="{ name: 'hostAccount' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-home</v-icon>
@@ -41,7 +41,7 @@
           <v-list-tile-title>Devenir hôte</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link to="/account/settings">
+      <router-link :to="{ name: 'configAccount' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-settings</v-icon>

@@ -1,6 +1,6 @@
 <template>
   <v-img
-    :src="slide.img">
+    :src="item.img">
     <v-layout
       align-end
       justify-center
@@ -8,8 +8,8 @@
       fill-height>
       <v-card
         class="card-layout transparent mb-2 pa-2">
-        <h4 class="white--text text-xs-center">{{ slide.title }}</h4>
-        <h5 class="white--text text-xs-center ">{{ slide.count }} Logements</h5>
+        <h4 class="white--text text-xs-center">{{ item.title }}</h4>
+        <h5 class="white--text text-xs-center ">{{ item.count }} Logements</h5>
       </v-card>
     </v-layout>
   </v-img>
@@ -19,7 +19,7 @@
 export default {
   name: 'BigCard',
   props: {
-    slide: {
+    item: {
       type: Object,
       required: true
     }
