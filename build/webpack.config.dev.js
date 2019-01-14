@@ -16,7 +16,11 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     hot: true,
-    proxy: 'http://localhost:3030', // string | Object
+    proxy: {
+      '/product/api/products': {
+        target: 'http://localhost:6001'
+      }
+    },
     watchOptions: {
       poll: true
     }
