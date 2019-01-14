@@ -177,18 +177,29 @@ export default {
       //   { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
       //   { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
       // ]
-      cities: this.$store.state.cities
+      // cities: this.$store.state.cities
+      cities: []
     }
   },
-  mounted () {
-    const product = this.$route.params.productDTO
-    if (product) {
-      this.product = product
-    }
+  async mounted () {
+    // this.cities = [
+    //   { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
+    //   { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
+    //   { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
+    // ],
+    this.cities = await this.fetchOptions()
   },
+  // mounted () {
+  //   const product = this.$route.params.productDTO
+  //   if (product) {
+  //     this.product = product
+  //   }
+  // },
   methods: {
-    async find () {
-      Resource.search(this.product)
+    async fetchOptions () {
+      console.log('fetch0')
+      const { data: cities } = await Resource.findCities()
+      return cities
     },
     customDisplay (city, country) {
       return city + ' ' + country

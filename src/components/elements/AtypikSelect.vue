@@ -4,7 +4,7 @@
     :items="cities"
     hide-details
     item-text="city"
-    item-value="city_id"
+    item-value="city"
     placeholder="Destination"
     class="mr-2"
     append-icon="mdi-place"
@@ -12,7 +12,7 @@
 </template>
 
 <script type="es6">
-import Resource from '../resource'
+import ProductResource from '../../resources'
 
 export default {
   name: 'AtypikSelectView',
@@ -22,7 +22,13 @@ export default {
     }
   },
   async mounted () {
-    this.options = await this.fetchOptions()
+    this.cities = await this.fetchOptions()
+  },
+  methods: {
+    async fetchOptions () {
+      const { data: cities } = await ProductResource.findCities()
+      return cities
+    }
   }
 }
 </script>

@@ -10,6 +10,7 @@ const resolve = (dir) => path.resolve('.', dir)
 module.exports = {
   mode: 'development',
   entry: [
+    'babel-polyfill',
     './src/index.js'
   ],
   devServer: {

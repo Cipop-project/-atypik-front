@@ -8,22 +8,12 @@ function getUrl () {
 }
 
 export default {
-  // save (commentObject) {
-  //   if (commentObject.id) {
-  //     return Vue.http.put(`${getUrl()}/${commentObject.id}`, commentObject)
-  //   } else {
-  //     return Vue.http.post(getUrl(), commentObject)
-  //   }
-  // },
-  // create (comment) {
-  //   return Vue.http.post(getUrl(), comment)
-  // },
   findArray (referenceId, commentObject) {
     return Vue.http.post(`${getUrl()}/${referenceId}`, commentObject)
   },
-  find (query) {
-    query = dateUtils.adjustTime(query)
-    return Vue.http.get(`${getUrl()}`, { params: query })
+  findCities () {
+    console.log('enter fetching')
+    return Vue.http.get(`${getUrl()}/cities`)
   },
   search (product) {
     console.log(product)
