@@ -172,34 +172,31 @@ export default {
       },
       adult_count: 1,
       children_count: 0,
-      // cities: [
-      //   { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
-      //   { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
-      //   { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
-      // ]
-      // cities: this.$store.state.cities
       cities: []
     }
   },
   async mounted () {
-    // this.cities = [
-    //   { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
-    //   { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
-    //   { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
-    // ],
+    if (localStorage.searchData) {
+      this.product = JSON.parse(localStorage.searchData)
+    }
+    const product = this.$route.params.productDTO
+    if (product) {
+      product.startTime = product.startTime.substring(0, 10)
+      product.endTime = product.endTime.substring(0, 10)
+      this.product = product
+    }
     this.cities = await this.fetchOptions()
   },
-  // mounted () {
-  //   const product = this.$route.params.productDTO
-  //   if (product) {
-  //     this.product = product
-  //   }
-  // },
+  watch: {
+    product(newSearch) {
+      localStorage.searchData = JSON.stringify(this.product)
+    }
+  },
   methods: {
     async fetchOptions () {
       console.log('fetch0')
       const { data: cities } = await Resource.findCities()
-      return cities
+      return cities.data
     },
     customDisplay (city, country) {
       return city + ' ' + country

@@ -12,7 +12,6 @@ export default {
     return Vue.http.post(`${getUrl()}/${referenceId}`, commentObject)
   },
   findCities () {
-    console.log('enter fetching')
     return Vue.http.get(`${getUrl()}/cities`)
   },
   search (product) {

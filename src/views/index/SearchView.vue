@@ -18,7 +18,9 @@
           md2
           xs4
           class="ma-3">
-          <v-small-card :item="product"/>
+          <router-link :to="productUrl(product)">
+            <v-small-card :item="product"/>
+          </router-link>
         </v-flex>
       </v-layout>
     </v-container>
@@ -27,33 +29,35 @@
 </template>
 
 <script>
-// import Resource from '../../resources'
+import Resource from '../../resources'
 export default {
   name: 'SearchView',
-  // data () {
-  //   return {
-  //     products: []
-  //   }
-  // },
-  computed: {
-    products () {
-      return this.$store.state.products
+  data () {
+    return {
+      products: []
     }
   },
   mounted () {
     this.refresh()
   },
   methods: {
-    refresh () {
+    productUrl (product) {
+      return '/homes/' + product.id
+    },
+    async refresh () {
       const product = this.$route.params.productDTO
       console.log(product)
-      // if (product) {
-      //   const { data } = await Resource.search(product)
-      //   this.products = data.data
-      // } else {
-      //   const { data } = await Resource.findArray()
-      //   this.products = data.data
-      // }
+      if (product) {
+        product.endTime = new Date(product.endTime)
+        product.endTime = product.endTime.toISOString()
+        product.startTime = new Date(product.startTime)
+        product.startTime = product.startTime.toISOString()
+        const { data } = await Resource.search(product)
+        this.products = data.data
+      } else {
+        const { data } = await Resource.findArray()
+        this.products = data.data
+      }
     }
   }
 }
