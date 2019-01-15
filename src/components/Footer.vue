@@ -5,7 +5,7 @@
     <v-layout
       justify-center
       class="mt-5">
-      <v-flex xs10>
+      <v-flex sm10>
         <hr>
         <v-layout>
           <v-flex xs4>

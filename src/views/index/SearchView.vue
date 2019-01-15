@@ -5,7 +5,7 @@
       fluid
       class="custom-container">
       <div class="spacer"/>
-      <v-basic-search/>
+      <v-basic-search @refresh-data="refresh"/>
       <br>
       <v-layout
         align-start
@@ -44,19 +44,17 @@ export default {
     productUrl (product) {
       return '/homes/' + product.id
     },
-    async refresh () {
-      const product = this.$route.params.productDTO
-      console.log(product)
-      if (product) {
-        product.endTime = new Date(product.endTime)
-        product.endTime = product.endTime.toISOString()
-        product.startTime = new Date(product.startTime)
-        product.startTime = product.startTime.toISOString()
-        const { data } = await Resource.search(product)
+    async refresh (passedData) {
+      const postProduct = passedData === undefined ? this.$route.params.productDTO : passedData
+      if (postProduct) {
+        postProduct.endTime = new Date(postProduct.endTime).toISOString()
+        postProduct.startTime = new Date(postProduct.startTime).toISOString()
+        const { data } = await Resource.search(postProduct)
         this.products = data.data
       } else {
-        const { data } = await Resource.findArray()
-        this.products = data.data
+        console.log('no params')
+        // const { data } = await Resource.findArray()
+        // this.products = data.data
       }
     }
   }

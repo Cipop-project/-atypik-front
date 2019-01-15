@@ -15,7 +15,9 @@ export default {
     return Vue.http.get(`${getUrl()}/cities`)
   },
   search (product) {
-    console.log(product)
     return Vue.http.post(`${getUrl()}/find`, product)
+  },
+  searchProduct (id) {
+    return Vue.http.get(`${getUrl()}/` + id)
   }
 }

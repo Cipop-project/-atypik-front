@@ -12,6 +12,7 @@ import AccountEditView from '../views/account/AccountEditView.vue'
 import AccountParametersView from '../views/account/AccountParametersView.vue'
 import AccountAddHomeView from '../views/account/AccountAddHomeView.vue'
 import AccountEditHomesView from '../views/account/AccountEditHomesView.vue'
+import ReservationFirstStepView from '../views/reservation/ReservationFirstStepView.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,7 @@ export default new Router({
     { path: '/search', name: 'search', component: SearchView, props: true },
     { path: '/homes/:home_slug', name: 'home-details', component: HomesView },
     { path: '/', name: 'homepage', component: HomepageView },
+    { path: '/reservation/first_step', name: 'reservation', component: ReservationFirstStepView },
     { path: '/host/', name: 'host', component: NotFoundView },
     { path: '/about/', name: 'about', component: NotFoundView },
     { path: '/account/', name: 'account', component: AccountSummaryView },

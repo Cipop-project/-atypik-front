@@ -149,6 +149,7 @@
         <v-btn
           class="search-button"
           color="success"
+          @click="refreshParent()"
           :to="{ name: 'search', params: { productDTO: product } }">Search</v-btn>
       </v-layout>
     </form>
@@ -176,25 +177,34 @@ export default {
     }
   },
   async mounted () {
-    if (localStorage.searchData) {
-      this.product = JSON.parse(localStorage.searchData)
-    }
-    const product = this.$route.params.productDTO
-    if (product) {
-      product.startTime = product.startTime.substring(0, 10)
-      product.endTime = product.endTime.substring(0, 10)
-      this.product = product
-    }
+    this.saveSearch()
     this.cities = await this.fetchOptions()
   },
   watch: {
     product(newSearch) {
-      localStorage.searchData = JSON.stringify(this.product)
+      console.log('watch product')
+      let tmp = this.product
+      tmp.startTime = tmp.startTime.substring(0, 10)
+      tmp.endTime = tmp.endTime.substring(0, 10)
+      localStorage.searchData = JSON.stringify(tmp)
     }
   },
   methods: {
+    saveSearch () {
+      if (localStorage.searchData) {
+        console.log(localStorage.searchData)
+        this.product = JSON.parse(localStorage.searchData)
+      }
+      if (this.$route.params.productDTO) {
+        const product = this.$route.params.productDTO
+        this.product = product
+      }
+    },
+    refreshParent () {
+      this.saveSearch()
+      this.$emit('refresh-data', this.product)
+    },
     async fetchOptions () {
-      console.log('fetch0')
       const { data: cities } = await Resource.findCities()
       return cities.data
     },

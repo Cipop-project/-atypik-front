@@ -78,15 +78,7 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      },
-      images: [
-        {
-          src: '/static/img/home_img_1.jpg'
-        },
-        {
-          src: '/static/img/home_img_2.jpg'
-        }
-      ]
+      }
     }
   },
   computed: {

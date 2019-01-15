@@ -23,7 +23,9 @@ import UserProfileNavigationDrawer from './components/UserProfileNavigationDrawe
 import NormalComment from './components/NormalComment.vue'
 import ImageUploader from './components/ImageUploader.vue'
 import AtypikSelect from './components/elements/AtypikSelect.vue'
+import AtypikCarousel from './components/elements/AtypikCarousel.vue'
 import SwiperSlide from './components/elements/SwiperSlide.vue'
+import DateRangePicker from './components/elements/DateRangePicker.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -46,7 +48,9 @@ Vue.component('v-notation-stars', NotationStars)
 Vue.component('v-comment', NormalComment)
 Vue.component('v-image-uploader', ImageUploader)
 Vue.component('el-atypik-select', AtypikSelect)
+Vue.component('el-atypik-carousel', AtypikCarousel)
 Vue.component('el-swiper', SwiperSlide)
+Vue.component('el-date-range-picker', DateRangePicker)
 
 /* eslint-disable-next-line no-new */
 new Vue({
