@@ -18,6 +18,7 @@ import HomepageHeader from './components/HomepageHeader.vue'
 import BasicSearch from './components/BasicSearch.vue'
 import BigCard from './components/BigCard.vue'
 import SmallCard from './components/SmallCard.vue'
+import ReservationAriane from './components/ReservationAriane.vue'
 import HostProfileNavigationDrawer from './components/HostProfileNavigationDrawer.vue'
 import UserProfileNavigationDrawer from './components/UserProfileNavigationDrawer.vue'
 import NormalComment from './components/NormalComment.vue'
@@ -29,6 +30,7 @@ import DateRangePicker from './components/elements/DateRangePicker.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+// import Origami from 'vue-loading-spinner'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
@@ -51,6 +53,8 @@ Vue.component('el-atypik-select', AtypikSelect)
 Vue.component('el-atypik-carousel', AtypikCarousel)
 Vue.component('el-swiper', SwiperSlide)
 Vue.component('el-date-range-picker', DateRangePicker)
+Vue.component('el-reservation-ariane', ReservationAriane)
+// Vue.component('origami-loader', Origami)
 
 /* eslint-disable-next-line no-new */
 new Vue({

@@ -3,7 +3,9 @@
     <v-header/>
     <v-container fluid>
       <v-layout justify-center>
-        <v-flex xs10>
+        <v-flex
+          xs12
+          sm10>
           <v-layout>
             <v-flex md2>
               <v-layout v-if="user.type=='host'">

@@ -11,7 +11,8 @@
         align-start
         justify-start
         row
-        fill-height>
+        fill-height
+        class="products-box">
         <v-flex
           v-for="(product, id) in products"
           :key="id"
@@ -62,6 +63,9 @@ export default {
 </script>
 
 <style scoped>
+  .products-box {
+    min-height: 50px;
+  }
   .card-img {
     height: 200px;
   }

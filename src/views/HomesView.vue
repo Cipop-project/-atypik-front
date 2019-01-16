@@ -54,7 +54,14 @@
                 box
                 hide-details/>
               <div class="price-box">
-                Prix total: <p class="text-xs-right">0€</p>
+                <p>Prix de base: <span class="text-xs-right">0€</span></p>
+                <p
+                  v-for="(discount, i) in reservation.discounts"
+                  :key="i"
+                  class="reservation-box pl-4 ma-0">
+                  {{ discount.name }}: <span class="text-xs-right">- {{ discount.price }}€</span>
+                </p>
+                <p class="mt-3">Prix total: <span class="text-xs-right">0€</span></p>
               </div>
               <v-layout justify-center>
                 <v-btn
@@ -96,7 +103,17 @@ export default {
       },
       reservation: {
         time: ['2019-01-16', '2019-01-17'],
-        people: 0
+        people: 1,
+        discounts: [
+          {
+            name: '7 nuits',
+            price: 0
+          },
+          {
+            name: 'Code promo',
+            price: 0
+          }
+        ]
       }
     }
   },
@@ -128,6 +145,12 @@ export default {
 }
 .price-box {
   font-size: 1.5em;
+}
+.reservation-box {
+  font-size: 0.8em;
+}
+.text-xs-right {
+  float: right;
 }
 .description-item {
   font-size: 1.3em;
