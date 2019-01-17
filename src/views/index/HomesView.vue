@@ -53,21 +53,15 @@
                 class="elevation-4 mb-4"
                 box
                 hide-details/>
-              <div class="price-box">
-                <p>Prix de base: <span class="text-xs-right">0€</span></p>
-                <p
-                  v-for="(discount, i) in reservation.discounts"
-                  :key="i"
-                  class="reservation-box pl-4 ma-0">
-                  {{ discount.name }}: <span class="text-xs-right">- {{ discount.price }}€</span>
-                </p>
-                <p class="mt-3">Prix total: <span class="text-xs-right">0€</span></p>
-              </div>
+              <el-price-details
+                :price="reservation.price"
+                :discounts="reservation.discounts"/>
               <v-layout justify-center>
                 <v-btn
                   :to="{ name: 'reservation' }"
                   block
-                  color="success">Reserver</v-btn>
+                  color="success"
+                  @click="saveReservation">Reserver</v-btn>
               </v-layout>
             </v-flex>
           </v-layout>
@@ -79,7 +73,7 @@
 </template>
 
 <script>
-import Resource from '../resources'
+import Resource from '../../resources/index'
 export default {
   name: 'HomesView',
   data () {
@@ -96,14 +90,15 @@ export default {
         id: '',
         images: [],
         name: '',
-        peopleNumber: 0,
+        peopleNumber: 1,
         updatedAt: null,
         updatedBy: null,
         zipCode: ''
       },
       reservation: {
-        time: ['2019-01-16', '2019-01-17'],
+        time: [this.dateFormat(new Date()), this.dateFormat(this.addDays(new Date(), 1))],
         people: 1,
+        price: 0,
         discounts: [
           {
             name: '7 nuits',
@@ -128,6 +123,15 @@ export default {
     console.log(this.product)
   },
   methods: {
+    saveReservation () {
+      localStorage.reservation = JSON.stringify({
+        product_name: this.product.name,
+        product_id: this.product.id,
+        start_date: this.reservation.time[0],
+        end_date: this.reservation.time[1],
+        people: this.reservation.people
+      })
+    },
     updateFrom (newValue) {
       console.log(newValue)
       this.reservation[0] = newValue
@@ -142,15 +146,6 @@ export default {
 <style scoped>
 .description-box {
   background-color: #ebffee;
-}
-.price-box {
-  font-size: 1.5em;
-}
-.reservation-box {
-  font-size: 0.8em;
-}
-.text-xs-right {
-  float: right;
 }
 .description-item {
   font-size: 1.3em;

@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
       { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
     ],
     descriptifs: ['peopleNumber'],
+    people_info: [{ first_name: '', last_name: '', birthday: '' }],
     loggedIn: true,
     user:
     {

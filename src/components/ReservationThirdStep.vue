@@ -1,5 +1,9 @@
 <template>
-  <div>third step here</div>
+  <v-layout>
+    <v-flex>
+      <h2>Confirmez votre commande pour passer au paiement</h2>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

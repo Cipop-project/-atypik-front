@@ -23,20 +23,36 @@ import HostProfileNavigationDrawer from './components/HostProfileNavigationDrawe
 import UserProfileNavigationDrawer from './components/UserProfileNavigationDrawer.vue'
 import NormalComment from './components/NormalComment.vue'
 import ImageUploader from './components/ImageUploader.vue'
+import ReservationDetails from './components/ReservationDetails.vue'
 import AtypikSelect from './components/elements/AtypikSelect.vue'
 import AtypikCarousel from './components/elements/AtypikCarousel.vue'
 import SwiperSlide from './components/elements/SwiperSlide.vue'
 import DateRangePicker from './components/elements/DateRangePicker.vue'
+import PriceDetails from './components/elements/PriceDetails.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import { addDays, subDays } from 'date-fns'
 // import Origami from 'vue-loading-spinner'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueAwesomeSwiper)
-// Vue.use(VeeValidate)
+Vue.mixin({
+  methods: {
+    addDays,
+    subDays,
+    dateFormat (date) {
+      if (date instanceof Date) {
+        return date.toISOString().substring(0, 10)
+      } else {
+        console.log('Not valid date, function recieves a date object')
+        return ''
+      }
+    }
+  }
+})
 
 Vue.component('v-header', Header)
 Vue.component('v-homepage-header', HomepageHeader)
@@ -49,11 +65,13 @@ Vue.component('v-user-profile-navigation', UserProfileNavigationDrawer)
 Vue.component('v-notation-stars', NotationStars)
 Vue.component('v-comment', NormalComment)
 Vue.component('v-image-uploader', ImageUploader)
+Vue.component('v-reservation-details', ReservationDetails)
 Vue.component('el-atypik-select', AtypikSelect)
 Vue.component('el-atypik-carousel', AtypikCarousel)
 Vue.component('el-swiper', SwiperSlide)
 Vue.component('el-date-range-picker', DateRangePicker)
 Vue.component('el-reservation-ariane', ReservationAriane)
+Vue.component('el-price-details', PriceDetails)
 // Vue.component('origami-loader', Origami)
 
 /* eslint-disable-next-line no-new */

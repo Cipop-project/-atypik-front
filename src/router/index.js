@@ -6,7 +6,7 @@ import LoginView from '../views/index/LoginView.vue'
 import RegisterView from '../views/index/RegisterView.vue'
 import SearchView from '../views/index/SearchView.vue'
 import AccountSummaryView from '../views/account/AccountSummaryView.vue'
-import HomesView from '../views/HomesView.vue'
+import HomesView from '../views/index/HomesView.vue'
 // import AccountView from '../views/account/AccountView.vue'
 import AccountEditView from '../views/account/AccountEditView.vue'
 import AccountParametersView from '../views/account/AccountParametersView.vue'
@@ -29,6 +29,7 @@ export default new Router({
     { path: '/', name: 'homepage', component: HomepageView },
     { path: '/reservation',
       component: ReservationStepsView,
+      props: true,
       children: [
         {
           path: 'first_step',
