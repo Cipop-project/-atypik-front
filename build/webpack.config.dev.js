@@ -17,7 +17,13 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     proxy: {
+      '/client/api/clients': {
+        target: 'http://localhost:6001'
+      },
       '/product/api/products': {
+        target: 'http://localhost:6001'
+      },
+      '/command/api/commands': {
         target: 'http://localhost:6001'
       }
     },

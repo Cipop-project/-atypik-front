@@ -20,7 +20,7 @@
                 <swiper-slide
                   v-for="(slide, index) in user.homes"
                   :key="index">
-                  <router-link :to="slide.src">
+                  <router-link :to="`/homes/${slide.product_id}`">
                     <v-small-card
                       :item="slide"/>
                   </router-link>

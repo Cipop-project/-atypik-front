@@ -71,9 +71,9 @@ export default {
     }
   },
   mounted () {
-    this.$route.params.reservation = JSON.parse(localStorage.reservation)
-    this.$route.params.reservation.people = parseInt(this.$route.params.reservation.people)
-    this.reservation = this.$route.params.reservation
+    // this.$route.params.reservation = JSON.parse(localStorage.reservation)
+    // this.$route.params.reservation.people = parseInt(this.$route.params.reservation.people)
+    this.reservation = JSON.parse(localStorage.reservation)
     this.$on('update:step', (st) => {
       console.log('update step ' + st)
       this.step = st
@@ -93,7 +93,6 @@ export default {
       if (this.step === 1) {
         let ell = JSON.parse(localStorage.reservation)
         ell.people_info = this.$store.state.people_info
-        console.log(ell)
         // localStorage.reservation = JSON.stringify(JSON.parse(localStorage.reservation).people_info = this.$store.state.people_info)
         return 'second_step'
       } else if (this.step === 2) {

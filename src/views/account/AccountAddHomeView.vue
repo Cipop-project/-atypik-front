@@ -20,11 +20,13 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="formTitle"
                       class="pr-4">Titre</label>
                   </v-flex>
                   <v-flex md7>
                     <input
+                      id="formTitle"
+                      v-model="home.name"
                       type="text"
                       class="form-control w-100">
                   </v-flex>
@@ -32,34 +34,35 @@
                 <div class="form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="formDescription"
                       class="pr-4">Description</label>
                   </v-flex>
                   <v-flex md7>
                     <textarea
+                      id="formDescription"
+                      v-model="home.description"
                       rows="6"
                       class="form-control w-100"/>
                   </v-flex>
                 </div>
                 <div class="form-group form-inline">
                   <v-flex md2>
-                    <label
-                      for=""
-                      class="pr-4">Photos</label>
+                    <label class="pr-4">Photos</label>
                   </v-flex>
                   <v-flex md7>
-                    <v-image-uploader/>
+                    <v-image-uploader v-model="home.images"/>
                   </v-flex>
                 </div>
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="formCategory"
                       class="pr-4">Categorie</label>
                   </v-flex>
                   <v-flex md7>
                     <select
-                      id=""
+                      id="formCategory"
+                      v-model="home.category"
                       name=""
                       class="form-control w-50">
                       <option value="">Cabane</option>
@@ -75,11 +78,13 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="formMaxPeople"
                       class="pr-4">Couchages</label>
                   </v-flex>
                   <v-flex md7>
                     <input
+                      id="formMaxPeople"
+                      v-model="home.maxPeople"
                       type="number"
                       class="form-control w-50">
                   </v-flex>
@@ -87,12 +92,13 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="formType"
                       class="pr-4">Type</label>
                   </v-flex>
                   <v-flex md7>
                     <select
-                      id=""
+                      id="formType"
+                      v-model="home.type"
                       name=""
                       class="form-control w-50">
                       <option value="">Logement entier</option>
@@ -106,11 +112,13 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="formPrice"
                       class="pr-4">Prix par nuit</label>
                   </v-flex>
                   <v-flex md7>
                     <input
+                      id="formPrice"
+                      v-model="home.price"
                       type="text"
                       class="form-control w-50"
                       @keyup="formatMoney">
@@ -132,11 +140,22 @@
 </template>
 
 <script>
+import Resource from '../../resources'
 export default {
   name: 'AccountAddHomeView',
   data () {
     return {
-      user: this.$store.state.user
+      user: this.$store.state.user,
+      home: {
+        name: '',
+        description: '',
+        images: [],
+        category: '',
+        maxPeople: 1,
+        type: '',
+        price: 0
+      },
+      status: {}
     }
   },
   methods: {
@@ -144,6 +163,32 @@ export default {
       if (!isNaN(e.key)) {
         console.log(e.key)
       }
+    },
+    async submit () {
+      this.status = await this.register()
+    },
+    async register () {
+      let tmp = {}
+      for (let i = 0; i < this.home.images.length; i++) {
+        console.log(i)
+        tmp = await this.registerImages()
+        console.log(tmp)
+        if (tmp.status !== 0) {
+          return tmp
+        }
+      }
+      tmp = await this.registerHome()
+      return tmp
+    },
+    async registerImages () {
+      console.log('registering image')
+      const data = await Resource.registerHomeImage(this.home.images)
+      return data
+    },
+    async registerHome () {
+      console.log('registering home')
+      const data = await Resource.registerHome(this.home)
+      return data
     }
   }
 }

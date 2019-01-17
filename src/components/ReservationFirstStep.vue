@@ -28,23 +28,18 @@
 <script>
 export default {
   name: 'ReservationFirstStepVue',
-  props: {
-    people: {
-      type: Number,
-      required: true
-    }
-  },
   data () {
     return {
-      people_info: [{ first_name: '', last_name: '', birthday: '' }]
+      people: parseInt(JSON.parse(localStorage.reservation).people),
+      people_info: new Array(parseInt(JSON.parse(localStorage.reservation).people)).fill({ first_name: '', last_name: '', birthday: '' })
       // people_info: this.$store.state.people_info
     }
   },
-  watch: {
-    people: function () {
-      this.people_info =  new Array(this.people).fill({ first_name: '', last_name: '', birthday: '' })
-    }
-  },
+  // watch: {
+  //   people: function () {
+  //     this.people_info = new Array(this.people).fill({ first_name: '', last_name: '', birthday: '' })
+  //   }
+  // },
   // beforeMount () {
   //   for (let i = 0; i < this.people; i++) {
   //     this.people_info[i] = {
@@ -54,7 +49,12 @@ export default {
   //     }
   //   }
   // },
+  // beforeMount () {
+  //   this.people = parseInt(JSON.parse(localStorage.reservation).people),
+  //   this.people_info = new Array(this.people).fill({ first_name: '', last_name: '', birthday: '' })
+  // },
   mounted () {
+    // console.log(localStorage.reservation)
     this.$parent.$emit('update:step', 1)
   }
 }

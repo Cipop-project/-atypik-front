@@ -32,17 +32,19 @@ import PriceDetails from './components/elements/PriceDetails.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
-import { addDays, subDays } from 'date-fns'
+import { addDays, subDays, parse } from 'date-fns'
 // import Origami from 'vue-loading-spinner'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueAwesomeSwiper)
+// Vue.http.options.root = 'http://localhost:6001/'
 Vue.mixin({
   methods: {
     addDays,
     subDays,
+    parse,
     dateFormat (date) {
       if (date instanceof Date) {
         return date.toISOString().substring(0, 10)

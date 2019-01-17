@@ -22,15 +22,20 @@
               <v-form
                 ref="login_form"
                 v-model="valid">
+                <p
+                  v-if="valid === false"
+                  class="error--text">{{ status.message }}</p>
                 <v-text-field
                   v-model="name"
-                  type="email"
                   label="Email"
+                  name="email"
                   required/>
                 <v-text-field
                   v-model="password"
-                  :type="'password'"
+                  type="password"
                   label="Mot de passe"
+                  name="password"
+                  autocomplete="current-password"
                   required/>
                 <v-layout
                   justify-center>
@@ -38,7 +43,7 @@
                     round
                     color="success"
                     @click="submit">Login</v-btn>
-                  <h3 class="mt-2">or</h3>
+                  <h4 class="mt-2">or</h4>
                   <v-btn
                     round
                     color="info"
@@ -55,20 +60,35 @@
 </template>
 
 <script>
+import Resource from '../../resources'
 import { mapActions } from 'vuex'
 export default {
+  name: 'LoginView',
   data () {
     return {
       name: '',
       password: '',
-      valid: true
+      valid: true,
+      status: {
+        data: {},
+        message: '',
+        status: 0
+      }
     }
   },
   methods: {
     ...mapActions(['login']),
-    submit () {
+    async submit () {
       if (this.$refs.login_form.validate()) {
-        this.login({ username: this.name, password: this.password })
+        this.status = await Resource.login({ username: this.name, password: this.password })
+        if (this.status.status === 0) {
+          this.$store.state.loggedIn = true
+          this.$router.push({ name: 'homepage' })
+        } else {
+          // can't log in
+          console.log(this.status.message)
+          this.valid = false
+        }
       }
     }
   }

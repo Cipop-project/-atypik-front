@@ -21,6 +21,7 @@ export const store = new Vuex.Store({
     loggedIn: true,
     user:
     {
+      id: '1',
       name: 'Carlos',
       last_name: 'Sanchez',
       type: 'host',
@@ -36,7 +37,7 @@ export const store = new Vuex.Store({
           price: '87€',
           note: 4.7,
           images: ['/static/img/falaises-etretat.jpg'],
-          src: 'homes/deY24Xs6eds'
+          product_id: 'deY24Xs6eds'
         },
         {
           name: 'Cabanes das',
@@ -44,7 +45,7 @@ export const store = new Vuex.Store({
           price: '87€',
           note: 4.7,
           images: ['/static/img/falaises-etretat.jpg'],
-          src: 'homes/deY24Xazed42'
+          product_id: 'deY24Xazed42'
         }
       ],
       comments: [

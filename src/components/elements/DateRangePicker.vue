@@ -8,6 +8,7 @@
     color="green"
     next-icon="mdi-chevron-right"
     prev-icon="mdi-chevron-left"
+    full-width
     @change="console.log(reserve)"/>
 </template>
 

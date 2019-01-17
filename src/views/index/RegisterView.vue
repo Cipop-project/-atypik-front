@@ -21,6 +21,9 @@
               <v-form
                 ref="signin_form"
                 v-model="valid">
+                <p
+                  v-if="valid === false"
+                  class="error--text">{{ status.message }}</p>
                 <v-text-field
                   v-model="email"
                   :rules="emailRules"
@@ -149,6 +152,7 @@
 </template>
 
 <script>
+import Resource from '../../resources'
 // import { mapState } from 'vuex'
 import { mapActions } from 'vuex'
 export default {
@@ -166,11 +170,12 @@ export default {
       language: '',
       currency: '',
       minBirthday: '1900-01-01',
-      maxBirthday: '2018-12-01',
+      maxBirthday: new Date().toISOString().substring(0, 10),
       genders: ['Man', 'Woman', 'I prefer not to specify'],
       languages: [{ id: 'EN', name: 'English' }, { id: 'FR', name: 'Français' }],
       currencies: [{ id: 'EUR', name: 'Euro' }, { id: 'USD', name: 'Dollar Américain' }, { id: 'GBP', name: 'Livre Sterling' }],
       valid: true,
+      status: {},
       emailRules: [
         v => !!v || 'l\'Email est obligatoire',
         v => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Entrez une email valide'
@@ -206,18 +211,37 @@ export default {
   // }),
   methods: {
     ...mapActions(['register']),
-    submit () {
+    async submit () {
       if (this.$refs.signin_form.validate()) {
+        console.log(this.$refs.signin_form)
+        this.status = await Resource.registerUser(this.formData())
+        if (this.status.status === 0) {
+          this.$router.push({ name: 'signin-confirmation' })
+        } else {
+          // if can't be created
+          this.valid = false
+        }
         console.log('validated, registering...')
-        this.register({
-          user: {
-            username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
-            email: this.email,
-            phoneNumber: (this.phone ? this.phone : ''),
-            password: this.password,
-            language: (this.language ? this.language : 'FR')
-          }
-        })
+        // this.register({
+        //   user: {
+        //     username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
+        //     email: this.email,
+        //     phoneNumber: (this.phone ? this.phone : ''),
+        //     password: this.password,
+        //     language: (this.language ? this.language : 'FR')
+        //   }
+        // })
+      }
+    },
+    formData () {
+      return {
+        birthday: this.birthday + 'T00:00:00.000',
+        email: this.email,
+        language: this.language,
+        password: this.password,
+        phoneNumber: this.phoneNumber,
+        pricingType: this.pricingType,
+        username: this.name + ' ' + this.lastName
       }
     }
   }

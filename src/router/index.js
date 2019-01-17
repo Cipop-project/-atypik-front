@@ -16,6 +16,7 @@ import ReservationStepsView from '../views/reservation/ReservationStepsView.vue'
 import ReservationFirstStep from '../components/ReservationFirstStep.vue'
 import ReservationSecondStep from '../components/ReservationSecondStep.vue'
 import ReservationThirdStep from '../components/ReservationThirdStep.vue'
+import ReservationPayment from '../views/reservation/ReservationPayment.vue'
 
 Vue.use(Router)
 
@@ -24,12 +25,12 @@ export default new Router({
   routes: [
     { path: '/login', name: 'login', component: LoginView },
     { path: '/signin', name: 'signin', component: RegisterView },
+    { path: '/signin/confirmation', name: 'signin-confirmation', component: RegisterView },
     { path: '/search', name: 'search', component: SearchView, props: true },
     { path: '/homes/:home_slug', name: 'home-details', component: HomesView },
     { path: '/', name: 'homepage', component: HomepageView },
     { path: '/reservation',
       component: ReservationStepsView,
-      props: true,
       children: [
         {
           path: 'first_step',
@@ -44,6 +45,7 @@ export default new Router({
         }
       ]
     },
+    { path: '/reservation/payment', name: 'payment', component: ReservationPayment },
     { path: '/host/', name: 'host', component: NotFoundView },
     { path: '/about/', name: 'about', component: NotFoundView },
     { path: '/contact/', name: 'contact', component: NotFoundView },
