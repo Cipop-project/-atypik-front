@@ -8,10 +8,10 @@ import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
 import Vuetify from 'vuetify'
 import router from './router'
+import NProgress from 'NProgress'
 import 'flag-icon-css/css/flag-icon.css'
 import VueResource from 'vue-resource'
 import NotationStars from './components/NotationStars.vue'
-// import VeeValidate from 'vee-validate'
 import { store } from './store'
 import Header from './components/Header.vue'
 import HomepageHeader from './components/HomepageHeader.vue'
@@ -29,16 +29,20 @@ import AtypikCarousel from './components/elements/AtypikCarousel.vue'
 import SwiperSlide from './components/elements/SwiperSlide.vue'
 import DateRangePicker from './components/elements/DateRangePicker.vue'
 import PriceDetails from './components/elements/PriceDetails.vue'
+import Loading from './components/Loading.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import { addDays, subDays, parse } from 'date-fns'
+import 'nprogress/nprogress.css'
+// import RotateSquare2 from 'vue-loading-spinner'
 // import Origami from 'vue-loading-spinner'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueAwesomeSwiper)
+// Vue.use(NProgress)
 // Vue.http.options.root = 'http://localhost:6001/'
 Vue.mixin({
   methods: {
@@ -54,6 +58,21 @@ Vue.mixin({
       }
     }
   }
+})
+
+router.beforeResolve((to, from, next) => {
+  console.log('route resolve')
+  // If this isn't an initial page load.
+  if (to.name) {
+    // Start the route progress bar.
+    NProgress.start()
+  }
+  next()
+})
+router.afterEach((to, from) => {
+  console.log('route finish')
+  // Complete the animation of the route progress bar.
+  NProgress.done()
 })
 
 Vue.component('v-header', Header)
@@ -74,6 +93,8 @@ Vue.component('el-swiper', SwiperSlide)
 Vue.component('el-date-range-picker', DateRangePicker)
 Vue.component('el-reservation-ariane', ReservationAriane)
 Vue.component('el-price-details', PriceDetails)
+Vue.component('v-loading', Loading)
+// Vue.component('el-rotate-square', RotateSquare2)
 // Vue.component('origami-loader', Origami)
 
 /* eslint-disable-next-line no-new */

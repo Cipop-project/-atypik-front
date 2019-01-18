@@ -4,24 +4,36 @@
     <v-container
       fluid
       class="custom-container">
-      <div class="spacer"/>
-      <v-basic-search @refresh-data="refresh"/>
-      <br>
       <v-layout
-        align-start
-        justify-start
-        row
-        fill-height
-        class="products-box">
+        justify-center
+        xs10
+        off
+        wrap>
         <v-flex
-          v-for="(product, id) in products"
-          :key="id"
-          md2
-          xs4
-          class="ma-3">
-          <router-link :to="productUrl(product)">
-            <v-small-card :item="product"/>
-          </router-link>
+          xs12
+          md8>
+          <v-basic-search @refresh-data="refresh"/>
+          <v-loading :is-loading="productLoading"/>
+        </v-flex>
+      </v-layout>
+      <v-layout
+        justify-center
+        xs10
+        off
+        wrap>
+        <v-flex xs10>
+          <v-layout>
+            <v-flex
+              v-for="(product, id) in products"
+              :key="id"
+              md2
+              xs4
+              class="ma-3">
+              <router-link :to="productUrl(product)">
+                <v-small-card :item="product"/>
+              </router-link>
+            </v-flex>
+          </v-layout>
         </v-flex>
       </v-layout>
     </v-container>
@@ -35,7 +47,8 @@ export default {
   name: 'SearchView',
   data () {
     return {
-      products: []
+      products: [],
+      productLoading: false
     }
   },
   mounted () {

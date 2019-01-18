@@ -36,8 +36,9 @@ export default {
     return getDefault()
   },
   registerUser (data) {
-    // return Vue.http.post(`${getUrl('client')}`, data)
-    return getDefault()
+    console.log
+    return Vue.http.post(`${getUrl('client')}`, data)
+    // return getDefault()
   },
   registerHomeImage (data) {
     // return Vue.http.post(`${getUrl('image')}`, data)
