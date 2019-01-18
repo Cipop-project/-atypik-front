@@ -239,7 +239,7 @@ export default {
         email: this.email,
         language: this.language,
         password: this.password,
-        phoneNumber: this.phoneNumber,
+        phoneNumber: this.phone,
         pricingType: this.pricingType,
         username: this.name + ' ' + this.lastName
       }

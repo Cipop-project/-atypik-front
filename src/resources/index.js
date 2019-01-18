@@ -33,10 +33,15 @@ export default {
   },
   login (data) {
     // return Vue.http.post(`${getUrl('client')}`, data)
-    return getDefault()
+    // return getDefault()
+    if (data.username === 'admin' && data.password === 'admin') {
+      return { data: { username: data.username, token: 'XXXXXYYYYZZZZZ' }, message: '', status: 0 }
+    } else {
+      return { data: {}, message: 'L\'email ou mot de passe ne coincide pas', status: -1 }
+    }
   },
   registerUser (data) {
-    console.log
+    console.log(data)
     return Vue.http.post(`${getUrl('client')}`, data)
     // return getDefault()
   },

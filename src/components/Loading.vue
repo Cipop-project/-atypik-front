@@ -2,7 +2,8 @@
   <loading
     :active.sync="isLoading"
     :can-cancel="false"
-    :is-full-page="fullPage"/>
+    :is-full-page="false"
+    :opacity="fullPage === true ? 0.5 : 0"/>
 </template>
 
 <script>
@@ -23,6 +24,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    }
+  },
+  data () {
+    return {
+      opacity: 0.5
     }
   }
 }

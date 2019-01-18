@@ -13,7 +13,6 @@
           xs12
           md8>
           <v-basic-search @refresh-data="refresh"/>
-          <v-loading :is-loading="productLoading"/>
         </v-flex>
       </v-layout>
       <v-layout
@@ -21,7 +20,10 @@
         xs10
         off
         wrap>
-        <v-flex xs10>
+        <v-flex
+          xs10
+          class="vld-parent products-box">
+          <v-loading :is-loading="productLoading"/>
           <v-layout>
             <v-flex
               v-for="(product, id) in products"
@@ -59,11 +61,14 @@ export default {
       return '/homes/' + product.id
     },
     async refresh (passedData) {
+      this.products = []
       const postProduct = passedData === undefined ? this.$route.params.productDTO : passedData
       if (postProduct) {
+        this.productLoading = true
         postProduct.endTime = new Date(postProduct.endTime).toISOString()
         postProduct.startTime = new Date(postProduct.startTime).toISOString()
         const { data } = await Resource.search(postProduct)
+        this.productLoading = false
         this.products = data.data
       } else {
         console.log('no params')
@@ -77,7 +82,7 @@ export default {
 
 <style scoped>
   .products-box {
-    min-height: 50px;
+    min-height: 200px;
   }
   .card-img {
     height: 200px;

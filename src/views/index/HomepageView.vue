@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-homepage-header/>
+    <v-header/>
     <v-img
       :src="homepage.mainImage"
       alt="logement inedit sur la cote d'un lac"

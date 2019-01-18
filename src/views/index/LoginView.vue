@@ -27,11 +27,13 @@
                   class="error--text">{{ status.message }}</p>
                 <v-text-field
                   v-model="name"
+                  :rules="emptyRule"
                   label="Email"
                   name="email"
                   required/>
                 <v-text-field
                   v-model="password"
+                  :rules="emptyRule"
                   type="password"
                   label="Mot de passe"
                   name="password"
@@ -73,7 +75,10 @@ export default {
         data: {},
         message: '',
         status: 0
-      }
+      },
+      emptyRule: [
+        v => !!v || 'Champ obligatoire'
+      ]
     }
   },
   methods: {
@@ -83,6 +88,7 @@ export default {
         this.status = await Resource.login({ username: this.name, password: this.password })
         if (this.status.status === 0) {
           this.$store.state.loggedIn = true
+          localStorage.user = JSON.stringify({ username: this.status.data.username, token: this.status.data.token })
           this.$router.push({ name: 'homepage' })
         } else {
           // can't log in

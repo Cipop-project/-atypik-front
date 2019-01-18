@@ -1,81 +1,26 @@
 <template>
   <div class="header">
     <v-toolbar
+      :absolute="isHomepage"
       flat
       class="transparent">
       <router-link
         :style="{ cursor: 'pointer' }"
         :to="{ name: 'homepage' }"
         tag="v-toolbar-title">
-        <h1 class="font-weight-medium brown--text">AtypikHouse</h1>
+        <h1
+          :class="{ 'white--text': isHomepage, 'brown--text': !isHomepage }"
+          class="font-weight-medium">AtypikHouse</h1>
       </router-link>
       <v-spacer/>
       <v-btn
-        v-if="!isLoggedIn"
+        v-if="!loggedIn"
         to="/login"
         color="success">Login</v-btn>
-      <v-menu
-        v-if="isLoggedIn"
-        offset-y>
-        <v-btn
-          slot="activator"
-          icon>
-          <v-icon>mdi-email</v-icon>
-        </v-btn>
-        <v-list>
-          <v-list-tile
-            v-for="(message, index) in user.messages"
-            :key="index"
-            @click="">
-            <v-list-tile-content>
-              <v-list-tile-title>{{ message.from }}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ message.content | smallMessage }}</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-      <v-menu
-        v-if="isLoggedIn"
-        offset-y>
-        <v-btn
-          slot="activator"
-          icon>
-          <v-icon>mdi-bell</v-icon>
-        </v-btn>
-        <v-list>
-          <v-list-tile
-            v-for="(notification, index) in user.notifications"
-            :key="index"
-            @click="">
-            <v-list-tile-content>
-              <v-list-tile-title>{{ notification.content | smallMessage }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-      <v-menu
-        v-if="isLoggedIn"
-        offset-y>
-        <v-btn
-          slot="activator"
-          icon>
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
-        <v-list>
-          <router-link :to="{ name: 'account' }">
-            <v-list-tile @click="">
-              <v-list-tile-title>Mon profil</v-list-tile-title>
-            </v-list-tile>
-          </router-link>
-          <v-list-tile @click="">
-            <v-list-tile-title>Mes voyages</v-list-tile-title>
-          </v-list-tile>
-          <hr>
-          <v-list-tile @click="">
-            <v-list-tile-title><v-icon>mdi-power</v-icon>Deconnection</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
+      <v-account-notifications
+        v-else
+        :is-homepage="isHomepage"
+        :user="user"/>
       <v-btn icon>
         <span class="flag-icon flag-icon-fr"/>
       </v-btn>
@@ -85,18 +30,10 @@
 <script>
 export default {
   name: 'Header',
-  filters: {
-    smallMessage (v) {
-      if (v.length > 40) {
-        return v.substring(0, 40) + '...'
-      } else {
-        return v
-      }
-    }
-  },
   data () {
     return {
-      isLoggedIn: this.$store.state.loggedIn,
+      loggedIn: this.$store.state.loggedIn,
+      isHomepage: this.$router.currentRoute.path === '/',
       user: {
         messages: [
           {
@@ -118,6 +55,9 @@ export default {
         ]
       }
     }
+  },
+  mounted () {
+    console.log(this.$router.currentRoute.path)
   }
 }
 </script>

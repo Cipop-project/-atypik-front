@@ -29,14 +29,13 @@ import AtypikCarousel from './components/elements/AtypikCarousel.vue'
 import SwiperSlide from './components/elements/SwiperSlide.vue'
 import DateRangePicker from './components/elements/DateRangePicker.vue'
 import PriceDetails from './components/elements/PriceDetails.vue'
+import AccountNotifications from './components/AccountNotifications.vue'
 import Loading from './components/Loading.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import { addDays, subDays, parse } from 'date-fns'
 import 'nprogress/nprogress.css'
-// import RotateSquare2 from 'vue-loading-spinner'
-// import Origami from 'vue-loading-spinner'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
@@ -59,9 +58,18 @@ Vue.mixin({
     }
   }
 })
-
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const privatePages = ['/reservation/first_step', '/account']
+  const authRequired = privatePages.includes(to.path)
+  const loggedIn = localStorage.getItem('user')
+  console.log(authRequired)
+  if (authRequired && !loggedIn) {
+    return next('/login')
+  }
+  next()
+})
 router.beforeResolve((to, from, next) => {
-  console.log('route resolve')
   // If this isn't an initial page load.
   if (to.name) {
     // Start the route progress bar.
@@ -70,7 +78,6 @@ router.beforeResolve((to, from, next) => {
   next()
 })
 router.afterEach((to, from) => {
-  console.log('route finish')
   // Complete the animation of the route progress bar.
   NProgress.done()
 })
@@ -87,13 +94,14 @@ Vue.component('v-notation-stars', NotationStars)
 Vue.component('v-comment', NormalComment)
 Vue.component('v-image-uploader', ImageUploader)
 Vue.component('v-reservation-details', ReservationDetails)
+Vue.component('v-loading', Loading)
+Vue.component('v-account-notifications', AccountNotifications)
 Vue.component('el-atypik-select', AtypikSelect)
 Vue.component('el-atypik-carousel', AtypikCarousel)
 Vue.component('el-swiper', SwiperSlide)
 Vue.component('el-date-range-picker', DateRangePicker)
 Vue.component('el-reservation-ariane', ReservationAriane)
 Vue.component('el-price-details', PriceDetails)
-Vue.component('v-loading', Loading)
 // Vue.component('el-rotate-square', RotateSquare2)
 // Vue.component('origami-loader', Origami)
 

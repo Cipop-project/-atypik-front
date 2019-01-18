@@ -24,6 +24,7 @@
                       class="pr-4">Prenom</label>
                   </v-flex>
                   <v-flex md7>
+                    <v-text-field hide-details/>
                     <input
                       type="text"
                       class="form-control w-100">

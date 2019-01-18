@@ -18,7 +18,6 @@ export const store = new Vuex.Store({
     ],
     descriptifs: ['peopleNumber'],
     people_info: [{ first_name: '', last_name: '', birthday: '' }],
-    loggedIn: true,
     user:
     {
       id: '1',
@@ -252,6 +251,9 @@ export const store = new Vuex.Store({
     // phoneRules: [
     //   value => (value.length > 0) || 'Entrez un numero de telephone valide'
     // ]
+  },
+  computed: {
+    loggedIn: !!localStorage.user
   },
   mutations: {
     registerRequest (state) {

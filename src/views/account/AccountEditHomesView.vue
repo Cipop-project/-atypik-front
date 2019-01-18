@@ -16,28 +16,11 @@
             <v-flex
               md10
               class="pa-4 pl-5">
-              <swiper :options="swiperOption">
-                <swiper-slide
-                  v-for="(slide, index) in user.homes"
-                  :key="index">
-                  <router-link :to="`/homes/${slide.product_id}`">
-                    <v-small-card
-                      :item="slide"/>
-                  </router-link>
-                </swiper-slide>
-                <div
-                  slot="pagination"
-                  class="swiper-pagination"/>
-                <div
-                  slot="button-prev"
-                  class="swiper-button-prev"/>
-                <div
-                  slot="button-next"
-                  class="swiper-button-next"/>
-                <div
-                  slot="pagination"
-                  class="swiper-pagination"/>
-              </swiper>
+              <el-swiper
+                :options="swiperOption"
+                :slides="user.homes"
+                :index="'index'"
+                type="small-card"/>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -49,7 +32,7 @@
 
 <script>
 export default {
-  name: 'AccountAddHomeView',
+  name: 'AccountEditHomesView',
   data () {
     return {
       user: this.$store.state.user,

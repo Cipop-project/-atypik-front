@@ -57,6 +57,7 @@ export default new Router({
     { path: '/about/conditions', name: 'conditions', component: NotFoundView },
     { path: 'https://www.facebook.com', name: 'facebook', component: NotFoundView },
     { path: 'https://www.twitter.com', name: 'twitter', component: NotFoundView },
-    { path: 'https://www.instagram.com', name: 'instagram', component: NotFoundView }
+    { path: 'https://www.instagram.com', name: 'instagram', component: NotFoundView },
+    { path: '*', name: 'notFound', component: NotFoundView }
   ]
 })
