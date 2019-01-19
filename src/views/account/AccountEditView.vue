@@ -17,15 +17,29 @@
               md10
               class="pa-4 pl-5">
               <form>
+                <!--<div class=" form-group form-inline">-->
+                <!--<v-flex md2>-->
+                <!--<label-->
+                <!--for=""-->
+                <!--class="pr-4">Prenom</label>-->
+                <!--</v-flex>-->
+                <!--<v-flex md7>-->
+                <!--<input-->
+                <!--v-model="user.name"-->
+                <!--type="text"-->
+                <!--class="form-control w-100">-->
+                <!--</v-flex>-->
+                <!--</div>-->
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
-                      class="pr-4">Prenom</label>
+                      for="formName"
+                      class="pr-4">Nom complet</label>
                   </v-flex>
                   <v-flex md7>
-                    <v-text-field hide-details/>
                     <input
+                      id="formName"
+                      v-model="user.name"
                       type="text"
                       class="form-control w-100">
                   </v-flex>
@@ -33,78 +47,68 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
-                      class="pr-4">Nom</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      type="text"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for=""
                       class="pr-4">Date de naissance</label>
                   </v-flex>
                   <v-flex md7>
                     <select
-                      id=""
-                      name=""
+                      name="birth day"
                       class="form-control">
-                      <option value="01">01</option>
-                      <option value="02">02</option>
-                      <option value="03">03</option>
-                      <option value="04">04</option>
+                      <option
+                        v-for="i in 31"
+                        :key="i"
+                        :selected="i === user.birthday.split('-')[2].substring(0, 2)"
+                        value="i">{{ i }}</option>
                     </select>
                     <select
-                      id=""
-                      name=""
+                      name="birth month"
                       class="form-control">
-                      <option value="01">Janvier</option>
-                      <option value="02">Fevrier</option>
-                      <option value="03">Mars</option>
-                      <option value="04">Avril</option>
+                      <option
+                        v-for="(month, i) in months"
+                        :key="i"
+                        :selected="month.format === user.birthday.split('-')[1]"
+                        value="month.format">{{ month.name }}</option>
                     </select>
                     <select
-                      id=""
-                      name=""
+                      name="birth year"
                       class="form-control">
-                      <option value="1900">1900</option>
-                      <option value="1901">1901</option>
-                      <option value="1902">1902</option>
+                      <option
+                        v-for="(year, i) in years"
+                        :key="i"
+                        :selected="year === user.birthday.split('-')[0]"
+                        value="year">{{ year }}</option>
                     </select>
                   </v-flex>
                 </div>
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="sexe"
                       class="pr-4">Sexe</label>
                   </v-flex>
                   <v-flex md7>
                     <select
-                      id=""
-                      name=""
+                      id="sexe"
+                      v-model="user.sexe"
+                      name="sexe"
                       class="form-control">
-                      <option value="Homme">Homme</option>
-                      <option value="Femme">Femme</option>
-                      <option value="Autre">Autre</option>
-                      <option value="">Je prefère garder ça pour moi</option>
+                      <option value="MALE">Homme</option>
+                      <option value="FEMALE">Femme</option>
+                      <option value="OTHER">Autre</option>
+                      <option value="">Ne pas especifier</option>
                     </select>
                   </v-flex>
                 </div>
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="description"
                       class="pr-4">Votre description</label>
                   </v-flex>
                   <v-flex md7>
                     <textarea
-                      id=""
-                      name=""
+                      id="description"
+                      v-model="user.description"
+                      name="description"
                       cols="30"
                       rows="5"
                       class="form-control w-100"/>
@@ -113,11 +117,13 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="email"
                       class="pr-4">Email</label>
                   </v-flex>
                   <v-flex md7>
                     <input
+                      id="email"
+                      v-model="user.email"
                       type="text"
                       class="form-control w-100">
                   </v-flex>
@@ -125,11 +131,13 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="address"
                       class="pr-4">Lieu de residence</label>
                   </v-flex>
                   <v-flex md7>
                     <input
+                      id="address"
+                      v-model="user.address"
                       type="text"
                       class="form-control w-100">
                   </v-flex>
@@ -137,32 +145,34 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="language"
                       class="pr-4">Langue préférée</label>
                   </v-flex>
                   <v-flex md7>
                     <select
-                      id=""
-                      name=""
+                      id="language"
+                      v-model="user.language"
+                      name="Language"
                       class="form-control w-25">
-                      <option value="english">English</option>
-                      <option value="french">Français</option>
+                      <option value="EN">English</option>
+                      <option value="FR">Français</option>
                     </select>
                   </v-flex>
                 </div>
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
-                      for=""
+                      for="currency"
                       class="pr-4">Devise préférée</label>
                   </v-flex>
                   <v-flex md7>
                     <select
-                      id=""
-                      name=""
+                      id="currency"
+                      v-model="user.currency"
+                      name="Currency"
                       class="form-control w-25">
-                      <option value="dollar">US Dollar</option>
-                      <option value="euro">Euro</option>
+                      <option value="USD">US Dollar</option>
+                      <option value="EUR">Euro</option>
                     </select>
                   </v-flex>
                 </div>
@@ -184,7 +194,9 @@ export default {
   name: 'AccountEditView',
   data () {
     return {
-      user: this.$store.state.user
+      user: this.$store.state.user,
+      months: this.$store.state.months,
+      years: this.$store.state.years
     }
   },
   methods: {

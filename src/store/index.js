@@ -5,6 +5,14 @@ import UserLoginApi from '../services/api/UserLogin'
 
 Vue.use(Vuex)
 
+function getYears () {
+  let list = []
+  for (let i = new Date().toISOString().substring(0, 4); i >= 1940; i--) {
+    list.push(i)
+  }
+  return list
+}
+
 export const store = new Vuex.Store({
   state: {
     homepage: {
@@ -16,13 +24,39 @@ export const store = new Vuex.Store({
       { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
       { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
     ],
+    months: [
+      { format: '01', name: 'Janvier' },
+      { format: '02', name: 'Fevrier' },
+      { format: '03', name: 'Mars' },
+      { format: '04', name: 'Avril' },
+      { format: '05', name: 'Mai' },
+      { format: '06', name: 'Juin' },
+      { format: '07', name: 'Julliet' },
+      { format: '08', name: 'Aout' },
+      { format: '09', name: 'Septembre' },
+      { format: '10', name: 'Octobre' },
+      { format: '11', name: 'Novembre' },
+      { format: '12', name: 'Decembre' }
+    ],
+    years: getYears(),
     descriptifs: ['peopleNumber'],
     people_info: [{ first_name: '', last_name: '', birthday: '' }],
     user:
     {
       id: '1',
+      activate: true,
+      advertisement: true,
+      birthday: '2019-01-18T23:50:07.236Z',
+      clientType: 'TENANT',
+      language: '',
+      phoneNumber: '',
+      pricingType: 'EUR',
+      sexe: 'MALE',
+      username: 'Carlos Sanchez',
       name: 'Carlos',
       last_name: 'Sanchez',
+      email: 'krlos-jose@hotmail.com',
+      address: '14 rue de Frot, Paris',
       type: 'host',
       location: 'Paris, France',
       photo: 'https://picsum.photos/300?random',
