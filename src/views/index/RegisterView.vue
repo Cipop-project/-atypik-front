@@ -216,7 +216,7 @@ export default {
         console.log(this.$refs.signin_form)
         this.status = await Resource.registerUser(this.formData())
         if (this.status.status === 0) {
-          this.$router.push({ name: 'signin-confirmation' })
+          this.$router.push({ name: 'signinConfirmation' })
         } else {
           // if can't be created
           this.valid = false

@@ -30,7 +30,9 @@ import SwiperSlide from './components/elements/SwiperSlide.vue'
 import DateRangePicker from './components/elements/DateRangePicker.vue'
 import PriceDetails from './components/elements/PriceDetails.vue'
 import AccountNotifications from './components/AccountNotifications.vue'
+import PasswordConfirmation from './components/PasswordConfirmation.vue'
 import Loading from './components/Loading.vue'
+import FlashBag from './components/FlashBag.vue'
 import Footer from './components/Footer.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -102,6 +104,9 @@ Vue.component('el-swiper', SwiperSlide)
 Vue.component('el-date-range-picker', DateRangePicker)
 Vue.component('el-reservation-ariane', ReservationAriane)
 Vue.component('el-price-details', PriceDetails)
+Vue.component('v-flashbag', FlashBag)
+Vue.component('v-password-confirmation', PasswordConfirmation)
+
 // Vue.component('el-rotate-square', RotateSquare2)
 // Vue.component('origami-loader', Origami)
 

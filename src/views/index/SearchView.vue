@@ -31,7 +31,7 @@
               md2
               xs4
               class="ma-3">
-              <router-link :to="productUrl(product)">
+              <router-link :to="{ name: 'homeDetails', params: { home_slug: product.id } }">
                 <v-small-card :item="product"/>
               </router-link>
             </v-flex>

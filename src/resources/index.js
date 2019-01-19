@@ -45,12 +45,31 @@ export default {
     return Vue.http.post(`${getUrl('client')}`, data)
     // return getDefault()
   },
+  updateUser (data) {
+    console.log(data)
+    // return Vue.http.post(`${getUrl('client')}`, data)
+    return getDefault()
+  },
+  deleteUser (user) {
+    // return Vue.http.post(`${getUrl('product')}`, data)
+    return getDefault()
+  },
   registerHomeImage (data) {
     // return Vue.http.post(`${getUrl('image')}`, data)
     return getDefault()
   },
   registerHome (data) {
     // return Vue.http.post(`${getUrl('product')}`, data)
+    return getDefault()
+  },
+  updateHome (data) {
+    console.log(data)
+    // return Vue.http.post(`${getUrl('client')}`, data)
+    return getDefault()
+  },
+  deleteHome (data) {
+    console.log(data)
+    // return Vue.http.post(`${getUrl('client')}`, data)
     return getDefault()
   }
 }

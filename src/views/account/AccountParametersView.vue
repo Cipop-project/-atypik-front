@@ -20,7 +20,10 @@
               <div class="form-group mt-2">
                 <label>Vous decidez si vous voulez recevoir des nouvelles de notre part</label>
                 <br>
-                <input type="checkbox"> J'accepte de reçevoir la newsletter
+                <input
+                  v-model="user.advertisement"
+                  type="checkbox"
+                  @click="updateAdvertisement"> J'accepte de reçevoir la newsletter
               </div>
               <hr class="mt-4 mb-4">
               <h4>Preferences</h4>
@@ -31,7 +34,7 @@
                   class="form-control w-25"
                   name="">
                   <option value="email">Email</option>
-                  <option value="sms">SMS</option>
+                  <!--<option value="sms">SMS</option>-->
                 </select>
               </div>
               <div v-if="user.type == 'host'">
@@ -40,17 +43,20 @@
                 Quand vous recevez des paiements pour vos reservations, l'argent sera immediatement versé. Ajouter un mode de versement
                 est donc necesaire pour commencer votre aventure en tant que host.
                 <div class="text-xs-center mt-1">
-                  <v-btn color="green" class="white--text text-xs-center">Ajouter un mode de versement</v-btn>
+                  <v-btn
+                    color="green"
+                    class="white--text text-xs-center">Ajouter un mode de versement</v-btn>
                 </div>
               </div>
               <hr>
-              Vous pouvez à tout moment desactiver votre compte, la desactivation de votre compte entraine la supression de vos annonces,
-              conformement aux reglements concernant les données personelles, elles seront garder en securité pendant 2 ans.
+              Vous pouvez à tout moment desactiver votre compte, la desactivation de votre compte entraine la supression de vos annonces et
+              votre information personel
               <br>
               <div class="text-xs-center mt-1">
                 <v-btn
                   color="red"
-                  class="white--text text-xs-center">Desactiver compte</v-btn>
+                  class="white--text text-xs-center"
+                  @click="deleteAccount">Desactiver compte</v-btn>
               </div>
             </v-flex>
           </v-layout>
@@ -58,15 +64,41 @@
       </v-layout>
     </v-container>
     <v-footer/>
-  </div>
+    <v-password-confirmation
+      v-if="showModal"
+      @confirmation="handleConfirmation()"
+      @close="showModal = false"/></div>
 </template>
 
 <script>
+import Resource from '../../resources'
 export default {
   name: 'AccountEditView',
   data () {
     return {
-      user: this.$store.state.user
+      user: this.$store.state.user,
+      showModal: false
+    }
+  },
+  methods: {
+    updateAdvertisement () {
+      Resource.updateUser(this.user)
+    },
+    deleteAccount () {
+      let tmp = confirm('Toute information relative à votre compte sera supprimé, etes-vous sûr de vouloir confirmer?')
+      if (tmp) {
+        this.showModal = true
+      }
+    },
+    handleConfirmation (callback) {
+      console.log('handle')
+      if (callback === 'success') {
+        console.log('delete account')
+        Resource.deleteUser(this.user)
+      } else {
+        this.showModal = false
+        console.log('cancelled')
+      }
     }
   }
 }

@@ -12,6 +12,18 @@ function getYears () {
   }
   return list
 }
+function getLanguages () {
+  return [
+    { code: 'FR', name: 'Français' },
+    { code: 'EN', name: 'English' }
+  ]
+}
+function getCurrencies () {
+  return [
+    { code: 'USD', name: 'US Dollar' },
+    { code: 'EUR', name: 'Euro' }
+  ]
+}
 
 export const store = new Vuex.Store({
   state: {
@@ -39,6 +51,8 @@ export const store = new Vuex.Store({
       { format: '12', name: 'Decembre' }
     ],
     years: getYears(),
+    currencies: getCurrencies(),
+    languages: getLanguages(),
     descriptifs: ['peopleNumber'],
     people_info: [{ first_name: '', last_name: '', birthday: '' }],
     user:
@@ -46,10 +60,10 @@ export const store = new Vuex.Store({
       id: '1',
       activate: true,
       advertisement: true,
-      birthday: '2019-01-18T23:50:07.236Z',
+      birthday: '1992-09-10T23:50:07.236Z',
       clientType: 'TENANT',
-      language: '',
-      phoneNumber: '',
+      language: 'FR',
+      phoneNumber: '0783489217',
       pricingType: 'EUR',
       sexe: 'MALE',
       username: 'Carlos Sanchez',
@@ -62,7 +76,7 @@ export const store = new Vuex.Store({
       photo: 'https://picsum.photos/300?random',
       inscription_date: 'septembre 2018',
       note: 4.3,
-      description: 'Nous serons de vous accueuillir à bord ,afin de partager notre passion maritime ,et que vous decouvriez ce petit coin de paradis meme en restant au port, merci beaucoup pour tout vos adorables messages.',
+      description: 'Je serai ravi de vous accueuillir à bord ,afin de partager notre passion maritime ,et que vous decouvriez ce petit coin de paradis meme en restant au port, merci beaucoup pour tout vos adorables messages.',
       homes: [
         {
           name: 'Cabanes dans les arbres',

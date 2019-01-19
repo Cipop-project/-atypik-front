@@ -17,6 +17,7 @@ import ReservationFirstStep from '../components/ReservationFirstStep.vue'
 import ReservationSecondStep from '../components/ReservationSecondStep.vue'
 import ReservationThirdStep from '../components/ReservationThirdStep.vue'
 import ReservationPayment from '../views/reservation/ReservationPayment.vue'
+import AccountEditHomeView from '../views/account/AccountEditHomeView.vue'
 
 Vue.use(Router)
 
@@ -25,9 +26,9 @@ export default new Router({
   routes: [
     { path: '/login', name: 'login', component: LoginView },
     { path: '/signin', name: 'signin', component: RegisterView },
-    { path: '/signin/confirmation', name: 'signin-confirmation', component: RegisterView },
+    { path: '/signin/confirmation', name: 'signinConfirmation', component: RegisterView },
     { path: '/search', name: 'search', component: SearchView, props: true },
-    { path: '/homes/:home_slug', name: 'home-details', component: HomesView },
+    { path: '/homes/:home_slug', name: 'homeDetails', component: HomesView },
     { path: '/', name: 'homepage', component: HomepageView },
     { path: '/reservation',
       component: ReservationStepsView,
@@ -54,6 +55,7 @@ export default new Router({
     { path: '/account/settings', name: 'configAccount', component: AccountParametersView },
     { path: '/account/homes/add', name: 'addHomes', component: AccountAddHomeView },
     { path: '/account/homes/edit', name: 'editHomes', component: AccountEditHomesView },
+    { path: '/account/homes/edit/:home_slug', name: 'editHome', component: AccountEditHomeView },
     { path: '/about/conditions', name: 'conditions', component: NotFoundView },
     { path: 'https://www.facebook.com', name: 'facebook', component: NotFoundView },
     { path: 'https://www.twitter.com', name: 'twitter', component: NotFoundView },

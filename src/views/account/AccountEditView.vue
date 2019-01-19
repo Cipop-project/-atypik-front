@@ -16,7 +16,11 @@
             <v-flex
               md10
               class="pa-4 pl-5">
-              <form>
+              <v-loading v-if="updateLoading"/>
+              <form v-else>
+                <v-flashbag
+                  ref="flashbag"
+                  :flashbag="flashbag"/>
                 <!--<div class=" form-group form-inline">-->
                 <!--<v-flex md2>-->
                 <!--<label-->
@@ -56,7 +60,7 @@
                       <option
                         v-for="i in 31"
                         :key="i"
-                        :selected="i === user.birthday.split('-')[2].substring(0, 2)"
+                        :selected="i === parseInt(user.birthday.split('-')[2].substring(0, 2))"
                         value="i">{{ i }}</option>
                     </select>
                     <select
@@ -74,7 +78,7 @@
                       <option
                         v-for="(year, i) in years"
                         :key="i"
-                        :selected="year === user.birthday.split('-')[0]"
+                        :selected="year === parseInt(user.birthday.split('-')[0])"
                         value="year">{{ year }}</option>
                     </select>
                   </v-flex>
@@ -131,6 +135,20 @@
                 <div class=" form-group form-inline">
                   <v-flex md2>
                     <label
+                      for="phone"
+                      class="pr-4">Telephone</label>
+                  </v-flex>
+                  <v-flex md7>
+                    <input
+                      id="phone"
+                      v-model="user.phoneNumber"
+                      type="text"
+                      class="form-control w-100">
+                  </v-flex>
+                </div>
+                <div class=" form-group form-inline">
+                  <v-flex md2>
+                    <label
                       for="address"
                       class="pr-4">Lieu de residence</label>
                   </v-flex>
@@ -154,8 +172,11 @@
                       v-model="user.language"
                       name="Language"
                       class="form-control w-25">
-                      <option value="EN">English</option>
-                      <option value="FR">Français</option>
+                      <option
+                        v-for="(language, i) in languages"
+                        :key="i"
+                        :selected="language.code === user.language"
+                        :value="language.code">{{ language.name }}</option>
                     </select>
                   </v-flex>
                 </div>
@@ -168,11 +189,14 @@
                   <v-flex md7>
                     <select
                       id="currency"
-                      v-model="user.currency"
+                      v-model="user.pricingType"
                       name="Currency"
                       class="form-control w-25">
-                      <option value="USD">US Dollar</option>
-                      <option value="EUR">Euro</option>
+                      <option
+                        v-for="(currency, i) in currencies"
+                        :key="i"
+                        :selected="currency.code === user.pricingType"
+                        :value="currency.code">{{ currency.name }}</option>
                     </select>
                   </v-flex>
                 </div>
@@ -190,18 +214,31 @@
 </template>
 
 <script>
+import Resource from '../../resources'
 export default {
   name: 'AccountEditView',
   data () {
     return {
       user: this.$store.state.user,
       months: this.$store.state.months,
-      years: this.$store.state.years
+      years: this.$store.state.years,
+      languages: this.$store.state.languages,
+      currencies: this.$store.state.currencies,
+      updateLoading: false,
+      flashbag: { show: false }
     }
   },
   methods: {
-    submit () {
+    async submit () {
       console.log('submit form')
+      this.updateLoading = true
+      const data = await Resource.updateUser(this.user)
+      this.updateLoading = false
+      if (data.status !== 0) {
+        this.flashbag = { show: true, type: 'error', message: data.message }
+      } else {
+        this.flashbag = { show: true, type: 'success', message: 'Vos changements ont été enregistrés' }
+      }
     }
   }
 }
