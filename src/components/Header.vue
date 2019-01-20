@@ -16,7 +16,7 @@
       <v-btn
         v-if="!loggedIn"
         to="/login"
-        color="success">Login</v-btn>
+        color="success">Connection</v-btn>
       <v-account-notifications
         v-else
         :is-homepage="isHomepage"
@@ -34,26 +34,7 @@ export default {
     return {
       loggedIn: this.$store.state.loggedIn,
       isHomepage: this.$router.currentRoute.path === '/',
-      user: {
-        messages: [
-          {
-            from: 'Charlie',
-            content: 'bla bla lorem ipsum',
-            date: '03 mar 2018'
-          },
-          {
-            from: 'Charline',
-            content: 'bla bla lorem ipsum bla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsum',
-            date: '03 sep 2018'
-          }
-        ],
-        notifications: [
-          {
-            content: 'bla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla ',
-            date: '05 nov 2018'
-          }
-        ]
-      }
+      user: this.$store.state.user
     }
   },
   mounted () {
@@ -63,4 +44,8 @@ export default {
 </script>
 
 <style scoped>
+  a {
+    color: black;
+    text-decoration: none;
+  }
 </style>

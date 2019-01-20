@@ -24,6 +24,10 @@
                 </v-flex>
               </v-layout>
               {{ product.description }}
+              <h2>Prises de vue des utilisateurs</h2>
+              <v-photo-gallery/>
+              <h2>Commentaires</h2>
+              <!--<v-product-map :address="product.address"/>-->
             </v-flex>
             <v-flex
               xs3

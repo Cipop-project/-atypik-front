@@ -5,7 +5,12 @@
       <v-btn
         slot="activator"
         icon>
-        <v-icon :class="{ 'white--text': isHomepage }">mdi-email</v-icon>
+        <v-badge
+          color="#ACB641"
+          overlap>
+          <span slot="badge">{{ user.messages.length }}</span>
+          <v-icon :class="{ 'white--text': isHomepage }">mdi-email</v-icon>
+        </v-badge>
       </v-btn>
       <v-list>
         <v-list-tile
@@ -24,7 +29,12 @@
       <v-btn
         slot="activator"
         icon>
-        <v-icon :class="{ 'white--text': isHomepage }">mdi-bell</v-icon>
+        <v-badge
+          color="#ACB641"
+          overlap>
+          <span slot="badge">{{ user.notifications.length }}</span>
+          <v-icon :class="{ 'white--text': isHomepage }">mdi-bell</v-icon>
+        </v-badge>
       </v-btn>
       <v-list>
         <v-list-tile
@@ -44,15 +54,17 @@
         icon>
         <v-icon :class="{ 'white--text': isHomepage }">mdi-account</v-icon>
       </v-btn>
-      <v-list class="pb-0">
+      <v-list class="pb-0 pt-0">
         <router-link :to="{ name: 'account' }">
           <v-list-tile @click="">
             <v-list-tile-title>Mon profil</v-list-tile-title>
           </v-list-tile>
         </router-link>
-        <v-list-tile @click="">
-          <v-list-tile-title>Mes voyages</v-list-tile-title>
-        </v-list-tile>
+        <router-link :to="{ name: 'reservationCalendar' }">
+          <v-list-tile @click="">
+            <v-list-tile-title>Reservations</v-list-tile-title>
+          </v-list-tile>
+        </router-link>
         <hr class="ma-0">
         <v-list-tile
           class="red"
@@ -99,5 +111,8 @@ export default {
 </script>
 
 <style scoped>
-
+  a {
+    color: black;
+    text-decoration: none;
+  }
 </style>

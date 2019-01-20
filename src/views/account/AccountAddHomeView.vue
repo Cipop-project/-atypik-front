@@ -1,142 +1,113 @@
 <template>
-  <div>
-    <v-header/>
-    <v-container fluid>
-      <v-layout justify-center>
-        <v-flex xs10>
-          <v-layout>
-            <v-flex md2>
-              <v-layout v-if="user.type=='host'">
-                <v-host-profile-navigation/>
-              </v-layout>
-              <v-layout v-else>
-                <v-user-profile-navigation/>
-              </v-layout>
-            </v-flex>
-            <v-flex
-              md10
-              class="pa-4 pl-5">
-              <form action="">
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="formTitle"
-                      class="pr-4">Titre</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="formTitle"
-                      v-model="home.name"
-                      type="text"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class="form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="formDescription"
-                      class="pr-4">Description</label>
-                  </v-flex>
-                  <v-flex md7>
+  <form action="">
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formTitle"
+          class="pr-4">Titre</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formTitle"
+          v-model="home.name"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class="form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formDescription"
+          class="pr-4">Description</label>
+      </v-flex>
+      <v-flex md7>
                     <textarea
                       id="formDescription"
                       v-model="home.description"
                       rows="6"
                       class="form-control w-100"/>
-                  </v-flex>
-                </div>
-                <div class="form-group form-inline">
-                  <v-flex md2>
-                    <label class="pr-4">Photos</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <v-image-uploader v-model="home.images"/>
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="formCategory"
-                      class="pr-4">Categorie</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <select
-                      id="formCategory"
-                      v-model="home.category"
-                      name=""
-                      class="form-control w-50">
-                      <option value="">Cabane</option>
-                      <option value="">Roulote</option>
-                      <option value="">Tente</option>
-                      <option value="">Bateau</option>
-                      <option value="">Yourte</option>
-                      <option value="">Bulle</option>
-                      <option value="">Autre</option>
-                    </select>
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="formMaxPeople"
-                      class="pr-4">Couchages</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="formMaxPeople"
-                      v-model="home.maxPeople"
-                      type="number"
-                      class="form-control w-50">
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="formType"
-                      class="pr-4">Type</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <select
-                      id="formType"
-                      v-model="home.type"
-                      name=""
-                      class="form-control w-50">
-                      <option value="">Logement entier</option>
-                      <option value="">Chambre</option>
-                      <option value="">Chambre d'hotel</option>
-                      <option value="">Logement d'hotel</option>
-                      <option value="">Autre</option>
-                    </select>
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="formPrice"
-                      class="pr-4">Prix par nuit</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="formPrice"
-                      v-model="home.price"
-                      type="text"
-                      class="form-control w-50"
-                      @keyup="formatMoney">
-                  </v-flex>
-                </div>
-              </form>
-            </v-flex>
-          </v-layout>
-          <div class="text-xs-center">
-            <v-btn
-              color="success"
-              @click="submit()">Ajouter logement</v-btn>
-          </div>
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-footer/>
-  </div>
+      </v-flex>
+    </div>
+    <div class="form-group form-inline">
+      <v-flex md2>
+        <label class="pr-4">Photos</label>
+      </v-flex>
+      <v-flex md7>
+        <v-image-uploader v-model="home.images"/>
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formCategory"
+          class="pr-4">Categorie</label>
+      </v-flex>
+      <v-flex md7>
+        <select
+          id="formCategory"
+          v-model="home.category"
+          name=""
+          class="form-control w-50">
+          <option value="">Cabane</option>
+          <option value="">Roulote</option>
+          <option value="">Tente</option>
+          <option value="">Bateau</option>
+          <option value="">Yourte</option>
+          <option value="">Bulle</option>
+          <option value="">Autre</option>
+        </select>
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formMaxPeople"
+          class="pr-4">Couchages</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formMaxPeople"
+          v-model="home.maxPeople"
+          type="number"
+          class="form-control w-50">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formType"
+          class="pr-4">Type</label>
+      </v-flex>
+      <v-flex md7>
+        <select
+          id="formType"
+          v-model="home.type"
+          name=""
+          class="form-control w-50">
+          <option value="">Logement entier</option>
+          <option value="">Chambre</option>
+          <option value="">Chambre d'hotel</option>
+          <option value="">Logement d'hotel</option>
+          <option value="">Autre</option>
+        </select>
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formPrice"
+          class="pr-4">Prix par nuit</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formPrice"
+          v-model="home.price"
+          type="text"
+          class="form-control w-50"
+          @keyup="formatMoney">
+      </v-flex>
+    </div>
+  </form>
 </template>
 
 <script>

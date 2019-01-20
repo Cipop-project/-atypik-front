@@ -34,6 +34,7 @@ export default {
   login (data) {
     // return Vue.http.post(`${getUrl('client')}`, data)
     // return getDefault()
+    // return Vue.http.post(`http://localhost:8080/login`, data)
     if (data.username === 'admin' && data.password === 'admin') {
       return { data: { username: data.username, token: 'XXXXXYYYYZZZZZ' }, message: '', status: 0 }
     } else {
@@ -71,5 +72,11 @@ export default {
     console.log(data)
     // return Vue.http.post(`${getUrl('client')}`, data)
     return getDefault()
+  },
+  getReservationDatesByMonth (data) {
+    console.log(data)
+    // return Vue.http.post(`${getUrl('client')}`, data)
+    // return getDefault()
+    return { data: [{ start: '2019-01-22', end: '2019-01-25', reservation_id: '001' }, { start: '2019-02-25', end: '2019-02-27', reservation_id: '001' }], message: '', status: 0 }
   }
 }

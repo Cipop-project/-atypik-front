@@ -71,11 +71,11 @@ export const store = new Vuex.Store({
       last_name: 'Sanchez',
       email: 'krlos-jose@hotmail.com',
       address: '14 rue de Frot, Paris',
-      type: 'host',
       location: 'Paris, France',
       photo: 'https://picsum.photos/300?random',
       inscription_date: 'septembre 2018',
       note: 4.3,
+      approvalNotifications: 3,
       description: 'Je serai ravi de vous accueuillir à bord ,afin de partager notre passion maritime ,et que vous decouvriez ce petit coin de paradis meme en restant au port, merci beaucoup pour tout vos adorables messages.',
       homes: [
         {
@@ -95,15 +95,22 @@ export const store = new Vuex.Store({
           product_id: 'deY24Xazed42'
         }
       ],
-      comments: [
+      messages: [
         {
-          user: {
-            name: 'Charline',
-            location: 'Paris, France',
-            photo: 'https://picsum.photos/300?random'
-          },
-          content: 'Très beau séjour',
-          date: 'novembre 2018'
+          from: 'Charlie',
+          content: 'bla bla lorem ipsum',
+          date: '03 mar 2018'
+        },
+        {
+          from: 'Charline',
+          content: 'bla bla lorem ipsum bla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsum',
+          date: '03 sep 2018'
+        }
+      ],
+      notifications: [
+        {
+          content: 'bla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla ',
+          date: '05 nov 2018'
         }
       ]
     },

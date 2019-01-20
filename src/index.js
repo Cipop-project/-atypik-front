@@ -31,9 +31,11 @@ import DateRangePicker from './components/elements/DateRangePicker.vue'
 import PriceDetails from './components/elements/PriceDetails.vue'
 import AccountNotifications from './components/AccountNotifications.vue'
 import PasswordConfirmation from './components/PasswordConfirmation.vue'
+import ReservationCalendar from './components/ReservationCalendar.vue'
 import Loading from './components/Loading.vue'
 import FlashBag from './components/FlashBag.vue'
 import Footer from './components/Footer.vue'
+import PhotoGallery from './components/PhotoGallery.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import { addDays, subDays, parse } from 'date-fns'
@@ -106,6 +108,8 @@ Vue.component('el-reservation-ariane', ReservationAriane)
 Vue.component('el-price-details', PriceDetails)
 Vue.component('v-flashbag', FlashBag)
 Vue.component('v-password-confirmation', PasswordConfirmation)
+Vue.component('v-reservation-calendar', ReservationCalendar)
+Vue.component('v-photo-gallery', PhotoGallery)
 
 // Vue.component('el-rotate-square', RotateSquare2)
 // Vue.component('origami-loader', Origami)

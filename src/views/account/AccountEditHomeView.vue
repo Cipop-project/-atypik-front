@@ -1,50 +1,32 @@
 <template>
-  <div>
-    <v-header/>
-    <v-container fluid>
-      <v-layout justify-center>
-        <v-flex xs10>
-          <v-layout>
-            <v-flex md2>
-              <v-layout v-if="user.type=='host'">
-                <v-host-profile-navigation/>
-              </v-layout>
-              <v-layout v-else>
-                <v-user-profile-navigation/>
-              </v-layout>
-            </v-flex>
-            <v-flex
-              md10
-              class="pa-4 pl-5">
-              <v-loading v-if="updateLoading"/>
-              <form v-else>
-                <v-btn
-                  class="brown darken-1 white--text"
-                  @click="productView()">Voir logement</v-btn>
-                <v-flashbag
-                  ref="flashbag"
-                  :flashbag="flashbag"/>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="formTitle"
-                      class="pr-4">Titre</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="formTitle"
-                      v-model="product.name"
-                      type="text"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="description"
-                      class="pr-4">Description</label>
-                  </v-flex>
-                  <v-flex md7>
+  <form v-else>
+    <v-btn
+      class="brown darken-1 white--text"
+      @click="productView()">Voir logement</v-btn>
+    <v-flashbag
+      ref="flashbag"
+      :flashbag="flashbag"/>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formTitle"
+          class="pr-4">Titre</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formTitle"
+          v-model="product.name"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="description"
+          class="pr-4">Description</label>
+      </v-flex>
+      <v-flex md7>
                     <textarea
                       id="description"
                       v-model="product.description"
@@ -52,114 +34,107 @@
                       cols="30"
                       rows="5"
                       class="form-control w-100"/>
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="address"
-                      class="pr-4">Address</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="address"
-                      v-model="product.address"
-                      type="text"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class="form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="city"
-                      class="pr-4">Ville</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="city"
-                      v-model="product.city"
-                      type="text"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class="form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="zipCode"
-                      class="pr-4">Code postal</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="zipCode"
-                      v-model="product.zipCode"
-                      type="text"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="country"
-                      class="pr-4">Pays</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="country"
-                      v-model="product.country"
-                      type="text"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="people"
-                      class="pr-4">Maximum de personnes</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="people"
-                      v-model="product.peopleNumber"
-                      type="number"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class=" form-group form-inline">
-                  <v-flex md2>
-                    <label
-                      for="price"
-                      class="pr-4">Prix par nuit</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <input
-                      id="price"
-                      v-model="product.amount"
-                      type="number"
-                      class="form-control w-100">
-                  </v-flex>
-                </div>
-                <div class="form-group form-inline">
-                  <v-flex md2>
-                    <label class="pr-4">Photos</label>
-                  </v-flex>
-                  <v-flex md7>
-                    <v-image-uploader v-model="product.images"/>
-                  </v-flex>
-                </div>
-                <v-btn
-                  color="success"
-                  @click="submit()">Enregistrer</v-btn>
-                <v-btn
-                  color="error"
-                  @click="deleteHome()">Effacer logement</v-btn>
-              </form>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-footer/>
-  </div>
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="address"
+          class="pr-4">Address</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="address"
+          v-model="product.address"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class="form-group form-inline">
+      <v-flex md2>
+        <label
+          for="city"
+          class="pr-4">Ville</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="city"
+          v-model="product.city"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class="form-group form-inline">
+      <v-flex md2>
+        <label
+          for="zipCode"
+          class="pr-4">Code postal</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="zipCode"
+          v-model="product.zipCode"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="country"
+          class="pr-4">Pays</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="country"
+          v-model="product.country"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="people"
+          class="pr-4">Maximum de personnes</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="people"
+          v-model="product.peopleNumber"
+          type="number"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="price"
+          class="pr-4">Prix par nuit</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="price"
+          v-model="product.amount"
+          type="number"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class="form-group form-inline">
+      <v-flex md2>
+        <label class="pr-4">Photos</label>
+      </v-flex>
+      <v-flex md7>
+        <v-image-uploader v-model="product.images"/>
+      </v-flex>
+    </div>
+    <v-btn
+      color="success"
+      @click="submit()">Enregistrer</v-btn>
+    <v-btn
+      color="error"
+      @click="deleteHome()">Effacer logement</v-btn>
+  </form>
 </template>
 
 <script>

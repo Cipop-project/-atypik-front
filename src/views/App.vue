@@ -17,7 +17,8 @@ export default {
 </script>
 
 <style scoped>
-  a, a:hover {
+  a {
+    color: black;
     text-decoration: none;
   }
 </style>

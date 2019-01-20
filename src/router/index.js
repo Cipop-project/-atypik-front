@@ -18,6 +18,10 @@ import ReservationSecondStep from '../components/ReservationSecondStep.vue'
 import ReservationThirdStep from '../components/ReservationThirdStep.vue'
 import ReservationPayment from '../views/reservation/ReservationPayment.vue'
 import AccountEditHomeView from '../views/account/AccountEditHomeView.vue'
+import AccountView from '../views/account/AccountView.vue'
+import AccountMessagesView from '../views/account/AccountMessagesView.vue'
+import AccountReservationCalendarView from '../views/account/AccountReservationCalendarView.vue'
+import AccountReservationDetailsView from '../views/account/AccountReservationDetailsView.vue'
 
 Vue.use(Router)
 
@@ -50,12 +54,20 @@ export default new Router({
     { path: '/host/', name: 'host', component: NotFoundView },
     { path: '/about/', name: 'about', component: NotFoundView },
     { path: '/contact/', name: 'contact', component: NotFoundView },
-    { path: '/account/', name: 'account', component: AccountSummaryView },
-    { path: '/account/edit', name: 'editAccount', component: AccountEditView },
-    { path: '/account/settings', name: 'configAccount', component: AccountParametersView },
-    { path: '/account/homes/add', name: 'addHomes', component: AccountAddHomeView },
-    { path: '/account/homes/edit', name: 'editHomes', component: AccountEditHomesView },
-    { path: '/account/homes/edit/:home_slug', name: 'editHome', component: AccountEditHomeView },
+    { path: '/account',
+      component: AccountView,
+      children: [
+        { path: '', name: 'account', component: AccountSummaryView },
+        { path: 'reservations/calendar', name: 'reservationCalendar', component: AccountReservationCalendarView, props: true },
+        { path: 'reservations/details', name: 'reservationDetails', component: AccountReservationDetailsView },
+        { path: 'edit', name: 'editAccount', component: AccountEditView },
+        { path: 'messages', name: 'messages', component: AccountMessagesView },
+        { path: 'settings', name: 'configAccount', component: AccountParametersView },
+        { path: 'homes/add', name: 'addHomes', component: AccountAddHomeView },
+        { path: 'homes/edit', name: 'editHomes', component: AccountEditHomesView },
+        { path: 'homes/edit/:home_slug', name: 'editHome', component: AccountEditHomeView }
+      ]
+    },
     { path: '/about/conditions', name: 'conditions', component: NotFoundView },
     { path: 'https://www.facebook.com', name: 'facebook', component: NotFoundView },
     { path: 'https://www.twitter.com', name: 'twitter', component: NotFoundView },

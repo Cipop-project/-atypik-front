@@ -30,7 +30,33 @@
         </router-link>
         <router-link :to="{ name: 'editHomes' }">
           <v-list-tile @click="">
-            <v-list-tile-title class="pl-3">Gerer mes logements</v-list-tile-title>
+            <v-list-tile-title class="pl-3">Modifier mes logements</v-list-tile-title>
+          </v-list-tile>
+        </router-link>
+      </v-list-group>
+      <v-list-group
+        prepend-icon="mdi-calendar"
+        append-icon="mdi-chevron-down">
+        <v-list-tile slot="activator">
+          <v-list-tile-title>Reservations</v-list-tile-title>
+        </v-list-tile>
+        <router-link :to="{ name: 'reservationCalendar' }">
+          <v-list-tile @click="">
+            <v-list-tile-title class="pl-3">Calendrier</v-list-tile-title>
+          </v-list-tile>
+        </router-link>
+        <router-link :to="{ name: 'reservationDetails' }">
+          <v-list-tile @click="">
+            <v-list-tile-title class="pl-3">Details</v-list-tile-title>
+          </v-list-tile>
+        </router-link>
+        <router-link :to="{ name: 'reservationConfirmation' }">
+          <v-list-tile @click="">
+            <v-list-tile-title class="pl-3">
+              Approuver / Refuser
+            </v-list-tile-title><v-chip
+              color="#ACB641"
+              class="white--text">{{ notifications }}</v-chip>
           </v-list-tile>
         </router-link>
       </v-list-group>
@@ -48,10 +74,18 @@
 
 <script>
 export default {
-  name: 'HostProfileNavigationDrawer'
+  name: 'HostProfileNavigationDrawer',
+  data () {
+    return {
+      notifications: this.$store.state.user.approvalNotifications
+    }
+  }
 }
 </script>
 
 <style scoped>
-
+a {
+  color: black;
+  text-decoration: none;
+}
 </style>
