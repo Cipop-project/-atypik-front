@@ -8,21 +8,22 @@
         <v-badge
           color="#ACB641"
           overlap>
-          <span slot="badge">{{ user.messages.length }}</span>
+          <!--<span slot="badge">{{ user.messages.length }}</span>-->
+          <span slot="badge">0</span>
           <v-icon :class="{ 'white--text': isHomepage }">mdi-email</v-icon>
         </v-badge>
       </v-btn>
-      <v-list>
-        <v-list-tile
-          v-for="(message, index) in user.messages"
-          :key="index"
-          @click="">
-          <v-list-tile-content>
-            <v-list-tile-title>{{ message.from }}</v-list-tile-title>
-            <v-list-tile-sub-title>{{ message.content | smallMessage }}</v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
+      <!--<v-list>-->
+        <!--<v-list-tile-->
+          <!--v-for="(message, index) in user.messages"-->
+          <!--:key="index"-->
+          <!--@click="">-->
+          <!--<v-list-tile-content>-->
+            <!--<v-list-tile-title>{{ message.from }}</v-list-tile-title>-->
+            <!--<v-list-tile-sub-title>{{ message.content | smallMessage }}</v-list-tile-sub-title>-->
+          <!--</v-list-tile-content>-->
+        <!--</v-list-tile>-->
+      <!--</v-list>-->
     </v-menu>
     <v-menu
       offset-y>
@@ -32,20 +33,21 @@
         <v-badge
           color="#ACB641"
           overlap>
-          <span slot="badge">{{ user.notifications.length }}</span>
+          <!--<span slot="badge">{{ user.notifications.length }}</span>-->
+          <span slot="badge">0</span>
           <v-icon :class="{ 'white--text': isHomepage }">mdi-bell</v-icon>
         </v-badge>
       </v-btn>
-      <v-list>
-        <v-list-tile
-          v-for="(notification, index) in user.notifications"
-          :key="index"
-          @click="">
-          <v-list-tile-content>
-            <v-list-tile-title>{{ notification.content | smallMessage }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
+      <!--<v-list>-->
+        <!--<v-list-tile-->
+          <!--v-for="(notification, index) in user.notifications"-->
+          <!--:key="index"-->
+          <!--@click="">-->
+          <!--<v-list-tile-content>-->
+            <!--<v-list-tile-title>{{ notification.content | smallMessage }}</v-list-tile-title>-->
+          <!--</v-list-tile-content>-->
+        <!--</v-list-tile>-->
+      <!--</v-list>-->
     </v-menu>
     <v-menu
       offset-y>
@@ -102,9 +104,8 @@ export default {
   methods: {
     logout () {
       localStorage.removeItem('user')
-      // this.$store.state.loggedIn = false
-      location.reload()
-      // this.$router.push({ name: 'homepage' })
+      this.$store.state.loggedIn = false
+      this.$router.push({ name: 'homepage' })
     }
   }
 }

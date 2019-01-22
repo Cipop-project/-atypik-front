@@ -55,6 +55,7 @@ Vue.use(VueResource)
 Vue.use(VueAwesomeSwiper)
 
 Vue.http.interceptors.push(function (request) {
+  console.log('intercepting...')
   console.log(request)
   if (localStorage.user) {
     request.headers.set('Authorization', JSON.parse(localStorage.user).token)
@@ -89,8 +90,6 @@ router.beforeEach((to, from, next) => {
   })
   // const authRequired = privatePages.includes(to.path)
   const loggedIn = localStorage.getItem('user')
-  console.log('before each')
-  console.log(authRequired)
   if (authRequired && !loggedIn) {
     return next({ name: 'login' })
   }
