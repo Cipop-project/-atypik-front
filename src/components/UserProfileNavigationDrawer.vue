@@ -33,15 +33,15 @@
           <v-list-tile-title>Mes voyages</v-list-tile-title>
         </v-list-tile>
       </router-link>
-      <router-link :to="{ name: 'starredAccount' }">
-        <v-list-tile @click="">
-          <v-list-tile-action>
-            <v-icon>mdi-star</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Mes favorits</v-list-tile-title>
-        </v-list-tile>
-      </router-link>
-      <router-link :to="{ name: 'hostAccount' }">
+      <!--<router-link :to="{ name: 'starredAccount' }">-->
+      <!--<v-list-tile @click="">-->
+      <!--<v-list-tile-action>-->
+      <!--<v-icon>mdi-star</v-icon>-->
+      <!--</v-list-tile-action>-->
+      <!--<v-list-tile-title>Mes favorits</v-list-tile-title>-->
+      <!--</v-list-tile>-->
+      <!--</router-link>-->
+      <router-link :to="{ name: 'becomeHost' }">
         <v-list-tile @click="">
           <v-list-tile-action>
             <v-icon>mdi-home</v-icon>

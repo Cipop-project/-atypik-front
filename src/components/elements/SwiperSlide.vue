@@ -32,7 +32,7 @@ export default {
   props: {
     options: {
       type: Object,
-      required: true,
+      required: false,
       default: function () {
         return {
           slidesPerView: 4,

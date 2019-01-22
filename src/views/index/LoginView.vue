@@ -12,9 +12,9 @@
           xs12
           sm8
           md4>
-          <v-loading :is-loading="isLoading"/>
           <v-card
             class="elevation-6">
+            <v-loading :is-loading="isLoading"/>
             <v-card-title
               class="justify-center">
               <h1>Connection</h1>
@@ -29,8 +29,8 @@
                 <v-text-field
                   v-model="name"
                   :rules="emptyRule"
-                  label="Email"
-                  name="email"
+                  label="username"
+                  name="text"
                   required/>
                 <v-text-field
                   v-model="password"
@@ -98,6 +98,7 @@ export default {
       if (this.$refs.login_form.validate()) {
         this.isLoading = true
         this.status = await Resource.login({ username: this.name, password: this.password })
+        console.log(this.status)
         // this.status = { status: 403, statusText: 'compte non trouvé' }
         if (this.status.status === 200) {
           const token = this.status.headers.map.authorization[0]
@@ -105,9 +106,17 @@ export default {
           let data = await Resource.readUser(jwtDecode(token)['sub'])
           this.$store.state.loggedIn = true
           localStorage.user = JSON.stringify({ user: data.data.data, token: token })
+          this.$store.state.user = data.data.data
           this.$router.push({ name: 'account' })
-        } else {
+        } else if (this.status.status === 403) {
           // can't log in
+          console.log(this.status.message)
+          this.valid = false
+          this.alert_text = 'Le compte n\'existe pas ou le mot de passe ne coincide pas'
+          this.alert_type = 'error'
+          this.alert = true
+        } else {
+          // unknown error
           console.log(this.status.message)
           this.valid = false
           this.alert_text = this.status.statusText

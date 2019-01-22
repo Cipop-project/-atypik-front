@@ -58,7 +58,7 @@ export const store = new Vuex.Store({
       { icon: 'mdi-home', public_name: 'Couchages', name: 'peopleNumber' }
     ],
     people_info: [{ first_name: '', last_name: '', birthday: '' }],
-    user: localStorage.user ? localStorage.user.user : {},
+    user: localStorage.user ? JSON.parse(localStorage.user).user : {},
     products: [
       {
         name: 'Cabanes dans les arbres',

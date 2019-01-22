@@ -22,6 +22,8 @@ import AccountView from '../views/account/AccountView.vue'
 import AccountMessagesView from '../views/account/AccountMessagesView.vue'
 import AccountReservationCalendarView from '../views/account/AccountReservationCalendarView.vue'
 import AccountReservationDetailsView from '../views/account/AccountReservationDetailsView.vue'
+import AccountBecomeHost from '../views/account/AccountBecomeHost.vue'
+
 
 Vue.use(Router)
 
@@ -65,7 +67,8 @@ export default new Router({
         { path: 'settings', name: 'configAccount', component: AccountParametersView },
         { path: 'homes/add', name: 'addHomes', component: AccountAddHomeView },
         { path: 'homes/edit', name: 'editHomes', component: AccountEditHomesView },
-        { path: 'homes/edit/:home_slug', name: 'editHome', component: AccountEditHomeView }
+        { path: 'homes/edit/:home_slug', name: 'editHome', component: AccountEditHomeView },
+        { path: 'host', name: 'becomeHost', component: AccountBecomeHost }
       ]
     },
     { path: '/about/conditions', name: 'conditions', component: NotFoundView },

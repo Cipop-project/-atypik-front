@@ -105,7 +105,8 @@ export default {
     logout () {
       localStorage.removeItem('user')
       this.$store.state.loggedIn = false
-      this.$router.push({ name: 'homepage' })
+      console.log(this.$router.currentRoute)
+      this.$router.currentRoute.path === '/' ? location.reload() : this.$router.push({ name: 'homepage' })
     }
   }
 }

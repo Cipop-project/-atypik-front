@@ -54,7 +54,7 @@ Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueAwesomeSwiper)
 
-Vue.http.interceptors.push(function (request) {
+Vue.http.interceptors.push(function (request, next) {
   console.log('intercepting...')
   console.log(request)
   if (localStorage.user) {

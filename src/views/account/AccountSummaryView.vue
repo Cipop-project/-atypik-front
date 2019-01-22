@@ -5,23 +5,27 @@
         <v-avatar
           size="200">
           <v-img
-            :src="user.photo"
+            :src="user.iconAddressUrl ? user.iconAddressUrl : '/static/img/user_placeholder.png'"
             class="justify-center"
             alt="profile picture"/>
         </v-avatar>
       </v-flex>
       <v-flex md9>
-        <h3>{{ user.name }} {{ user.last_name }}</h3>
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
         <h4>
-          <b>Membre depuis: {{ user.inscription_date }}<br>{{ user.location }}</b><v-notation-stars
-            v-if="user.type == 'host'"
-            :note="user.note"/>
+          <b>Membre depuis: {{ created }}
+            <br>
+            <br>
+          </b>
+          <!--<v-notation-stars-->
+          <!--v-if="user.type == 'host'"-->
+          <!--:note="user.note"/>-->
         </h4>
         <p>{{ user.description }}</p>
       </v-flex>
     </v-layout>
     <v-layout
-      v-if="user.type== 'host'"
+      v-if="user.type== 'LANDLORD'"
       mt-5>
       <v-flex
         xs12
@@ -49,24 +53,25 @@
         </swiper>
       </v-flex>
     </v-layout>
-    <v-layout
-      mt-5>
-      <v-flex
-        xs12
-        mt-4>
-        <h3>Commentaires</h3>
-        <span
-          v-for="(comment, index) in user.comments"
-          :key="index">
-          <hr>
-          <v-comment :comment="comment"/>
-        </span>
-      </v-flex>
-    </v-layout>
+    <!--<v-layout-->
+    <!--mt-5>-->
+    <!--<v-flex-->
+    <!--xs12-->
+    <!--mt-4>-->
+    <!--<h3>Commentaires</h3>-->
+    <!--<span-->
+    <!--v-for="(comment, index) in user.comments"-->
+    <!--:key="index">-->
+    <!--<hr>-->
+    <!--<v-comment :comment="comment"/>-->
+    <!--</span>-->
+    <!--</v-flex>-->
+    <!--</v-layout>-->
   </div>
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   name: 'AccountSummaryView',
   data () {
@@ -85,13 +90,16 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      }
+      },
+      created: '',
+      user: this.$store.state.user
     }
   },
-  computed: {
-    user () {
-      return this.$store.state.user
-    }
+  mounted () {
+    console.log(this.$store.state.user)
+    const d = new Date(this.user.createdAt)
+    console.log(d)
+    this.created = moment(d).format('MMMM YYYY')
   }
 }
 </script>

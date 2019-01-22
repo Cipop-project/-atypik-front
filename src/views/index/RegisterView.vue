@@ -24,21 +24,21 @@
                 ref="signin_form"
                 v-model="valid">
                 <v-text-field
-                  v-model="email"
-                  :rules="emailRules"
-                  type="email"
-                  label="Email"
-                  prepend-icon="mdi-email"
+                  v-model="username"
+                  :rules="usernameRules"
+                  type="text"
+                  label="Identifiant de connection"
+                  prepend-icon="mdi-account"
                   suffix="*"
                   required/>
                 <v-text-field
-                  v-model="name"
+                  v-model="firstName"
                   :rules="nameRules"
                   label="Prenom"
                   prepend-icon="mdi-account"/>
                 <v-text-field
                   v-model="lastName"
-                  :rules="lastNameRules"
+                  :rules="nameRules"
                   label="Nom"
                   prepend-icon="mdi-account"/>
                 <v-text-field
@@ -55,6 +55,14 @@
                   type="password"
                   label="Confirmation de mot de passe"
                   prepend-icon="mdi-lock-question"
+                  suffix="*"
+                  required/>
+                <v-text-field
+                  v-model="email"
+                  :rules="emailRules"
+                  type="email"
+                  label="Email"
+                  prepend-icon="mdi-email"
                   suffix="*"
                   required/>
                 <v-text-field
@@ -79,6 +87,7 @@
                     label="Date de naissance"
                     prepend-icon="mdi-calendar"
                     suffix="*"
+                    readonly
                     required/>
                   <v-date-picker
                     v-model="birthday"
@@ -170,7 +179,8 @@ export default {
       alert_type: 'warning',
       alert_text: '',
       email: '',
-      name: '',
+      username: '',
+      firstName: '',
       lastName: '',
       password: '',
       passwordConfirm: '',
@@ -182,9 +192,9 @@ export default {
       currency: 'EUR',
       minBirthday: '1900-01-01',
       maxBirthday: new Date().toISOString().substring(0, 10),
-      genders: [{ id: 'MAN', name: 'Homme' }, { id: 'WOMAN', name: 'Femme' }, { id: 'OTHER', name: 'Autre' }, { id: '', name: 'Ne pas especifier' }],
+      genders: [{ id: 'MALE', name: 'Homme' }, { id: 'FEMALE', name: 'Femme' }, { id: 'OTHER', name: 'Autre' }, { id: 'SECRET', name: 'Ne pas especifier' }],
       languages: [{ id: 'EN', name: 'English' }, { id: 'FR', name: 'Français' }],
-      currencies: [{ id: 'EUR', name: 'Euro' }, { id: 'USD', name: 'Dollar Américain' }, { id: 'GBP', name: 'Livre Sterling' }],
+      currencies: [{ id: 'EUR', name: 'Euro' }, { id: 'USD', name: 'Dollar Américain' }],
       valid: false,
       advertisement: false,
       status: {},
@@ -195,8 +205,9 @@ export default {
       nameRules: [
         v => v.length < 200 || 'Maximum 200 caractères'
       ],
-      lastNameRules: [
-        v => v.length < 200 || 'Maximum 200 caractères'
+      usernameRules: [
+        v => !!v || 'Saisir l\'identifiant est obligatoire',
+        v => /[a-zA-Z._0-9]/.test(v) || 'Seulement characters alphanumeriques, undescore (_) et point (.) acceptés'
       ],
       birthdayRules: [
         v => /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(v) || 'Entrez une date de naissance valide'
@@ -212,15 +223,6 @@ export default {
       ]
     }
   },
-  // computed: mapState({
-  //   emailRules: 'emailRules',
-  //   nameRules: 'nameRules',
-  //   lastNameRules: 'lastNameRules',
-  //   birthdayRules: 'birthdayRules',
-  //   passwordRules: 'passwordRules',
-  //   passwordConfirmationRules: 'passwordConfirmationRules',
-  //   phoneRules: 'phoneRules'
-  // }),
   methods: {
     ...mapActions(['register']),
     async submit () {
@@ -229,15 +231,19 @@ export default {
         console.log(this.$refs.signin_form)
         console.log('form data: ')
         console.log(this.formData())
-        const data = await Resource.createUser(this.formData())
+        let data = await Resource.createUser(this.formData())
+        data = data.body
         // const data = { status: -1001, message: 'unknown error' }
         this.isLoading = false
-        if (data.status === 0) {
+        console.log(data)
+        if (data.status === 200) {
           this.alert_text = 'Votre compte a été crée, vous pouvez à present vous connecter'
           this.alert_type = 'success'
         } else {
           if (data.status === -1001) {
             this.alert_text = 'L\'email est dejà associé à une compte'
+          } else if (data.status === -1002) {
+            this.alert_text = 'L\'identifiant de connection est dejà utilisé'
           } else {
             this.alert_text = data.message
           }
@@ -250,14 +256,15 @@ export default {
     },
     formData () {
       return {
-        firstName: this.name,
+        username: this.username,
+        firstName: this.firstName,
         lastName: this.lastName,
         birthday: this.birthday + 'T00:00:00.000Z',
         email: this.email,
         language: this.language,
         password: this.password,
         phoneNumber: this.phone,
-        ClientType: 'TENANT',
+        clientType: 'TENANT',
         pricingType: this.currency,
         advertisement: this.advertisement
       }
