@@ -14,20 +14,17 @@
               xs9
               class="pr-1">
               <h1>{{ product.name }}</h1>
-              <v-layout class="description-box pa-4 mt-2 mb-4">
-                <v-flex
-                  v-for="(item, i) in descriptifs"
-                  :key="i"
-                  sm-3
-                  class="description-item pl-1">
-                  {{ item }} : {{ product[item] }}
-                </v-flex>
-              </v-layout>
-              {{ product.description }}
-              <h2>Prises de vue des utilisateurs</h2>
-              <v-photo-gallery/>
-              <h2>Commentaires</h2>
-              <!--<v-product-map :address="product.address"/>-->
+              <v-product-description :product="product"/>
+              <div id="product-description">
+                <h3>Description</h3>
+                {{ product.description }}
+              </div>
+              <h3>Prises de vue des utilisateurs</h3>
+              <v-photo-gallery :items="product.usersImages"/>
+              <h3>Commentaires</h3>
+              <v-product-comments :product="product.id"/>
+              <h3>Position</h3>
+              <v-google-maps/>
             </v-flex>
             <v-flex
               xs3
@@ -77,9 +74,15 @@
 </template>
 
 <script>
+import ProductDescription from '../../components/ProductDescription.vue'
+import ProductComments from '../../components/ProductComments.vue'
 import Resource from '../../resources/index'
 export default {
   name: 'HomesView',
+  components: {
+    'v-product-description': ProductDescription,
+    'v-product-comments': ProductComments
+  },
   data () {
     return {
       product: {
@@ -148,11 +151,7 @@ export default {
 </script>
 
 <style scoped>
-.description-box {
-  background-color: #ebffee;
-}
-.description-item {
-  font-size: 1.3em;
-  border-left: 5px solid forestgreen;
-}
+  #product-description {
+    min-height: 150px;
+  }
 </style>

@@ -36,15 +36,31 @@ import Loading from './components/Loading.vue'
 import FlashBag from './components/FlashBag.vue'
 import Footer from './components/Footer.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
+import GoogleMaps from './components/GoogleMaps.vue'
+import AtypikAlert from './components/AtypikAlert.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import { addDays, subDays, parse } from 'date-fns'
 import 'nprogress/nprogress.css'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBKG-vlqh-B3rkNmKLKhlHcpDntTYb6THk'
+  }
+})
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueAwesomeSwiper)
+
+Vue.http.interceptors.push(function (request) {
+  console.log(request)
+  if (localStorage.user) {
+    request.headers.set('Authorization', JSON.parse(localStorage.user).token)
+  }
+})
+
 // Vue.use(NProgress)
 // Vue.http.options.root = 'http://localhost:6001/'
 Vue.mixin({
@@ -64,12 +80,19 @@ Vue.mixin({
 })
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const privatePages = ['/reservation/first_step', '/account']
-  const authRequired = privatePages.includes(to.path)
+  const privatePages = ['/reservation', '/account']
+  let authRequired = false
+  privatePages.forEach(function (e) {
+    if (to.path.includes(e)) {
+      authRequired = true
+    }
+  })
+  // const authRequired = privatePages.includes(to.path)
   const loggedIn = localStorage.getItem('user')
+  console.log('before each')
   console.log(authRequired)
   if (authRequired && !loggedIn) {
-    return next('/login')
+    return next({ name: 'login' })
   }
   next()
 })
@@ -110,6 +133,8 @@ Vue.component('v-flashbag', FlashBag)
 Vue.component('v-password-confirmation', PasswordConfirmation)
 Vue.component('v-reservation-calendar', ReservationCalendar)
 Vue.component('v-photo-gallery', PhotoGallery)
+Vue.component('v-google-maps', GoogleMaps)
+Vue.component('v-atypik-alert', AtypikAlert)
 
 // Vue.component('el-rotate-square', RotateSquare2)
 // Vue.component('origami-loader', Origami)

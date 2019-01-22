@@ -17,6 +17,10 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     proxy: {
+      '/login': {
+        target: 'http://localhost:6001',
+        // pathRewrite: { '^/api': '' }
+      },
       '/client/api/clients': {
         target: 'http://localhost:6001'
       },

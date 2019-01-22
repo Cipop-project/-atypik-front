@@ -28,7 +28,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/login', name: 'login', component: LoginView },
+    { path: '/connect', name: 'login', component: LoginView },
     { path: '/signin', name: 'signin', component: RegisterView },
     { path: '/signin/confirmation', name: 'signinConfirmation', component: RegisterView },
     { path: '/search', name: 'search', component: SearchView, props: true },

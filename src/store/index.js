@@ -53,67 +53,12 @@ export const store = new Vuex.Store({
     years: getYears(),
     currencies: getCurrencies(),
     languages: getLanguages(),
-    descriptifs: ['peopleNumber'],
+    descriptifs: [
+      { icon: 'mdi-home', public_name: 'Couchages', name: 'peopleNumber' },
+      { icon: 'mdi-home', public_name: 'Couchages', name: 'peopleNumber' }
+    ],
     people_info: [{ first_name: '', last_name: '', birthday: '' }],
-    user:
-    {
-      id: '1',
-      activate: true,
-      advertisement: true,
-      birthday: '1992-09-10T23:50:07.236Z',
-      clientType: 'TENANT',
-      language: 'FR',
-      phoneNumber: '0783489217',
-      pricingType: 'EUR',
-      sexe: 'MALE',
-      username: 'Carlos Sanchez',
-      name: 'Carlos',
-      last_name: 'Sanchez',
-      email: 'krlos-jose@hotmail.com',
-      address: '14 rue de Frot, Paris',
-      location: 'Paris, France',
-      photo: 'https://picsum.photos/300?random',
-      inscription_date: 'septembre 2018',
-      note: 4.3,
-      approvalNotifications: 3,
-      description: 'Je serai ravi de vous accueuillir à bord ,afin de partager notre passion maritime ,et que vous decouvriez ce petit coin de paradis meme en restant au port, merci beaucoup pour tout vos adorables messages.',
-      homes: [
-        {
-          name: 'Cabanes dans les arbres',
-          location: 'Strasbourg, France',
-          price: '87€',
-          note: 4.7,
-          images: ['/static/img/falaises-etretat.jpg'],
-          product_id: 'deY24Xs6eds'
-        },
-        {
-          name: 'Cabanes das',
-          location: 'Strasbourg, France',
-          price: '87€',
-          note: 4.7,
-          images: ['/static/img/falaises-etretat.jpg'],
-          product_id: 'deY24Xazed42'
-        }
-      ],
-      messages: [
-        {
-          from: 'Charlie',
-          content: 'bla bla lorem ipsum',
-          date: '03 mar 2018'
-        },
-        {
-          from: 'Charline',
-          content: 'bla bla lorem ipsum bla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsum',
-          date: '03 sep 2018'
-        }
-      ],
-      notifications: [
-        {
-          content: 'bla bla lorem ipsumbla bla lorem ipsumbla bla lorem ipsumbla ',
-          date: '05 nov 2018'
-        }
-      ]
-    },
+    user: localStorage.user ? localStorage.user.user : {},
     products: [
       {
         name: 'Cabanes dans les arbres',
@@ -283,7 +228,8 @@ export const store = new Vuex.Store({
         images: ['/static/img/falaises-etretat.jpg'],
         src: 'details/deY24Xs6eds'
       }
-    ]
+    ],
+    loggedIn: !!localStorage.user
     // emailRules: [
     //   v => !!v || 'l\'Email est obligatoire',
     //   v => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Entrez une email valide'
@@ -306,9 +252,6 @@ export const store = new Vuex.Store({
     // phoneRules: [
     //   value => (value.length > 0) || 'Entrez un numero de telephone valide'
     // ]
-  },
-  computed: {
-    loggedIn: !!localStorage.user
   },
   mutations: {
     registerRequest (state) {

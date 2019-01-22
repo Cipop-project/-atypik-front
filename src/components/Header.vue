@@ -15,7 +15,7 @@
       <v-spacer/>
       <v-btn
         v-if="!loggedIn"
-        to="/login"
+        :to="{ name: 'login' }"
         color="success">Connection</v-btn>
       <v-account-notifications
         v-else

@@ -2,11 +2,13 @@
   <div>
     <v-header/>
     <v-container
+      id="register-box"
       fluid
       fill-height>
       <v-layout
         align-center
         justify-center>
+        <v-loading :is-loading="isLoading"/>
         <v-flex
           xs12
           sm8
@@ -15,15 +17,12 @@
             class="elevation-6">
             <v-card-title
               class="justify-center">
-              <h1>Account creation</h1>
+              <h1>Creation du compte</h1>
             </v-card-title>
             <v-card-text>
               <v-form
                 ref="signin_form"
                 v-model="valid">
-                <p
-                  v-if="valid === false"
-                  class="error--text">{{ status.message }}</p>
                 <v-text-field
                   v-model="email"
                   :rules="emailRules"
@@ -95,6 +94,8 @@
                 <v-select
                   v-model="gender"
                   :items="genders"
+                  item-text="name"
+                  item-value="id"
                   append-icon="mdi-chevron-down"
                   label="Genre"
                   prepend-icon="mdi-human-male-female"/>
@@ -128,6 +129,7 @@
                 <br>
                 <input
                   id="checkbox2"
+                  v-model="advertisement"
                   type="checkbox"
                   class="mr-3">
                 <label
@@ -139,10 +141,15 @@
                   <v-btn
                     round
                     color="success"
-                    @click="submit">Create account</v-btn>
+                    @click="submit">Creer compte</v-btn>
                 </v-layout>
               </v-form>
             </v-card-text>
+            <v-atypik-alert
+              ref="alert"
+              :type="alert_type"
+              :message="alert_text"
+              :show="alert"/>
           </v-card>
         </v-flex>
       </v-layout>
@@ -158,6 +165,10 @@ import { mapActions } from 'vuex'
 export default {
   data () {
     return {
+      isLoading: false,
+      alert: false,
+      alert_type: 'warning',
+      alert_text: '',
       email: '',
       name: '',
       lastName: '',
@@ -167,14 +178,15 @@ export default {
       birthday: '',
       birthdayCalendar: false,
       gender: '',
-      language: '',
-      currency: '',
+      language: 'FR',
+      currency: 'EUR',
       minBirthday: '1900-01-01',
       maxBirthday: new Date().toISOString().substring(0, 10),
-      genders: ['Man', 'Woman', 'I prefer not to specify'],
+      genders: [{ id: 'MAN', name: 'Homme' }, { id: 'WOMAN', name: 'Femme' }, { id: 'OTHER', name: 'Autre' }, { id: '', name: 'Ne pas especifier' }],
       languages: [{ id: 'EN', name: 'English' }, { id: 'FR', name: 'Français' }],
       currencies: [{ id: 'EUR', name: 'Euro' }, { id: 'USD', name: 'Dollar Américain' }, { id: 'GBP', name: 'Livre Sterling' }],
-      valid: true,
+      valid: false,
+      advertisement: false,
       status: {},
       emailRules: [
         v => !!v || 'l\'Email est obligatoire',
@@ -212,36 +224,42 @@ export default {
   methods: {
     ...mapActions(['register']),
     async submit () {
+      this.isLoading = true
       if (this.$refs.signin_form.validate()) {
         console.log(this.$refs.signin_form)
-        this.status = await Resource.registerUser(this.formData())
-        if (this.status.status === 0) {
-          this.$router.push({ name: 'signinConfirmation' })
+        console.log('form data: ')
+        console.log(this.formData())
+        const data = await Resource.createUser(this.formData())
+        // const data = { status: -1001, message: 'unknown error' }
+        this.isLoading = false
+        if (data.status === 0) {
+          this.alert_text = 'Votre compte a été crée, vous pouvez à present vous connecter'
+          this.alert_type = 'success'
         } else {
-          // if can't be created
+          if (data.status === -1001) {
+            this.alert_text = 'L\'email est dejà associé à une compte'
+          } else {
+            this.alert_text = data.message
+          }
+          this.alert_type = 'error'
           this.valid = false
         }
-        console.log('validated, registering...')
-        // this.register({
-        //   user: {
-        //     username: (this.name ? this.name : '') + ' ' + (this.lastName ? this.lastName : ''),
-        //     email: this.email,
-        //     phoneNumber: (this.phone ? this.phone : ''),
-        //     password: this.password,
-        //     language: (this.language ? this.language : 'FR')
-        //   }
-        // })
+        this.alert = true
       }
+      this.isLoading = false
     },
     formData () {
       return {
-        birthday: this.birthday + 'T00:00:00.000',
+        firstName: this.name,
+        lastName: this.lastName,
+        birthday: this.birthday + 'T00:00:00.000Z',
         email: this.email,
         language: this.language,
         password: this.password,
         phoneNumber: this.phone,
-        pricingType: this.pricingType,
-        username: this.name + ' ' + this.lastName
+        ClientType: 'TENANT',
+        pricingType: this.currency,
+        advertisement: this.advertisement
       }
     }
   }
@@ -257,5 +275,8 @@ export default {
     .login-container {
         border: 1px solid gainsboro;
         padding: 1%;
+    }
+    #register-box {
+      background-image: url('https://s3-eu-west-1.amazonaws.com/cipop/dev/index/home.jpg');
     }
 </style>

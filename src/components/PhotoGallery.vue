@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-layout id="photo-box">
 
-  </div>
+  </v-layout>
 </template>
 
 <script>
@@ -23,5 +23,8 @@ export default {
 </script>
 
 <style scoped>
-
+#photo-box {
+  background-color: #000;
+  height: 150px;
+}
 </style>

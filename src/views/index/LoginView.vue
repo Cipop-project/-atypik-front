@@ -63,6 +63,7 @@
 
 <script>
 import Resource from '../../resources'
+import jwtDecode from 'jwt-decode'
 import { mapActions } from 'vuex'
 export default {
   name: 'LoginView',
@@ -86,9 +87,14 @@ export default {
     async submit () {
       if (this.$refs.login_form.validate()) {
         this.status = await Resource.login({ username: this.name, password: this.password })
-        if (this.status.status === 0) {
+        console.log(this.status)
+        if (this.status.status === 200) {
+          const token = this.status.headers.map.authorization[0]
+          console.log(jwtDecode(token)['sub'])
+          let user = await Resource.findUser(jwtDecode(token)['sub'])
+          console.log(jwtDecode(token))
           this.$store.state.loggedIn = true
-          localStorage.user = JSON.stringify({ username: this.status.data.username, token: this.status.data.token })
+          localStorage.user = JSON.stringify({ user: user, token: token })
           this.$router.push({ name: 'homepage' })
         } else {
           // can't log in
