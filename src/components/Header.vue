@@ -36,9 +36,6 @@ export default {
       isHomepage: this.$router.currentRoute.path === '/',
       user: this.$store.state.user
     }
-  },
-  mounted () {
-    console.log(this.$router.currentRoute.path)
   }
 }
 </script>

@@ -29,6 +29,8 @@ function getUrl (type) {
     return 'login'
   } else if (type === 'productImages') {
     return 'product/api/images'
+  } else if (type === 'productComment') {
+    return 'product/api/comments'
   }
 }
 
@@ -37,7 +39,9 @@ function getDefault () {
 }
 
 export default {
+  // ----------------------------------------------------------
   // USER ----------------------------------------------------------
+  // ----------------------------------------------------------
   login (data) {
     return Vue.http.post(`${getUrl('login')}`, data).then(response => { return response }, response => { return response })
   },
@@ -58,7 +62,9 @@ export default {
   updateUserImage (userId, data) {
     return Vue.http.post(`${getUrl('client')}/upload-image-client/` + userId, data).then(response => { return response }, response => { return response })
   },
+  // ----------------------------------------------------------
   // PRODUCT ----------------------------------------------------------
+  // ----------------------------------------------------------
   createProduct (data) {
     return Vue.http.post(`${getUrl('product')}`, data).then(response => { return response }, response => { return response })
   },
@@ -74,13 +80,20 @@ export default {
   createProductImage (data) {
     return Vue.http.post(`${getUrl('productImages')}/upload-image`, data).then(response => { return response }, response => { return response })
   },
+  createProductComment (data) {
+    return Vue.http.post(`${getUrl('productComment')}`, data).then(response => { return response }, response => { return response })
+  },
+  readProductComment (productId) {
+    console.log(productId)
+    return Vue.http.get(`${getUrl('productComment')}/findAllByProduct/` + productId).then(response => { return response }, response => { return response })
+  },
   readUserProducts (userId) {
     console.log(userId)
     return Vue.http.get(`${getUrl('product')}/findAllByClient/` + userId).then(response => { return response }, response => { return response })
   },
-  findArray (referenceId, commentObject) {
-    return Vue.http.post(`${getUrl('product')}/${referenceId}`, commentObject).then(response => { return response }, response => { return response })
-  },
+  // ----------------------------------------------------------
+  // OTHER ----------------------------------------------------------
+  // ----------------------------------------------------------
   findCities () {
     return Vue.http.get(`${getUrl('product')}/cities`).then(response => { return response }, response => { return response })
   },
@@ -90,34 +103,10 @@ export default {
   createCommand (data) {
     return Vue.http.post(`${getUrl('command')}`, data).then(response => { return response }, response => { return response })
   },
-  findUser (data) {
-    // to finish
-    return Vue.http.get(`${getUrl('client')}/findByUserName/` + data).then(response => { return response }, response => { return response })
-  },
-  registerUser (data) {
-    return Vue.http.post(`${getUrl('client')}`, data).then(response => { return response }, response => { return response })
-    // return getDefault()
-  },
-  registerHomeImage (data) {
-    // return Vue.http.post(`${getUrl('image')}`, data).then(response => { return response }, response => { return response })
-    return getDefault()
-  },
-  registerHome (data) {
-    // return Vue.http.post(`${getUrl('product')}`, data).then(response => { return response }, response => { return response })
-    return getDefault()
-  },
-  updateHome (data) {
-    console.log(data)
-    // return Vue.http.post(`${getUrl('client')}`, data).then(response => { return response }, response => { return response })
-    return getDefault()
-  },
   getReservationDatesByMonth (data) {
     console.log(data)
     // return Vue.http.post(`${getUrl('client')}`, data).then(response => { return response }, response => { return response })
     // return getDefault()
     return { data: [{ start: '2019-01-22', end: '2019-01-25', reservation_id: '001' }, { start: '2019-02-25', end: '2019-02-27', reservation_id: '001' }], message: '', status: 0 }
-  },
-  loadComments (id, date) {
-    return getDefault()
   }
 }

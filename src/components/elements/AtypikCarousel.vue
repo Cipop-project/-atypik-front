@@ -3,10 +3,11 @@
     next-icon="mdi-chevron-right"
     prev-icon="mdi-chevron-left"
     delimiter-icon="mdi-record">
-    <v-carousel-item
-      v-for="(item, customkey) in items"
-      :key="customkey"
-      :src="item[src]"/>
+    <!--<v-carousel-item-->
+      <!--v-for="(item, customkey) in items"-->
+      <!--:key="customkey"-->
+      <!--:src="item[src]"/>-->
+    <v-carousel-item src="/static/img/home.jpg"/>
   </v-carousel>
 </template>
 

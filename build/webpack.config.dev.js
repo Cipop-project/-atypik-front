@@ -30,6 +30,9 @@ module.exports = {
       '/product/api/images': {
         target: 'http://localhost:6001'
       },
+      '/product/api/comments': {
+        target: 'http://localhost:6001'
+      },
       '/command/api/commands': {
         target: 'http://localhost:6001'
       }

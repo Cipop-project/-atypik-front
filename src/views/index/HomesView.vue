@@ -9,9 +9,9 @@
             :customkey="'id'"
             :src="'addressUrl'"
             class="mb-5"/>
-          <v-layout>
+          <v-layout wrap>
             <v-flex
-              xs9
+              sm9
               class="pr-1">
               <h1>{{ product.name }}</h1>
               <v-product-description :product="product"/>
@@ -24,10 +24,10 @@
               <h3>Commentaires</h3>
               <v-product-comments :product="product.id"/>
               <h3>Position</h3>
-              <v-google-maps/>
+              <!--<v-google-maps/>-->
             </v-flex>
             <v-flex
-              xs3
+              sm3
               class="pl-2">
               <el-date-range-picker
                 :reservation="reservation.time"

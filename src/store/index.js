@@ -28,14 +28,9 @@ function getCurrencies () {
 export const store = new Vuex.Store({
   state: {
     homepage: {
-      mainImage: 'https://s3-eu-west-1.amazonaws.com/cipop/dev/index/home.jpg'
+      mainImage: '/static/img/home.jpg'
     },
     numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-    cities: [
-      { 'city_id': 1, 'city': 'Paris', 'country': 'France' },
-      { 'city_id': 2, 'city': 'Lille', 'country': 'France' },
-      { 'city_id': 3, 'city': 'Marseille', 'country': 'France' }
-    ],
     months: [
       { format: '01', name: 'Janvier' },
       { format: '02', name: 'Fevrier' },
@@ -54,29 +49,11 @@ export const store = new Vuex.Store({
     currencies: getCurrencies(),
     languages: getLanguages(),
     descriptifs: [
-      { icon: 'mdi-home', public_name: 'Couchages', name: 'peopleNumber' },
-      { icon: 'mdi-home', public_name: 'Couchages', name: 'peopleNumber' }
+      { icon: 'mdi-home', public_name: 'Ville', name: 'city' },
+      { icon: 'mdi-account-star', public_name: 'Couchages', name: 'peopleNumber' }
     ],
     people_info: [{ first_name: '', last_name: '', birthday: '' }],
     user: localStorage.user ? JSON.parse(localStorage.user).user : {},
-    products: [
-      {
-        name: 'Cabanes dans les arbres',
-        location: 'Strasbourg, France',
-        price: '87€',
-        note: 4.7,
-        images: ['/static/img/falaises-etretat.jpg'],
-        src: 'details/deY24Xs6eds'
-      },
-      {
-        name: 'Cabanes das',
-        location: 'Strasbourg, France',
-        price: '87€',
-        note: 4.7,
-        images: ['/static/img/falaises-etretat.jpg'],
-        src: 'details/deY24Xs6eds'
-      }
-    ],
     popularZones: [
       { title: 'Ile de France',
         country: 'France',

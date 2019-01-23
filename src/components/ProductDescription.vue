@@ -5,7 +5,7 @@
       :key="i"
       sm12
       md6>
-      <v-icon>{{ descriptif.icon }}</v-icon> {{ descriptif.public_name }} : {{ product.name }}
+      <v-icon>{{ descriptif.icon }}</v-icon> {{ descriptif.public_name }} : {{ product[descriptif.name] }}
     </v-flex>
 
   </v-layout>
