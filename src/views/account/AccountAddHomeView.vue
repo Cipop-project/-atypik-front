@@ -14,6 +14,49 @@
           class="form-control w-100">
       </v-flex>
     </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formAddress"
+          class="pr-4">Addresse</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formAddress"
+          v-model="home.address"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formCity"
+          class="pr-4">Ville</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formCity"
+          v-model="home.city"
+          type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formZip"
+          class="pr-4">Code postal</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formZip"
+          v-model="home.zipCode"
+          type="number"
+          max="99999"
+          class="form-control w-100">
+      </v-flex>
+    </div>
     <div class="form-group form-inline">
       <v-flex md2>
         <label
@@ -21,11 +64,11 @@
           class="pr-4">Description</label>
       </v-flex>
       <v-flex md7>
-                    <textarea
-                      id="formDescription"
-                      v-model="home.description"
-                      rows="6"
-                      class="form-control w-100"/>
+        <textarea
+          id="formDescription"
+          v-model="home.description"
+          rows="6"
+          class="form-control w-100"/>
       </v-flex>
     </div>
     <div class="form-group form-inline">
@@ -33,7 +76,8 @@
         <label class="pr-4">Photos</label>
       </v-flex>
       <v-flex md7>
-        <v-image-uploader v-model="home.images"/>
+        <v-image-uploader
+          @uploadImage="updateImages"/>
       </v-flex>
     </div>
     <div class=" form-group form-inline">
@@ -48,13 +92,13 @@
           v-model="home.category"
           name=""
           class="form-control w-50">
-          <option value="">Cabane</option>
-          <option value="">Roulote</option>
-          <option value="">Tente</option>
-          <option value="">Bateau</option>
-          <option value="">Yourte</option>
-          <option value="">Bulle</option>
-          <option value="">Autre</option>
+          <option value="CABANE">Cabane</option>
+          <option value="ROULOTTE">Roulotte</option>
+          <option value="TENTE">Tente</option>
+          <option value="BATEAU">Bateau</option>
+          <option value="YOURTE">Yourte</option>
+          <option value="BULLE">Bulle</option>
+          <option value="AUTRE">Autre</option>
         </select>
       </v-flex>
     </div>
@@ -75,26 +119,6 @@
     <div class=" form-group form-inline">
       <v-flex md2>
         <label
-          for="formType"
-          class="pr-4">Type</label>
-      </v-flex>
-      <v-flex md7>
-        <select
-          id="formType"
-          v-model="home.type"
-          name=""
-          class="form-control w-50">
-          <option value="">Logement entier</option>
-          <option value="">Chambre</option>
-          <option value="">Chambre d'hotel</option>
-          <option value="">Logement d'hotel</option>
-          <option value="">Autre</option>
-        </select>
-      </v-flex>
-    </div>
-    <div class=" form-group form-inline">
-      <v-flex md2>
-        <label
           for="formPrice"
           class="pr-4">Prix par nuit</label>
       </v-flex>
@@ -107,6 +131,9 @@
           @keyup="formatMoney">
       </v-flex>
     </div>
+    <v-btn
+      color="success"
+      @click="submit">Ajouter logement</v-btn>
   </form>
 </template>
 
@@ -119,8 +146,12 @@ export default {
       user: this.$store.state.user,
       home: {
         name: '',
+        address: '',
+        zipCode: '',
+        city: '',
         description: '',
         images: [],
+        imagesUrl: [],
         category: '',
         maxPeople: 1,
         type: '',
@@ -130,36 +161,62 @@ export default {
     }
   },
   methods: {
+    updateImages (v) {
+      this.home.images.push(v)
+    },
     formatMoney (e) {
       if (!isNaN(e.key)) {
         console.log(e.key)
       }
     },
     async submit () {
-      this.status = await this.register()
-    },
-    async register () {
-      let tmp = {}
-      for (let i = 0; i < this.home.images.length; i++) {
-        console.log(i)
-        tmp = await this.registerImages()
-        console.log(tmp)
-        if (tmp.status !== 0) {
-          return tmp
+      let imgs = []
+      this.home.images.forEach(async function (each) {
+        let formFile = new FormData()
+        formFile.append('file', each)
+        console.log('appending image....')
+        const { data } = await Resource.createProductImage(formFile)
+        if (data.status === 200) {
+          console.log(data.data)
+          imgs.push(data.data.id)
+          console.log('inserting image....')
         }
+      })
+      console.log(imgs)
+      this.home.imagesUrl = imgs
+      console.log('creating product....')
+      const data2 = await Resource.createProduct(this.formData())
+      console.log(data2)
+    },
+    formData () {
+      console.log({
+        address: this.home.address,
+        amount: this.home.price,
+        city: this.home.city,
+        clientId: this.user.id,
+        clientType: this.user.clientType,
+        country: 'France',
+        description: this.home.description,
+        images: this.home.imagesUrl,
+        name: this.home.name,
+        peopleNumber: this.home.maxPeople,
+        type: this.home.category,
+        zipCode: this.home.zipCode
+      })
+      return {
+        address: this.home.address,
+        amount: this.home.price,
+        city: this.home.city,
+        clientId: this.user.id,
+        clientType: this.user.clientType,
+        country: 'France',
+        description: this.home.description,
+        images: this.home.imagesUrl,
+        name: this.home.name,
+        peopleNumber: this.home.maxPeople,
+        type: this.home.category,
+        zipCode: this.home.zipCode
       }
-      tmp = await this.registerHome()
-      return tmp
-    },
-    async registerImages () {
-      console.log('registering image')
-      const data = await Resource.registerHomeImage(this.home.images)
-      return data
-    },
-    async registerHome () {
-      console.log('registering home')
-      const data = await Resource.registerHome(this.home)
-      return data
     }
   }
 }

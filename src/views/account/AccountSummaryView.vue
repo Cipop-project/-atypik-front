@@ -25,12 +25,12 @@
       </v-flex>
     </v-layout>
     <v-layout
-      v-if="user.type== 'LANDLORD'"
+      v-if="user.clientType == 'LANDLORD'"
       mt-5>
       <v-flex
         xs12
         mt-4>
-        <h3>Logements proposées par {{ user.name }}</h3>
+        <h3>Logements proposées par {{ user.firstName }}</h3>
         <hr>
         <swiper :options="swiperOption">
           <swiper-slide

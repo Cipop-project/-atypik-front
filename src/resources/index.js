@@ -27,6 +27,8 @@ function getUrl (type) {
     return 'client/api/clients'
   } else if (type === 'login') {
     return 'login'
+  } else if (type === 'productImages') {
+    return 'product/api/images'
   }
 }
 
@@ -48,16 +50,21 @@ export default {
   updateUser (data) {
     console.log(data)
     return Vue.http.put(`${getUrl('client')}/update`, data).then(response => { return response }, response => { return response })
-    // return getDefault()
   },
-  deleteUser (user) {
+  deleteUser (user) { // TO TEST
     // return Vue.http.post(`${getUrl('product')}`, data).then(response => { return response }, response => { return response })
     return getDefault()
   },
   updateUserImage (userId, data) {
     return Vue.http.post(`${getUrl('client')}/upload-image-client/` + userId, data).then(response => { return response }, response => { return response })
   },
-  // ----------------------------------------------------------
+  // PRODUCT ----------------------------------------------------------
+  createProduct (data) {
+    return Vue.http.post(`${getUrl('product')}`, data).then(response => { return response }, response => { return response })
+  },
+  createProductImage (data) {
+    return Vue.http.post(`${getUrl('productImages')}/upload-image`, data).then(response => { return response }, response => { return response })
+  },
   findArray (referenceId, commentObject) {
     return Vue.http.post(`${getUrl('product')}/${referenceId}`, commentObject).then(response => { return response }, response => { return response })
   },

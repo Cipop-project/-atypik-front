@@ -9,25 +9,34 @@
       type="file"
       accept="image"
       @change="uploadFile">
-    <div class="img-box "><img
-      src="/static/img/home_img_1.jpg"
-      height="100"
-      width="100"
-      alt="zef"></div>
+    <div
+      v-for="(image, i) in images"
+      :key="i"
+      class="img-box">
+      <img
+        :src="image"
+        height="100"
+        width="100"
+        alt="zef"></div>
   </v-layout>
 </template>
 
 <script>
 export default {
   name: 'ImageUploaderView',
+  data () {
+    return {
+      files: [],
+      images: []
+    }
+  },
   methods: {
     uploadFile (e) {
-      let files = e.target.files
-      if (files !== undefined) {
-        let file = files[0]
-        // upload file
-        console.log(file.name)
-      }
+      // console.log(e)
+      let file = e.target.files[0]
+      this.files.push(file)
+      this.$emit('uploadImage', file)
+      this.images.push(URL.createObjectURL(file))
     }
   }
 }
