@@ -10,10 +10,10 @@
         <h5 class="mb-0">{{ item.name }}</h5>
         <span class="grey--text">{{ item.city }}</span>
         <br>
-        <v-notation-stars :note="item.note === undefined ? 0 : item.note"/>
+        <!--<v-notation-stars :note="item.note === undefined ? 0 : item.note"/>-->
       </div>
     </v-card-title>
-    <v-card-text>{{ item.price }} par nuit</v-card-text>
+    <v-card-text>{{ item.amount }}€ par nuit</v-card-text>
   </v-card>
 </template>
 

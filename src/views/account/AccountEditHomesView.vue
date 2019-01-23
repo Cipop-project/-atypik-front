@@ -2,12 +2,12 @@
   <v-layout>
     <v-loading :is-loading="loading"/>
     <v-flex
-      v-for="(product, id) in user.homes"
+      v-for="(product, id) in userProducts"
       :key="id"
       md2
       xs4
       class="ma-3">
-      <router-link :to="{ name: 'editHome', params: { home_slug: product.product_id } }">
+      <router-link :to="{ name: 'editHome', params: { home_slug: product.id } }">
         <v-small-card :item="product"/>
       </router-link>
     </v-flex>
@@ -22,12 +22,15 @@ export default {
     return {
       user: this.$store.state.user,
       userProducts: [],
-      loading: true
+      loading: false
     }
   },
   async mounted () {
+    // this.loading = true
     const data = await Resource.readUserProducts(this.user.id)
     console.log(data)
+    this.userProducts = data.data.data
+    this.loading = false
   },
   methods: {
     formatMoney (e) {
