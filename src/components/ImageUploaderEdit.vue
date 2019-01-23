@@ -14,35 +14,58 @@
       :key="i"
       class="img-box">
       <img
-        :src="image"
+        :src="image.addressUrl"
         height="100"
         width="100"
-        alt="zef"></div>
+        alt="image du logement"
+        @click="removeImage(i)">
+    </div>
+    <div
+      v-for="(img, k) in added"
+      :key="k"
+      class="img-box">
+      <img
+        :src="img"
+        height="100"
+        width="100"
+        alt="image du logement"
+        @click="removeAdded(k)">
+    </div>
   </v-layout>
 </template>
 
 <script>
 export default {
-  name: 'ImageUploaderView',
+  name: 'ImageUploaderEdit',
   props: {
     images: {
       type: Array,
-      required: false,
-      default () { return [] }
+      required: true
+    },
+    files: {
+      type: Array,
+      required: true
     }
   },
   data () {
     return {
-      files: []
+      added: []
     }
   },
   methods: {
     uploadFile (e) {
-      // console.log(e)
       let file = e.target.files[0]
       this.files.push(file)
-      this.$emit('uploadImage', file)
-      this.images.push(URL.createObjectURL(file))
+      this.added.push(URL.createObjectURL(file))
+    },
+    removeImage (i) {
+      console.log(this.images[i])
+      this.images.splice(i, 1)
+    },
+    removeAdded (i) {
+      console.log(this.added[i])
+      this.files.splice(i, 1)
+      this.added.splice(i, 1)
     }
   }
 }

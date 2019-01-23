@@ -1,5 +1,14 @@
 <template>
   <form action="">
+    <v-loading :is-loading="loading"/>
+    <v-atypik-alert
+      :type="alert_type"
+      :show="alert"
+      :message="alert_text"/>
+    <v-btn
+      v-if="alert_btn"
+      class="brown darken-1 white--text"
+      @click="productView()">Voir logement</v-btn>
     <div class=" form-group form-inline">
       <v-flex md2>
         <label
@@ -126,7 +135,7 @@
         <input
           id="formPrice"
           v-model="home.price"
-          type="text"
+          type="number"
           class="form-control w-50"
           @keyup="formatMoney">
       </v-flex>
@@ -157,7 +166,12 @@ export default {
         type: '',
         price: 0
       },
-      status: {}
+      status: {},
+      alert: false,
+      alert_type: 'info',
+      alert_text: '',
+      alert_btn: false,
+      loading: false
     }
   },
   methods: {
@@ -169,21 +183,10 @@ export default {
         console.log(e.key)
       }
     },
-    // async registerImages () {
-    //   let imgs = []
-    //   this.home.images.forEach(async function (each) {
-    //     let formFile = new FormData()
-    //     formFile.append('file', each)
-    //     console.log('appending image....')
-    //     const { data } = await Resource.createProductImage(formFile)
-    //     if (data.status === 200) {
-    //       console.log(data.data)
-    //       imgs.push(data.data.id)
-    //       console.log('inserting image....')
-    //     }
-    //   })
-    //   return imgs
-    // },
+    productView () {
+      let tmp = this.$router.resolve({ name: 'homeDetails', params: { home_slug: this.home.id } })
+      window.open(tmp.href, '_blank')
+    },
     async filterData (data) {
       let filtered = []
       for (let i = 0; i < data.length; i++) {
@@ -208,6 +211,7 @@ export default {
       return results
     },
     async submit () {
+      this.loading = true
       const data = await this.promises(this.home.images)
       console.log(data)
       const filteredData = await this.filterData(data)
@@ -215,23 +219,20 @@ export default {
       console.log(filteredData)
       console.log('creating product')
       const data2 = await Resource.createProduct(this.formData())
-      console.log(data2)
+      this.loading = false
+      if (data2.status === 200 && data2.body.status === 200) {
+        this.alert_text = 'Le logement a été crée'
+        this.alert_type = 'success'
+        this.alert = true
+        this.alert_btn = true
+        this.home = data2.body.data
+      } else {
+        this.alert_text = data2.body.message
+        this.alert_type = 'error'
+        this.alert = true
+      }
     },
     formData () {
-      console.log({
-        address: this.home.address,
-        amount: this.home.price,
-        city: this.home.city,
-        clientId: this.user.id,
-        clientType: this.user.clientType,
-        country: 'France',
-        description: this.home.description,
-        imagesId: this.home.imagesUrl,
-        name: this.home.name,
-        peopleNumber: this.home.maxPeople,
-        type: this.home.category,
-        zipCode: this.home.zipCode
-      })
       return {
         address: this.home.address,
         amount: this.home.price,

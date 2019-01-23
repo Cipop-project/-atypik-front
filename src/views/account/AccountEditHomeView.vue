@@ -1,11 +1,13 @@
 <template>
-  <form v-else>
+  <form>
+    <v-loading :is-loading="updateLoading"/>
+    <v-atypik-alert
+      :show="alert"
+      :type="alert_type"
+      :message="alert_text"/>
     <v-btn
       class="brown darken-1 white--text"
       @click="productView()">Voir logement</v-btn>
-    <v-flashbag
-      ref="flashbag"
-      :flashbag="flashbag"/>
     <div class=" form-group form-inline">
       <v-flex md2>
         <label
@@ -15,7 +17,7 @@
       <v-flex md7>
         <input
           id="formTitle"
-          v-model="product.name"
+          v-model="home.name"
           type="text"
           class="form-control w-100">
       </v-flex>
@@ -23,101 +25,58 @@
     <div class=" form-group form-inline">
       <v-flex md2>
         <label
-          for="description"
-          class="pr-4">Description</label>
-      </v-flex>
-      <v-flex md7>
-                    <textarea
-                      id="description"
-                      v-model="product.description"
-                      name="description"
-                      cols="30"
-                      rows="5"
-                      class="form-control w-100"/>
-      </v-flex>
-    </div>
-    <div class=" form-group form-inline">
-      <v-flex md2>
-        <label
-          for="address"
-          class="pr-4">Address</label>
+          for="formAddress"
+          class="pr-4">Addresse</label>
       </v-flex>
       <v-flex md7>
         <input
-          id="address"
-          v-model="product.address"
+          id="formAddress"
+          v-model="home.address"
           type="text"
           class="form-control w-100">
       </v-flex>
     </div>
-    <div class="form-group form-inline">
+    <div class=" form-group form-inline">
       <v-flex md2>
         <label
-          for="city"
+          for="formCity"
           class="pr-4">Ville</label>
       </v-flex>
       <v-flex md7>
         <input
-          id="city"
-          v-model="product.city"
+          id="formCity"
+          v-model="home.city"
           type="text"
+          class="form-control w-100">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formZip"
+          class="pr-4">Code postal</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formZip"
+          v-model="home.zipCode"
+          type="number"
+          max="99999"
           class="form-control w-100">
       </v-flex>
     </div>
     <div class="form-group form-inline">
       <v-flex md2>
         <label
-          for="zipCode"
-          class="pr-4">Code postal</label>
+          for="formDescription"
+          class="pr-4">Description</label>
       </v-flex>
       <v-flex md7>
-        <input
-          id="zipCode"
-          v-model="product.zipCode"
-          type="text"
-          class="form-control w-100">
-      </v-flex>
-    </div>
-    <div class=" form-group form-inline">
-      <v-flex md2>
-        <label
-          for="country"
-          class="pr-4">Pays</label>
-      </v-flex>
-      <v-flex md7>
-        <input
-          id="country"
-          v-model="product.country"
-          type="text"
-          class="form-control w-100">
-      </v-flex>
-    </div>
-    <div class=" form-group form-inline">
-      <v-flex md2>
-        <label
-          for="people"
-          class="pr-4">Maximum de personnes</label>
-      </v-flex>
-      <v-flex md7>
-        <input
-          id="people"
-          v-model="product.peopleNumber"
-          type="number"
-          class="form-control w-100">
-      </v-flex>
-    </div>
-    <div class=" form-group form-inline">
-      <v-flex md2>
-        <label
-          for="price"
-          class="pr-4">Prix par nuit</label>
-      </v-flex>
-      <v-flex md7>
-        <input
-          id="price"
-          v-model="product.amount"
-          type="number"
-          class="form-control w-100">
+        <textarea
+          id="formDescription"
+          v-model="home.description"
+          rows="6"
+          class="form-control w-100"/>
       </v-flex>
     </div>
     <div class="form-group form-inline">
@@ -125,7 +84,62 @@
         <label class="pr-4">Photos</label>
       </v-flex>
       <v-flex md7>
-        <v-image-uploader v-model="product.images"/>
+        <v-image-uploader-edit
+          :images="home.images"
+          :files="files"/>
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formCategory"
+          class="pr-4">Categorie</label>
+      </v-flex>
+      <v-flex md7>
+        <select
+          id="formCategory"
+          v-model="home.type"
+          name=""
+          class="form-control w-50">
+          <option value="CABANE">Cabane</option>
+          <option value="ROULOTTE">Roulotte</option>
+          <option value="TENTE">Tente</option>
+          <option value="BATEAU">Bateau</option>
+          <option value="YOURTE">Yourte</option>
+          <option value="BULLE">Bulle</option>
+          <option value="STUDIO">Studio</option>
+          <option value="CHAMBRE">Chambre</option>
+          <option value="AUTRE">Autre</option>
+        </select>
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formMaxPeople"
+          class="pr-4">Couchages</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formMaxPeople"
+          v-model="home.peopleNumber"
+          type="number"
+          class="form-control w-50">
+      </v-flex>
+    </div>
+    <div class=" form-group form-inline">
+      <v-flex md2>
+        <label
+          for="formPrice"
+          class="pr-4">Prix par nuit</label>
+      </v-flex>
+      <v-flex md7>
+        <input
+          id="formPrice"
+          v-model="home.amount"
+          type="number"
+          class="form-control w-50"
+          @keyup="formatMoney">
       </v-flex>
     </div>
     <v-btn
@@ -144,45 +158,136 @@ export default {
   data () {
     return {
       user: this.$store.state.user,
-      product: {},
+      home: {
+        name: '',
+        address: '',
+        zipCode: '',
+        city: '',
+        description: '',
+        images: [],
+        imagesId: [],
+        type: '',
+        peopleNumber: 1,
+        amount: 0
+      },
+      files: [],
       updateLoading: false,
-      flashbag: { show: false }
+      imagesBefore: [],
+      alert: false,
+      alert_text: '',
+      alert_type: 'info'
     }
   },
   mounted: async function () {
     this.updateLoading = true
-    const { data } = await Resource.searchProduct(this.$route.params.home_slug)
-    this.product = data.data
+    const { data } = await Resource.readProduct(this.$route.params.home_slug)
+    this.home = data.data
+    this.imagesBefore = JSON.parse(JSON.stringify(data.data.images))
     this.updateLoading = false
   },
   methods: {
-    async submit () {
-      console.log('submit form')
-      this.updateLoading = true
-      const { data } = await Resource.updateHome(this.product)
-      this.updateLoading = false
-      if (data.status !== 0) {
-        this.flashbag = { show: true, type: 'error', message: data.message }
-      } else {
-        this.flashbag = { show: true, type: 'success', message: 'Vos changements ont été enregistrés' }
+    formatMoney (e) {
+      if (!isNaN(e.key)) {
+        console.log(e.key)
       }
     },
+    // async submit () {
+    //   console.log('submit form')
+    //   this.updateLoading = true
+    //   const { data } = await Resource.updateHome(this.home)
+    //   this.updateLoading = false
+    //   if (data.status !== 0) {
+    //     this.flashbag = { show: true, type: 'error', message: data.message }
+    //   } else {
+    //     this.flashbag = { show: true, type: 'success', message: 'Vos changements ont été enregistrés' }
+    //   }
+    // },
     async deleteHome () {
       let tmp = confirm('Etes-vous sûr de vouloir effacer ce logement ?')
       if (tmp) {
         this.updateLoading = true
-        const { data } = await Resource.deleteHome(this.product)
+        const data = await Resource.deleteProduct(this.home.id)
+        console.log(data)
         this.updateLoading = false
-        if (data.status !== 0) {
-          this.flashbag = { show: true, type: 'error', message: data.message }
+        if (data.status !== 200) {
+          this.alert_type = 'error'
+          this.alert_text = data.message
+          this.alert = true
         } else {
-          this.flashbag = { show: true, type: 'success', message: 'Vos changements ont été enregistrés' }
+          // this.alert_type = 'success'
+          // this.alert_text = 'Vos changements ont été enregistrés'
+          // this.alert = true
+          this.$router.push({ name: 'editHomes' })
         }
       }
     },
     productView () {
-      let tmp = this.$router.resolve({ name: 'homeDetails', params: { home_slug: this.product.id } })
+      let tmp = this.$router.resolve({ name: 'homeDetails', params: { home_slug: this.home.id } })
       window.open(tmp.href, '_blank')
+    },
+    async filterData (data) {
+      let filtered = []
+      for (let i = 0; i < data.length; i++) {
+        console.log('appending image....')
+        if (data[i].status === 200) {
+          filtered.push(data[i].body.data.id)
+        }
+      }
+      for (let i = 0; i < this.home.images.length; i++) {
+        console.log('appending precharged image....')
+        filtered.push(this.home.images[i].id)
+      }
+      return filtered
+    },
+    async promises (images) {
+      let promises = []
+
+      for (let i = 0; i < images.length; i++) {
+        let formFile = new FormData()
+        formFile.append('file', images[i])
+        promises.push(Resource.createProductImage(formFile))
+      }
+
+      const results = await Promise.all(promises)
+      return results
+    },
+    async submit () {
+      this.updateLoading = true
+      const data = await this.promises(this.files)
+      console.log(data)
+      const filteredData = await this.filterData(data)
+      this.home.imagesId = filteredData
+      console.log(filteredData)
+      console.log('updating product...')
+      const data2 = await Resource.updateProduct(this.home.id, this.formData())
+      console.log(data2)
+      this.updateLoading = false
+      if (data2.status === 200 && data2.body.status === 200) {
+        this.alert_text = 'Vos changements ont été bien enregistrés'
+        this.alert_type = 'success'
+        this.alert = true
+        this.home = data2.body.data
+      } else {
+        this.alert_text = data2.body.message
+        this.alert_type = 'error'
+        this.alert = true
+      }
+    },
+    formData () {
+      return {
+        address: this.home.address,
+        amount: this.home.amount,
+        city: this.home.city,
+        clientId: this.user.id,
+        clientType: this.user.clientType,
+        country: 'France',
+        description: this.home.description,
+        imagesId: this.home.imagesId,
+        name: this.home.name,
+        peopleNumber: this.home.peopleNumber,
+        type: this.home.type,
+        zipCode: this.home.zipCode
+      }
     }
   }
 }

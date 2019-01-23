@@ -23,6 +23,7 @@ import HostProfileNavigationDrawer from './components/HostProfileNavigationDrawe
 import UserProfileNavigationDrawer from './components/UserProfileNavigationDrawer.vue'
 import NormalComment from './components/NormalComment.vue'
 import ImageUploader from './components/ImageUploader.vue'
+import ImageUploaderEdit from './components/ImageUploaderEdit.vue'
 import ReservationDetails from './components/ReservationDetails.vue'
 import AtypikSelect from './components/elements/AtypikSelect.vue'
 import AtypikCarousel from './components/elements/AtypikCarousel.vue'
@@ -119,6 +120,7 @@ Vue.component('v-user-profile-navigation', UserProfileNavigationDrawer)
 Vue.component('v-notation-stars', NotationStars)
 Vue.component('v-comment', NormalComment)
 Vue.component('v-image-uploader', ImageUploader)
+Vue.component('v-image-uploader-edit', ImageUploaderEdit)
 Vue.component('v-reservation-details', ReservationDetails)
 Vue.component('v-loading', Loading)
 Vue.component('v-account-notifications', AccountNotifications)

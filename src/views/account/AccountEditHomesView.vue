@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-layout wrap>
     <v-loading :is-loading="loading"/>
     <v-flex
       v-for="(product, id) in userProducts"
@@ -26,10 +26,14 @@ export default {
     }
   },
   async mounted () {
-    // this.loading = true
-    const data = await Resource.readUserProducts(this.user.id)
-    console.log(data)
-    this.userProducts = data.data.data
+    this.loading = true
+    console.log(this.user)
+    const { data } = await Resource.readUserProducts(this.user.id)
+    if (typeof data.data === 'Object') {
+      this.userProducts.push(data.data)
+    } else {
+      this.userProducts = data.data
+    }
     this.loading = false
   },
   methods: {

@@ -62,6 +62,15 @@ export default {
   createProduct (data) {
     return Vue.http.post(`${getUrl('product')}`, data).then(response => { return response }, response => { return response })
   },
+  readProduct (productId) {
+    return Vue.http.get(`${getUrl('product')}/find/` + productId).then(response => { return response }, response => { return response })
+  },
+  updateProduct (productId, data) {
+    return Vue.http.put(`${getUrl('product')}/` + productId, data).then(response => { return response }, response => { return response })
+  },
+  deleteProduct (productId) {
+    return Vue.http.delete(`${getUrl('product')}/` + productId).then(response => { return response }, response => { return response })
+  },
   createProductImage (data) {
     return Vue.http.post(`${getUrl('productImages')}/upload-image`, data).then(response => { return response }, response => { return response })
   },
@@ -77,9 +86,6 @@ export default {
   },
   search (data) {
     return Vue.http.post(`${getUrl('product')}/find`, data).then(response => { return response }, response => { return response })
-  },
-  searchProduct (data) {
-    return Vue.http.get(`${getUrl('product')}/find/` + data).then(response => { return response }, response => { return response })
   },
   createCommand (data) {
     return Vue.http.post(`${getUrl('command')}`, data).then(response => { return response }, response => { return response })
@@ -101,11 +107,6 @@ export default {
     return getDefault()
   },
   updateHome (data) {
-    console.log(data)
-    // return Vue.http.post(`${getUrl('client')}`, data).then(response => { return response }, response => { return response })
-    return getDefault()
-  },
-  deleteHome (data) {
     console.log(data)
     // return Vue.http.post(`${getUrl('client')}`, data).then(response => { return response }, response => { return response })
     return getDefault()

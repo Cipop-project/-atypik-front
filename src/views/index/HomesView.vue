@@ -125,7 +125,7 @@ export default {
     }
   },
   async mounted () {
-    const { data } = await Resource.searchProduct(this.$route.params.home_slug)
+    const { data } = await Resource.readProduct(this.$route.params.home_slug)
     this.product = data.data
     console.log(this.product)
   },
