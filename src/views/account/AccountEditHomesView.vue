@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import Resource from '../../resources'
 export default {
   name: 'AccountEditHomesView',
   data () {
@@ -25,7 +26,8 @@ export default {
     }
   },
   async mounted () {
-    // const data = await Resource.readUserProducts(this.user.id)
+    const data = await Resource.readUserProducts(this.user.id)
+    console.log(data)
   },
   methods: {
     formatMoney (e) {

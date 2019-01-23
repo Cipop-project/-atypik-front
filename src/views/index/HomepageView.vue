@@ -20,7 +20,7 @@
         fill-height
         justify-center>
         <v-flex md10>
-          <h3>Les plus populaires</h3>
+          <h3>Les regions</h3>
           <el-swiper
             :options="swiperOption"
             :slides="popularZones"
@@ -41,19 +41,19 @@
             type="big-card"/>
         </v-flex>
       </v-layout>
-      <v-layout
-        fill-height
-        justify-center
-        mt-5>
-        <v-flex md10>
-          <h3>Les meilleures logements</h3>
-          <el-swiper
-            :options="swiperOption"
-            :slides="bestHomes"
-            :index="'index'"
-            type="small-card"/>
-        </v-flex>
-      </v-layout>
+      <!--<v-layout-->
+      <!--fill-height-->
+      <!--justify-center-->
+      <!--mt-5>-->
+      <!--<v-flex md10>-->
+      <!--<h3>Les meilleures logements</h3>-->
+      <!--<el-swiper-->
+      <!--:options="swiperOption"-->
+      <!--:slides="bestHomes"-->
+      <!--:index="'index'"-->
+      <!--type="small-card"/>-->
+      <!--</v-flex>-->
+      <!--</v-layout>-->
     </v-container>
     <v-footer/>
   </div>

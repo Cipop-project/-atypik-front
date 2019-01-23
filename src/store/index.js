@@ -78,89 +78,54 @@ export const store = new Vuex.Store({
       }
     ],
     popularZones: [
-      { title: 'Hauts de France',
+      { title: 'Ile de France',
         country: 'France',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/ile_de_france.jpg',
         src: 'region/adkTYrs5Fz41'
       },
-      { title: 'Hauts de France',
+      { title: 'Normandie',
         country: 'France',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/normandie.jpg',
         src: 'region/adkTYrs5Fz41'
       },
-      { title: 'Hauts de France',
+      { title: 'Bretagne',
         country: 'France',
         count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/bretagne.jpg',
         src: 'region/adkTYrs5Fz41'
       },
-      { title: 'Hauts de France',
+      { title: 'Nord-pas-de-calais',
         country: 'France',
         count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/nord_pas_de_calais.jpg',
         src: 'region/adkTYrs5Fz41'
       },
-      { title: 'Hauts de France',
+      { title: 'Centre',
         country: 'France',
         count: '27',
-        img: '/static/img/falaises-etretat.jpg',
-        src: 'region/adkTYrs5Fz41'
-      },
-      { title: 'Hauts de France',
-        country: 'France',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
-        src: 'region/adkTYrs5Fz41'
-      },
-      { title: 'Hauts de France',
-        country: 'France',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
-        src: 'region/adkTYrs5Fz41'
-      },
-      { title: 'Hauts de France',
-        country: 'France',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/centre.jpg',
         src: 'region/adkTYrs5Fz41'
       }
     ],
     homeTypes: [
       { title: 'Cabanes dans les arbres',
         count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/cabane.jpg',
         src: 'homeType/deY24Xs6eds'
       },
-      { title: 'Cabanes dans les arbres',
+      { title: 'Roulotte',
         count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/roulotte.jpg',
         src: 'homeType/deY24Xs6eds'
       },
-      { title: 'Cabanes dans les arbres',
+      { title: 'Yourte',
         count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/yourte.jpg',
         src: 'homeType/deY24Xs6eds'
       },
-      { title: 'Cabanes dans les arbres',
+      { title: 'Bulle',
         count: '27',
-        img: '/static/img/falaises-etretat.jpg',
-        src: 'homeType/deY24Xs6eds'
-      },
-      { title: 'Cabanes dans les arbres',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
-        src: 'homeType/deY24Xs6eds'
-      },
-      { title: 'Cabanes dans les arbres',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
-        src: 'homeType/deY24Xs6eds'
-      },
-      { title: 'Cabanes dans les arbres',
-        count: '27',
-        img: '/static/img/falaises-etretat.jpg',
+        img: '/static/img/bulle.jpg',
         src: 'homeType/deY24Xs6eds'
       }
     ],

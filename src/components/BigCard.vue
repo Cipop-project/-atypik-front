@@ -1,6 +1,9 @@
 <template>
   <v-img
-    :src="item.img">
+    :src="item.img"
+    height="300"
+    @click="$router.push({ name: 'search', params: { region: 'Nord-Pas-De-Calais' } })"
+    class="clickable">
     <v-layout
       align-end
       justify-center
@@ -9,7 +12,7 @@
       <v-card
         class="card-layout transparent mb-2 pa-2">
         <h4 class="white--text text-xs-center">{{ item.title }}</h4>
-        <h5 class="white--text text-xs-center ">{{ item.count }} Logements</h5>
+        <!--<h5 class="white&#45;&#45;text text-xs-center ">{{ item.count }} Logements</h5>-->
       </v-card>
     </v-layout>
   </v-img>
@@ -28,6 +31,9 @@ export default {
 </script>
 
 <style scoped>
+  .clickable {
+    cursor: pointer;
+  }
   .card-layout {
     background-color: rgba(0, 0, 0, 0.20)!important;
     border: 2px solid lightgray!important;

@@ -66,7 +66,8 @@ export default {
     return Vue.http.post(`${getUrl('productImages')}/upload-image`, data).then(response => { return response }, response => { return response })
   },
   readUserProducts (userId) {
-    return Vue.http.get(`${getUrl('client')}/findByUserName/` + data).then(response => { return response }, response => { return response })
+    console.log(userId)
+    return Vue.http.get(`${getUrl('product')}/findAllByClient/` + userId).then(response => { return response }, response => { return response })
   },
   findArray (referenceId, commentObject) {
     return Vue.http.post(`${getUrl('product')}/${referenceId}`, commentObject).then(response => { return response }, response => { return response })
