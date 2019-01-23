@@ -169,22 +169,51 @@ export default {
         console.log(e.key)
       }
     },
-    async submit () {
-      let imgs = []
-      this.home.images.forEach(async function (each) {
-        let formFile = new FormData()
-        formFile.append('file', each)
-        console.log('appending image....')
-        const { data } = await Resource.createProductImage(formFile)
-        if (data.status === 200) {
-          console.log(data.data)
-          imgs.push(data.data.id)
-          console.log('inserting image....')
+    // async registerImages () {
+    //   let imgs = []
+    //   this.home.images.forEach(async function (each) {
+    //     let formFile = new FormData()
+    //     formFile.append('file', each)
+    //     console.log('appending image....')
+    //     const { data } = await Resource.createProductImage(formFile)
+    //     if (data.status === 200) {
+    //       console.log(data.data)
+    //       imgs.push(data.data.id)
+    //       console.log('inserting image....')
+    //     }
+    //   })
+    //   return imgs
+    // },
+    async filterData (data) {
+      let filtered = []
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i])
+        if (data[i].status === 200) {
+          filtered.push(data[i].body.data.id)
         }
-      })
-      console.log(imgs)
-      this.home.imagesUrl = imgs
-      console.log('creating product....')
+      }
+      return filtered
+    },
+    async promises (images) {
+      let promises = []
+
+      for (let i = 0; i < images.length; i++) {
+        let formFile = new FormData()
+        formFile.append('file', images[i])
+        console.log('appending image....')
+        promises.push(Resource.createProductImage(formFile))
+      }
+
+      const results = await Promise.all(promises)
+      return results
+    },
+    async submit () {
+      const data = await this.promises(this.home.images)
+      console.log(data)
+      const filteredData = await this.filterData(data)
+      this.home.imagesUrl = filteredData
+      console.log(filteredData)
+      console.log('creating product')
       const data2 = await Resource.createProduct(this.formData())
       console.log(data2)
     },
@@ -197,7 +226,7 @@ export default {
         clientType: this.user.clientType,
         country: 'France',
         description: this.home.description,
-        images: this.home.imagesUrl,
+        imagesId: this.home.imagesUrl,
         name: this.home.name,
         peopleNumber: this.home.maxPeople,
         type: this.home.category,
@@ -211,7 +240,7 @@ export default {
         clientType: this.user.clientType,
         country: 'France',
         description: this.home.description,
-        images: this.home.imagesUrl,
+        imagesId: this.home.imagesUrl,
         name: this.home.name,
         peopleNumber: this.home.maxPeople,
         type: this.home.category,

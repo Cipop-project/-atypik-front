@@ -1,5 +1,6 @@
 <template>
   <v-layout>
+    <v-loading :is-loading="loading"/>
     <v-flex
       v-for="(product, id) in user.homes"
       :key="id"
@@ -18,8 +19,13 @@ export default {
   name: 'AccountEditHomesView',
   data () {
     return {
-      user: this.$store.state.user
+      user: this.$store.state.user,
+      userProducts: [],
+      loading: true
     }
+  },
+  async mounted () {
+    // const data = await Resource.readUserProducts(this.user.id)
   },
   methods: {
     formatMoney (e) {
