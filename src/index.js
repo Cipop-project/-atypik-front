@@ -41,7 +41,7 @@ import GoogleMaps from './components/GoogleMaps.vue'
 import AtypikAlert from './components/AtypikAlert.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
-import { addDays, subDays, parse } from 'date-fns'
+import { addDays, subDays, parse, differenceInDays } from 'date-fns'
 import 'nprogress/nprogress.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
@@ -56,8 +56,6 @@ Vue.use(VueResource)
 Vue.use(VueAwesomeSwiper)
 
 Vue.http.interceptors.push(function (request, next) {
-  console.log('intercepting...')
-  console.log(request)
   if (localStorage.user) {
     request.headers.set('Authorization', JSON.parse(localStorage.user).token)
   }
@@ -70,6 +68,11 @@ Vue.mixin({
     addDays,
     subDays,
     parse,
+    differenceInDays,
+    getUTCDate (date) {
+      date = new Date(date)
+      return new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000)
+    },
     dateFormat (date) {
       if (date instanceof Date) {
         return date.toISOString().substring(0, 10)

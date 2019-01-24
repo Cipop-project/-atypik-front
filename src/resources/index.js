@@ -92,6 +92,15 @@ export default {
     return Vue.http.get(`${getUrl('product')}/findAllByClient/` + userId).then(response => { return response }, response => { return response })
   },
   // ----------------------------------------------------------
+  // COMMAND ----------------------------------------------------------
+  // ----------------------------------------------------------
+  createCommand (data) {
+    return Vue.http.post(`${getUrl('command')}`, data).then(response => { return response }, response => { return response })
+  },
+  createCommandPayment (commandId) {
+    return Vue.http.get(`${getUrl('command')}/payment/` + commandId).then(response => { return response }, response => { return response })
+  },
+  // ----------------------------------------------------------
   // OTHER ----------------------------------------------------------
   // ----------------------------------------------------------
   findCities () {
@@ -99,9 +108,6 @@ export default {
   },
   search (data) {
     return Vue.http.post(`${getUrl('product')}/find`, data).then(response => { return response }, response => { return response })
-  },
-  createCommand (data) {
-    return Vue.http.post(`${getUrl('command')}`, data).then(response => { return response }, response => { return response })
   },
   getReservationDatesByMonth (data) {
     console.log(data)

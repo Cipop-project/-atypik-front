@@ -23,7 +23,8 @@ import AccountMessagesView from '../views/account/AccountMessagesView.vue'
 import AccountReservationCalendarView from '../views/account/AccountReservationCalendarView.vue'
 import AccountReservationDetailsView from '../views/account/AccountReservationDetailsView.vue'
 import AccountBecomeHost from '../views/account/AccountBecomeHost.vue'
-
+import ReservationPaymentCancel from '../views/reservation/ReservationPaymentCancel.vue'
+import ReservationPaymentSuccess from '../views/reservation/ReservationPaymentSuccess.vue'
 
 Vue.use(Router)
 
@@ -53,6 +54,8 @@ export default new Router({
       ]
     },
     { path: '/reservation/payment', name: 'payment', component: ReservationPayment },
+    { path: '/reservation/payment/cancel', name: 'paymentCancel', component: ReservationPaymentCancel },
+    { path: '/reservation/payment/success', name: 'paymentSuccess', component: ReservationPaymentSuccess },
     { path: '/host/', name: 'host', component: NotFoundView },
     { path: '/about/', name: 'about', component: NotFoundView },
     { path: '/contact/', name: 'contact', component: NotFoundView },

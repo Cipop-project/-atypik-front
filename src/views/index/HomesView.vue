@@ -55,6 +55,7 @@
                 box
                 hide-details/>
               <el-price-details
+                :days="days"
                 :price="reservation.price"
                 :discounts="reservation.discounts"/>
               <v-layout justify-center>
@@ -120,6 +121,9 @@ export default {
     }
   },
   computed: {
+    days () {
+      return this.differenceInDays(this.getUTCDate(this.reservation.time[1]), this.getUTCDate(this.reservation.time[0]))
+    },
     descriptifs () {
       return this.$store.state.descriptifs
     }
@@ -127,6 +131,7 @@ export default {
   async mounted () {
     const { data } = await Resource.readProduct(this.$route.params.home_slug)
     this.product = data.data
+    this.reservation.price = this.product.amount
     console.log(this.product)
   },
   methods: {

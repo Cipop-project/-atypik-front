@@ -1,13 +1,8 @@
 <template>
   <div class="price-box">
-    <p>Prix de base: <span class="text-xs-right">{{ price }}€</span></p>
-    <p
-      v-for="(discount, i) in discounts"
-      :key="i"
-      class="reservation-box pl-4 ma-0">
-      {{ discount.name }}: <span class="text-xs-right">- {{ discount.price }}€</span>
-    </p>
-    <p class="mt-3">Prix total: <span class="text-xs-right">0€</span></p>
+    <p>Prix par nuit: <span class="text-xs-right">{{ price }}€</span></p>
+    <p class="reservation-box pl-4 ma-0">Nombre de nuits: <span class="text-xs-right"> {{ days }}</span></p>
+    <p class="mt-3">Prix total: <span class="text-xs-right">{{ Math.round(price * days * 100)/100 }}€</span></p>
   </div>
 </template>
 
@@ -23,6 +18,10 @@ export default {
       }
     },
     price: {
+      type: Number,
+      required: true
+    },
+    days: {
       type: Number,
       required: true
     }

@@ -6,6 +6,7 @@
         <v-flex
           xs10
           m10>
+          <v-loading :is-loading="loading"/>
           <h2>Vous allez etre redirigé vers le site du paiement de votre choix...</h2>
         </v-flex>
       </v-layout>
@@ -24,9 +25,11 @@ export default {
         clientId: this.$store.state.user.id,
         endTime: JSON.parse(localStorage.reservation).end_date + 'T00:00:00.000Z',
         startTime: JSON.parse(localStorage.reservation).start_date + 'T00:00:00.000Z',
-        productId: JSON.parse(localStorage.reservation).product_id
+        productId: JSON.parse(localStorage.reservation).product_id,
+        amount: 0
       },
-      reservationStatus: 1
+      loading: false,
+      command: {}
     }
   },
   beforeMount () {
@@ -35,14 +38,21 @@ export default {
     }
   },
   async mounted () {
-    console.log(this.reservation)
-    this.reservationStatus = await this.createCommand()
+    this.loading = true
+    const { data } = await Resource.readProduct(this.reservation.productId)
+    let days = this.differenceInDays(this.getUTCDate(JSON.parse(localStorage.reservation).end_date), this.getUTCDate(JSON.parse(localStorage.reservation).start_date))
+    this.reservation.amount = data.data.amount * days
+    const data2 = await this.createCommand()
+    this.reservation = data2.body.data
+    const { data3 } = Resource.createCommandPayment(data2.body.data.id)
+    console.log(data3)
+    this.loading = false
   },
   methods: {
     async createCommand () {
       const data = await Resource.createCommand(this.reservation)
       console.log(data)
-      return data.status
+      return data
     }
   }
 }
