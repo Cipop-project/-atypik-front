@@ -2,7 +2,7 @@
   <v-layout>
     <v-loading :is-loading="isLoading"/>
     <v-flex id="comments-box">
-      <v-list>
+      <v-list class="no-bg">
         <template
           v-for="(comment, i) in comments">
           <v-list-tile
@@ -19,7 +19,7 @@
               <v-list-tile-sub-title>{{ comment.description }}</v-list-tile-sub-title>
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-list-tile-action-text>{{ comment.createdAt.substring(0, 10) }}</v-list-tile-action-text>
+              <v-list-tile-action-text>{{ comment.createdAt ? comment.createdAt.substring(0, 10) : '' }}</v-list-tile-action-text>
             </v-list-tile-action>
           </v-list-tile>
         </template>
@@ -46,12 +46,22 @@ export default {
     // const tm = await Resource.createProductComment({ clientId: 'Client_10001', productId: '40284681687c0eee01687c11e7240001', description: 'description', commentStarType: 'SATISFIED' })
     // console.log(tm)
     const { data } = await Resource.readProductComment(this.product)
-    this.comments = data.data
+    console.log(typeof data.data)
+    if (typeof data.data === 'object') {
+      this.comments.push(data.data)
+    } else {
+      this.comments = data.data
+    }
     console.log(data)
   }
 }
 </script>
 
 <style scoped>
-
+  #comments-box {
+    min-height: 80px;
+  }
+  .no-bg {
+    background-color: transparent;
+  }
 </style>
