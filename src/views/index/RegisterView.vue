@@ -69,9 +69,8 @@
                   v-model="phone"
                   :rules="phoneRules"
                   type="number"
-                  label="Numero de telephone"
-                  prepend-icon="mdi-cellphone"
-                  prefix="+"/>
+                  label="Numero de telephone (sans prefix eg: 682578674)"
+                  prepend-icon="mdi-cellphone"/>
                 <v-menu
                   :close-on-content-click="false"
                   v-model="birthdayCalendar"
@@ -263,7 +262,7 @@ export default {
         email: this.email,
         language: this.language,
         password: this.password,
-        phoneNumber: this.phone,
+        phoneNumber: '+33' + this.phone,
         clientType: 'TENANT',
         pricingType: this.currency,
         advertisement: this.advertisement

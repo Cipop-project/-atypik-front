@@ -39,6 +39,7 @@ import Footer from './components/Footer.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
 import GoogleMaps from './components/GoogleMaps.vue'
 import AtypikAlert from './components/AtypikAlert.vue'
+import SearchFilter from './components/SearchFilter.vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import { addDays, subDays, parse, differenceInDays } from 'date-fns'
@@ -139,6 +140,7 @@ Vue.component('v-reservation-calendar', ReservationCalendar)
 Vue.component('v-photo-gallery', PhotoGallery)
 Vue.component('v-google-maps', GoogleMaps)
 Vue.component('v-atypik-alert', AtypikAlert)
+Vue.component('v-search-filter', SearchFilter)
 
 // Vue.component('el-rotate-square', RotateSquare2)
 // Vue.component('origami-loader', Origami)

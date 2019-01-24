@@ -14,15 +14,15 @@
         </v-badge>
       </v-btn>
       <!--<v-list>-->
-        <!--<v-list-tile-->
-          <!--v-for="(message, index) in user.messages"-->
-          <!--:key="index"-->
-          <!--@click="">-->
-          <!--<v-list-tile-content>-->
-            <!--<v-list-tile-title>{{ message.from }}</v-list-tile-title>-->
-            <!--<v-list-tile-sub-title>{{ message.content | smallMessage }}</v-list-tile-sub-title>-->
-          <!--</v-list-tile-content>-->
-        <!--</v-list-tile>-->
+      <!--<v-list-tile-->
+      <!--v-for="(message, index) in user.messages"-->
+      <!--:key="index"-->
+      <!--@click="">-->
+      <!--<v-list-tile-content>-->
+      <!--<v-list-tile-title>{{ message.from }}</v-list-tile-title>-->
+      <!--<v-list-tile-sub-title>{{ message.content | smallMessage }}</v-list-tile-sub-title>-->
+      <!--</v-list-tile-content>-->
+      <!--</v-list-tile>-->
       <!--</v-list>-->
     </v-menu>
     <v-menu
@@ -39,14 +39,14 @@
         </v-badge>
       </v-btn>
       <!--<v-list>-->
-        <!--<v-list-tile-->
-          <!--v-for="(notification, index) in user.notifications"-->
-          <!--:key="index"-->
-          <!--@click="">-->
-          <!--<v-list-tile-content>-->
-            <!--<v-list-tile-title>{{ notification.content | smallMessage }}</v-list-tile-title>-->
-          <!--</v-list-tile-content>-->
-        <!--</v-list-tile>-->
+      <!--<v-list-tile-->
+      <!--v-for="(notification, index) in user.notifications"-->
+      <!--:key="index"-->
+      <!--@click="">-->
+      <!--<v-list-tile-content>-->
+      <!--<v-list-tile-title>{{ notification.content | smallMessage }}</v-list-tile-title>-->
+      <!--</v-list-tile-content>-->
+      <!--</v-list-tile>-->
       <!--</v-list>-->
     </v-menu>
     <v-menu

@@ -13,6 +13,10 @@
           class="font-weight-medium">AtypikHouse</h1>
       </router-link>
       <v-spacer/>
+      <!--<v-btn-->
+        <!--v-if="!loggedIn"-->
+        <!--:to="{ name: 'signin' }"-->
+        <!--color="info">Creer compte</v-btn>-->
       <v-btn
         v-if="!loggedIn"
         :to="{ name: 'login' }"

@@ -21,12 +21,18 @@
         off
         wrap>
         <v-flex
-          xs10
+          xs12
+          md10
           class="vld-parent products-box">
           <v-loading :is-loading="productLoading"/>
-          <v-layout>
+          <v-layout wrap>
+            <v-flex md2>
+              <v-search-filter
+                :data="products"
+                @filter="filterData"/>
+            </v-flex>
             <v-flex
-              v-for="(product, id) in products"
+              v-for="(product, id) in visible"
               :key="id"
               md2
               xs4
@@ -50,6 +56,7 @@ export default {
   data () {
     return {
       products: [],
+      visible: [],
       productLoading: false
     }
   },
@@ -57,11 +64,12 @@ export default {
     this.refresh()
   },
   methods: {
-    productUrl (product) {
-      return '/homes/' + product.id
+    filterData (data) {
+      this.visible = data
     },
     async refresh (passedData) {
       this.products = []
+      this.visible = []
       const postProduct = passedData === undefined ? this.$route.params.productDTO : passedData
       if (postProduct) {
         this.productLoading = true
@@ -70,6 +78,7 @@ export default {
         const { data } = await Resource.search(postProduct)
         this.productLoading = false
         this.products = data.data
+        this.visible = data.data
       } else {
         console.log('no params')
         // const { data } = await Resource.findArray()
@@ -81,6 +90,10 @@ export default {
 </script>
 
 <style scoped>
+  a {
+    color: black;
+    text-decoration: none;
+  }
   .products-box {
     min-height: 200px;
   }
